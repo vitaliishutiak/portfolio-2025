@@ -1,9 +1,13 @@
+'use client';
+
 import React from 'react'
-import { Box, Container, Typography, Grid, Button } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import ProjectCard from './ProjectCard'
 import { projects } from '../data/projects'
+import { useTranslations } from 'next-intl'
 
 const ProjectsBlock: React.FC = () => {
+  const t = useTranslations('projects');
   // Беремо тільки перші 4 проекти
   const featuredProjects = projects.slice(0, 4)
   
@@ -35,7 +39,7 @@ const ProjectsBlock: React.FC = () => {
               fontFamily: "var(--font-outfit)",
             }}
           >
-            Latest Projects
+            {t('title')}
           </Typography>
           <Box
             sx={{
@@ -92,7 +96,7 @@ const ProjectsBlock: React.FC = () => {
                 }
               }}
             >
-              See All →
+              {t('seeAll')} →
             </Button>
           </Box>
         </Box>

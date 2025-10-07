@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Button } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
 interface ContactButtonProps {
   variant?: 'text' | 'outlined' | 'contained'
@@ -14,13 +15,15 @@ const ContactButton: React.FC<ContactButtonProps> = ({
   color = 'inherit',
   size = 'medium'
 }) => {
+  const t = useTranslations('header');
+  
   return (
     <Button 
       variant={variant} 
       color={color}
       size={size}
     >
-      Contact
+      {t('contactButton')}
     </Button>
   )
 }

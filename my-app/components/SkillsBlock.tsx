@@ -1,9 +1,13 @@
+'use client';
+
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 import { skills } from '../data/skills'
 import SkillCard from './SkillCard'
+import { useTranslations } from 'next-intl'
 
 const SkillsBlock: React.FC = () => {
+  const t = useTranslations('skills');
   return (
     <Box component="section" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#fff' }}>
       <Box sx={{ 
@@ -20,7 +24,7 @@ const SkillsBlock: React.FC = () => {
           fontFamily: "var(--font-outfit)", 
           mb: { xs: '20px', md: '40px' } 
         }}>
-          My Skills
+          {t('title')}
         </Typography>
         
         <Box sx={{
@@ -29,9 +33,17 @@ const SkillsBlock: React.FC = () => {
           gap: { xs: '16px', md: '20px' }
         }}>
           {
-            skills.map((skill) => (
-              <SkillCard key={skill.img} img={skill.img} name={skill.name} description={skill.description} />
-            ))
+            skills.map((skill) => {
+              const skillKey = skill.name.toLowerCase().replace('.', '');
+              return (
+                <SkillCard 
+                  key={skill.img} 
+                  img={skill.img} 
+                  name={t(`${skillKey}.name`)} 
+                  description={t(`${skillKey}.description`)} 
+                />
+              );
+            })
           }
         </Box>
 
@@ -43,7 +55,7 @@ const SkillsBlock: React.FC = () => {
           mb: { xs: '20px', md: '40px' },
           mt: { xs: '40px', md: '60px' }
         }}>
-          GitHub Metrics
+          {t('githubMetrics')}
         </Typography>
 
         <Box sx={{

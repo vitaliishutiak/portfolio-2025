@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react'
 import { Box, Typography } from '@mui/material'
+import { useTranslations } from 'next-intl'
 
 const heroTitleStyles = {
   fontSize: { xs: '80px', sm: '130px', md: '200px' },
@@ -27,6 +30,8 @@ const heroSubtitleStyles = {
 }
 
 const HeroBlock: React.FC = () => {
+  const t = useTranslations('hero');
+  
   return (
     <Box sx={{ pt: '72px', width: '100%', height: '100vh', xs: 2, md: 5, display: 'flex', flexDirection: 'column' }}>
         <Box marginTop="100px">
@@ -54,7 +59,11 @@ const HeroBlock: React.FC = () => {
             maxHeight: 'calc(100vh - 72px)'
           }}
         />
-        <Typography sx={heroSubtitleStyles}><span style={{ color: "#FFCC00"}}>Frontend developer</span> crafting fast, responsive, and beautifully animated web experiences.</Typography>
+        <Typography sx={heroSubtitleStyles}>
+          {t.rich('title', {
+            highlight: (chunks) => <span style={{ color: "#FFCC00" }}>{chunks}</span>
+          })}
+        </Typography>
         {/* Прогресівний блюр з кольором */}
         <Box
           component={"div"}

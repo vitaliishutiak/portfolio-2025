@@ -1,9 +1,13 @@
+'use client';
+
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 import HowItsWorksCard from './HowItsWorksCard'
 import { howItsWork } from '../data/howItsWork'
+import { useTranslations } from 'next-intl'
 
 const HowItsWorksBlock: React.FC = () => {
+  const t = useTranslations('howItWorks');
   return (
     <Box component="section" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#121212' }}>
       <Box sx={{ 
@@ -23,7 +27,7 @@ const HowItsWorksBlock: React.FC = () => {
               fontFamily: "var(--font-outfit)",
               mb: { xs: 2, md: 3 }
             }}>
-                How it Works
+                {t('subtitle')}
             </Typography>
             <Typography sx={{ 
               color: '#fff', 
@@ -32,13 +36,18 @@ const HowItsWorksBlock: React.FC = () => {
               fontFamily: "var(--font-outfit)",
               lineHeight: { xs: '130%', md: '120%' }
             }}>
-                A simple and efficient workflow to bring your vision to life. From the first call to final delivery, every step is designed for clarity and efficiency.
+                {t('title')}
             </Typography>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '16px', md: '24px' } }}>
             {
                 howItsWork.map((item) => (
-                    <HowItsWorksCard key={item.number} number={item.number} title={item.title} description={item.description} />
+                    <HowItsWorksCard 
+                      key={item.number} 
+                      number={item.number} 
+                      title={t(`step${item.number}.title`)} 
+                      description={t(`step${item.number}.description`)} 
+                    />
                 ))
             }
         </Box>

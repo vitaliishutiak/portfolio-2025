@@ -1,0 +1,92 @@
+{
+  "header": {
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "contactButton": "Contact"
+  },
+  "hero": {
+    "title": "<highlight>Frontend developer</highlight> crafting fast, responsive, and beautifully animated web experiences."
+  },
+  "projects": {
+    "title": "Latest Projects",
+    "seeAll": "See All",
+    "project1": {
+      "title": "E-commerce Platform",
+      "description": "Full-stack e-commerce solution with modern UI/UX"
+    },
+    "project2": {
+      "title": "Portfolio Website",
+      "description": "Responsive portfolio with smooth animations"
+    },
+    "project3": {
+      "title": "Task Management App",
+      "description": "Real-time collaborative task management platform"
+    },
+    "project4": {
+      "title": "Weather Dashboard",
+      "description": "Interactive weather dashboard with data visualization"
+    },
+    "project5": {
+      "title": "Social Media App",
+      "description": "Mobile social media application"
+    },
+    "project6": {
+      "title": "Blog Platform",
+      "description": "Modern blog platform with CMS integration"
+    }
+  },
+  "howItWorks": {
+    "subtitle": "How it Works",
+    "title": "A simple and efficient workflow to bring your vision to life. From the first call to final delivery, every step is designed for clarity and efficiency.",
+    "step1": {
+      "title": "Initial Consultation",
+      "description": "We start with a deep dive into your project goals, challenges, and requirements."
+    },
+    "step2": {
+      "title": "Design",
+      "description": "We create a design that is tailored to your project goals, challenges, and requirements."
+    },
+    "step3": {
+      "title": "Development",
+      "description": "We develop your project to the highest standards of quality and performance."
+    },
+    "step4": {
+      "title": "Launch",
+      "description": "We launch your project to the world and help you maintain it."
+    },
+    "step5": {
+      "title": "Maintenance",
+      "description": "We help you maintain your project and keep it running smoothly."
+    }
+  },
+  "skills": {
+    "title": "My Skills",
+    "githubMetrics": "GitHub Metrics",
+    "react": {
+      "name": "React",
+      "description": "React is a JavaScript library for building user interfaces."
+    },
+    "nextjs": {
+      "name": "Next.js",
+      "description": "Next.js is a React framework for building server-side rendered applications."
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "description": "TypeScript is a superset of JavaScript that adds static typing."
+    },
+    "javascript": {
+      "name": "JavaScript",
+      "description": "JavaScript is a programming language that allows you to implement complex features on web pages."
+    },
+    "html": {
+      "name": "HTML",
+      "description": "HTML is the standard markup language for creating web pages."
+    },
+    "css": {
+      "name": "CSS",
+      "description": "CSS is a style sheet language used for describing the presentation of a document written in HTML."
+    }
+  }
+}
+
