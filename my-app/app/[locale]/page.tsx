@@ -8,6 +8,7 @@ import ProjectsBlock from '../../components/ProjectsBlock'
 import SkillsBlock from '../../components/SkillsBlock'
 import FaqBlock from '../../components/FaqBlock'
 import HowItsWorksBlock from '../../components/HowItsWorksBlock'
+import ExperienceBlock from '../../components/ExperienceBlock'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <ProjectsBlock />
         <HowItsWorksBlock />
         <SkillsBlock />
+        <ExperienceBlock />
         <FaqBlock />
       </main>
       <Footer />

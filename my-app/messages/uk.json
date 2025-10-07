@@ -87,6 +87,15 @@
       "name": "CSS",
       "description": "CSS — це мова таблиць стилів, що використовується для опису представлення документа, написаного на HTML."
     }
+  },
+  "experience": {
+    "title": "Досвід роботи",
+    "date1": "2021-2022",
+    "position1": "Frontend Developer",
+    "date2": "2021-2022",
+    "position2": "Frontend Developer",
+    "date3": "2021-2022",
+    "position3": "Frontend Developer"
   }
 }
 
