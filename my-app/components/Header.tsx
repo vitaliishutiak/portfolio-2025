@@ -4,7 +4,7 @@ import React, { useTransition } from 'react'
 import { AppBar, Toolbar, Typography, Box, Button, Select, MenuItem } from '@mui/material'
 import ContactButton from './ContactButton'
 import { useTranslations, useLocale } from 'next-intl'
-import { usePathname, useRouter } from '../navigation'
+import { usePathname, useRouter, Link } from '../navigation'
 import { GB, UA } from 'country-flag-icons/react/3x2'
 
 const Header: React.FC = () => {
@@ -182,13 +182,13 @@ const Header: React.FC = () => {
           
           {/* Desktop Navigation */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 5, alignItems: 'center' }}>
-            <Button color="inherit" href="#projects" sx={navButtonStyles}>
+            <Button color="inherit" component={Link} href="/" sx={navButtonStyles}>
               {t('projects')}
             </Button>
-            <Button color="inherit" href="#about" sx={navButtonStyles}>
+            <Button color="inherit" component={Link} href="/about" sx={navButtonStyles}>
               {t('about')}
             </Button>
-            <Button color="inherit" href="#contact" sx={navButtonStyles}>
+            <Button color="inherit" component={Link} href="/contact" sx={navButtonStyles}>
               {t('contact')}
             </Button>
           </Box>

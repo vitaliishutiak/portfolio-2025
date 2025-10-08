@@ -96,6 +96,46 @@
     "position2": "Frontend Developer",
     "date3": "2021-2022",
     "position3": "Frontend Developer"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a project in mind or just want to say hello? Feel free to reach out. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a passionate Frontend Developer with a keen eye for detail and a love for creating beautiful, user-friendly web experiences. With years of experience in modern web technologies, I bring ideas to life through clean code and intuitive design.",
+    "experience": {
+      "title": "My Experience",
+      "description": "I've worked on numerous projects ranging from small business websites to large-scale web applications. My expertise lies in React, Next.js, TypeScript, and modern CSS frameworks. I'm constantly learning and staying up-to-date with the latest trends in web development."
+    },
+    "approach": {
+      "title": "My Approach",
+      "description": "I believe in writing clean, maintainable code and creating seamless user experiences. Every project is an opportunity to learn something new and push the boundaries of what's possible on the web. I focus on performance, accessibility, and responsive design in everything I build."
+    },
+    "interests": {
+      "title": "Beyond Code",
+      "description": "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community. I'm passionate about continuous learning and believe that the best way to grow is by helping others grow too."
+    }
+  },
+  "footer": {
+    "cta": "Book a call, and I'll take care of the rest",
+    "contact": "Contact",
+    "navigation": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "twitter": "Twitter"
+    }
   }
 }
 

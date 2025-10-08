@@ -9,19 +9,22 @@ import SkillsBlock from '../../components/SkillsBlock'
 import FaqBlock from '../../components/FaqBlock'
 import HowItsWorksBlock from '../../components/HowItsWorksBlock'
 import ExperienceBlock from '../../components/ExperienceBlock'
+import PageTransition from '../../components/PageTransition'
 
 export default function Home() {
   return (
     <Container maxWidth={false} disableGutters>
       <Header />
-      <main>
-        <HeroBlock />
-        <ProjectsBlock />
-        <HowItsWorksBlock />
-        <SkillsBlock />
-        <ExperienceBlock />
-        <FaqBlock />
-      </main>
+      <PageTransition>
+        <main>
+          <HeroBlock />
+          <ProjectsBlock />
+          <HowItsWorksBlock />
+          <SkillsBlock />
+          <ExperienceBlock />
+          <FaqBlock />
+        </main>
+      </PageTransition>
       <Footer />
     </Container>
   )

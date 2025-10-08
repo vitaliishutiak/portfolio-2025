@@ -1,41 +1,43 @@
 'use client';
 
 import React from 'react'
-import { Box, Typography, Button, Link } from '@mui/material'
-
-const navItems = [
-  {
-    label: 'Home',
-    href: '/'
-  },
-  
-  {
-    label: 'About',
-    href: '/about'
-  },
-  {
-    label: 'Contact',
-    href: '/contact'
-  }
-]
-
-const socialItems = [
-  {
-    label: 'LinkedIn',
-    href: '/linkedin'
-  },
-  
-  {
-    label: 'GitHub',
-    href: '/github'
-  },
-  {
-    label: 'Twitter',
-    href: '/twitter'
-  }
-]
+import { Box, Typography, Button } from '@mui/material'
+import { Link } from '../navigation'
+import { useTranslations } from 'next-intl'
 
 const Footer: React.FC = () => {
+  const t = useTranslations('footer');
+
+  const navItems = [
+    {
+      label: t('navigation.home'),
+      href: '/'
+    },
+    {
+      label: t('navigation.about'),
+      href: '/about'
+    },
+    {
+      label: t('navigation.contact'),
+      href: '/contact'
+    }
+  ]
+
+  const socialItems = [
+    {
+      label: t('social.linkedin'),
+      href: 'https://linkedin.com'
+    },
+    {
+      label: t('social.github'),
+      href: 'https://github.com'
+    },
+    {
+      label: t('social.twitter'),
+      href: 'https://twitter.com'
+    }
+  ]
+
   return (
     <Box component="footer" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#121212' }}>
       <Box sx={{ 
@@ -48,25 +50,43 @@ const Footer: React.FC = () => {
         fontFamily: 'var(--font-outfit)'
       }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' }, width: '100%', maxWidth: '510px' }}>
-          <Typography sx={{ fontSize: '40px', fontWeight: 500, color: '#fff' }}>Book a call, and I,ll take care of the rest</Typography>
-          <Button sx={{ width: '100%', maxWidth: '113px', backgroundColor: '#FFCC00', color: '#000', fontSize: '18px', fontWeight: 500, borderRadius: '32px', padding: '5px 24px', fontFamily: 'var(--font-outfit)', textTransform: 'none' }}>Contact</Button>
+          <Typography sx={{ fontSize: { xs: '28px', md: '40px' }, fontWeight: 500, color: '#fff' }}>
+            {t('cta')}
+          </Typography>
+          <Button 
+            component={Link} 
+            href="/contact"
+            sx={{ 
+              width: '100%', 
+              maxWidth: '113px', 
+              backgroundColor: '#FFCC00', 
+              color: '#000', 
+              fontSize: '18px', 
+              fontWeight: 500, 
+              borderRadius: '32px', 
+              padding: '5px 24px', 
+              fontFamily: 'var(--font-outfit)', 
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: '#FFD700',
+              }
+            }}
+          >
+            {t('contact')}
+          </Button>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' } }}>
           {navItems.map((item) => (
             <Link 
               key={item.label} 
               href={item.href}
-              sx={{
+              style={{
                 color: '#fff',
                 textDecoration: 'none',
                 fontFamily: 'var(--font-outfit)',
                 fontSize: '18px',
                 fontWeight: 500,
                 transition: 'color 0.2s ease',
-                '&:hover': {
-                  color: '#FFCC00',
-                  textDecoration: 'underline'
-                }
               }}
             >
               {item.label}
@@ -75,28 +95,24 @@ const Footer: React.FC = () => {
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' } }}>
           {socialItems.map((item) => (
-            <Link 
+            <a 
               key={item.label} 
               href={item.href}
-              sx={{
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
                 color: '#fff',
                 textDecoration: 'none',
                 fontFamily: 'var(--font-outfit)',
                 fontSize: '18px',
                 fontWeight: 500,
                 transition: 'color 0.2s ease',
-                '&:hover': {
-                  color: '#FFCC00',
-                  textDecoration: 'underline'
-                }
               }}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </Box>
-          
-        
       </Box>
     </Box>
   )

@@ -33,7 +33,17 @@ const HeroBlock: React.FC = () => {
   const t = useTranslations('hero');
   
   return (
-    <Box sx={{ pt: '72px', width: '100%', height: '100vh', xs: 2, md: 5, display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ 
+      position: 'relative',
+      pt: '72px', 
+      width: '100%', 
+      height: '100vh', 
+      xs: 2, 
+      md: 5, 
+      display: 'flex', 
+      flexDirection: 'column',
+      overflow: 'hidden'
+    }}>
         <Box marginTop="100px">
           <Typography variant="h1" sx={{...heroTitleStyles}}>
             Vitalii 
@@ -45,8 +55,7 @@ const HeroBlock: React.FC = () => {
         
         <Box 
           component={"img"}
-          src="/hero-image.png"
-          srcSet="/hero-image.png 1x, /hero-image@2x.png 2x"
+          src="hero-image@2x.png"
           alt="Hero image"
           sx={{ 
             position: 'absolute',

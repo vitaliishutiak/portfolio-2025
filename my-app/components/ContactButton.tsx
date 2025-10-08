@@ -3,6 +3,7 @@
 import React from 'react'
 import { Button } from '@mui/material'
 import { useTranslations } from 'next-intl'
+import { Link } from '../navigation'
 
 interface ContactButtonProps {
   variant?: 'text' | 'outlined' | 'contained'
@@ -19,6 +20,8 @@ const ContactButton: React.FC<ContactButtonProps> = ({
   
   return (
     <Button 
+      component={Link}
+      href="/contact"
       variant={variant} 
       color={color}
       size={size}
