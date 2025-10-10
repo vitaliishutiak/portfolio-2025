@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useTransition } from 'react'
+import React, { useTransition, useRef, useEffect } from 'react'
 import { AppBar, Toolbar, Typography, Box, Button, Select, MenuItem } from '@mui/material'
 import ContactButton from './ContactButton'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter, Link } from '../navigation'
 import { GB, UA } from 'country-flag-icons/react/3x2'
+import gsap from 'gsap'
 
 const Header: React.FC = () => {
   const t = useTranslations('header');
@@ -13,6 +14,7 @@ const Header: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const headerRef = useRef(null);
 
   const navButtonStyles = {
     fontFamily: 'var(--font-outfit)',
@@ -20,7 +22,13 @@ const Header: React.FC = () => {
     fontSize: '15px',
     lineHeight: '100%',
     letterSpacing: '0%',
-    textTransform: 'none'
+    textTransform: 'none',
+    transition: '0.2s',
+    '&:hover': {
+      backgroundColor: 'transparent',
+      transform: 'translateY(-2px)',
+      transition: '0.2s',
+    },
   };
 
   const handleLanguageChange = (newLocale: string) => {
@@ -38,6 +46,23 @@ const Header: React.FC = () => {
   const selectMenuProps = {
     disableScrollLock: true,
   };
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+
+    if (headerRef.current) {
+      tl.fromTo(headerRef.current, {
+        opacity: 0,
+        y: -100,
+        delay: 0.5,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+      }, 2);
+    }
+  }, []);
 
   // Language selector component with flags
   const LanguageSelector = () => {
@@ -155,7 +180,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <AppBar position="static" color="transparent" elevation={0} sx={{ 
+    <AppBar ref={headerRef} position="static" color="transparent" elevation={0} sx={{ 
       position: 'fixed', 
       top: 0, 
       left: 0, 
@@ -168,7 +193,8 @@ const Header: React.FC = () => {
         <Toolbar disableGutters sx={{ height: '72px', justifyContent: 'space-between' }}>
           {/* Logo */}
           <Typography 
-            component="div" 
+            component={Link} 
+            href="/"
             sx={{ 
               fontFamily: 'var(--font-outfit)',
               fontWeight: 500,
@@ -182,7 +208,7 @@ const Header: React.FC = () => {
           
           {/* Desktop Navigation */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 5, alignItems: 'center' }}>
-            <Button color="inherit" component={Link} href="/" sx={navButtonStyles}>
+            <Button color="inherit" component={Link} href="/projects" sx={navButtonStyles}>
               {t('projects')}
             </Button>
             <Button color="inherit" component={Link} href="/about" sx={navButtonStyles}>

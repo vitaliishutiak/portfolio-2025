@@ -14,6 +14,10 @@ const Footer: React.FC = () => {
       href: '/'
     },
     {
+      label: t('navigation.projects'),
+      href: '/projects'
+    },
+    {
       label: t('navigation.about'),
       href: '/about'
     },
@@ -51,7 +55,7 @@ const Footer: React.FC = () => {
       }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' }, width: '100%', maxWidth: '510px' }}>
           <Typography sx={{ fontSize: { xs: '28px', md: '40px' }, fontWeight: 500, color: '#fff' }}>
-            {t('cta')}
+            <Box component="span" sx={{ color: '#FFFFFF99' }}>{t('ctaPart1')}</Box>{t('ctaPart2')}
           </Typography>
           <Button 
             component={Link} 

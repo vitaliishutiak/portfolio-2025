@@ -10,6 +10,8 @@
   },
   "projects": {
     "title": "Latest Projects",
+    "allProjectsTitle": "All Projects",
+    "allProjectsDescription": "Explore my complete collection of work — from web applications to mobile solutions.",
     "seeAll": "See All",
     "project1": {
       "title": "E-commerce Platform",
@@ -65,27 +67,27 @@
     "githubMetrics": "GitHub Metrics",
     "react": {
       "name": "React",
-      "description": "React is a JavaScript library for building user interfaces."
+      "description": "A JavaScript library for building user interfaces"
     },
     "nextjs": {
       "name": "Next.js",
-      "description": "Next.js is a React framework for building server-side rendered applications."
+      "description": "React framework for production-ready applications"
     },
     "typescript": {
       "name": "TypeScript",
-      "description": "TypeScript is a superset of JavaScript that adds static typing."
+      "description": "JavaScript with syntax for types"
     },
-    "javascript": {
-      "name": "JavaScript",
-      "description": "JavaScript is a programming language that allows you to implement complex features on web pages."
+    "materialui": {
+      "name": "Material UI",
+      "description": "React components for faster and easier web development"
     },
-    "html": {
-      "name": "HTML",
-      "description": "HTML is the standard markup language for creating web pages."
+    "figma": {
+      "name": "Figma",
+      "description": "Collaborative design and prototyping tool"
     },
-    "css": {
-      "name": "CSS",
-      "description": "CSS is a style sheet language used for describing the presentation of a document written in HTML."
+    "gsap": {
+      "name": "GSAP",
+      "description": "Professional-grade animation library for the web"
     }
   },
   "experience": {
@@ -98,14 +100,8 @@
     "position3": "Frontend Developer"
   },
   "contact": {
-    "title": "Get in Touch",
-    "description": "Have a project in mind or just want to say hello? Feel free to reach out. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "submit": "Send Message"
-    }
+    "title": "Book a Call",
+    "description": "Have a project in mind or just want to say hello? Book a convenient time for us to chat. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions."
   },
   "about": {
     "title": "About Me",
@@ -123,11 +119,32 @@
       "description": "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community. I'm passionate about continuous learning and believe that the best way to grow is by helping others grow too."
     }
   },
+  "faq": {
+    "title": "FAQ",
+    "description": "Before you ask — the answer might be here. Take a look at what our clients often want to know.",
+    "question1": "How long is the initial consultation, and is it free?",
+    "answer1": "Yes, the first consultation is free. It typically lasts between 30 to 60 minutes, depending on the complexity of your project.",
+    "question2": "Can I request changes to the design after it's been approved?",
+    "answer2": "Yes, changes are possible even after approval. However, they may affect the final timeline and cost, depending on their scope.",
+    "question3": "What technologies do you use for development?",
+    "answer3": "We use modern, reliable technologies tailored to your project's needs — from websites to complex web applications.",
+    "question4": "How does the project launch work?",
+    "answer4": "Once development is complete, we run thorough testing, finalize details with you, and go live. We can also assist with domain, hosting, and SEO setup.",
+    "question5": "Do you offer post-launch technical support?",
+    "answer5": "Yes, we provide different support plans — from basic to extended — including updates, bug fixes, and project monitoring.",
+    "question6": "How much will the project cost?",
+    "answer6": "Pricing depends on the complexity, features, and your specific requirements. A detailed quote is provided after the initial consultation.",
+    "question7": "Do you work with clients from other cities or countries?",
+    "answer7": "Absolutely. We successfully work with clients worldwide through online communication."
+  },
   "footer": {
     "cta": "Book a call, and I'll take care of the rest",
+    "ctaPart1": "Book a call",
+    "ctaPart2": ", and I'll take care of the rest",
     "contact": "Contact",
     "navigation": {
       "home": "Home",
+      "projects": "Projects",
       "about": "About",
       "contact": "Contact"
     },

@@ -5,9 +5,45 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PageTransition from '../../../components/PageTransition'
 import { useTranslations } from 'next-intl'
+import { useMemo, useEffect } from 'react'
 
 export default function ContactPage() {
   const t = useTranslations('contact');
+
+  const CALENDLY_SCRIPT_SRC = 'https://assets.calendly.com/assets/external/widget.js'
+  const CALENDLY_STYLESHEET_HREF = 'https://assets.calendly.com/assets/external/widget.css'
+
+  const calendlyUrl = useMemo(() => {
+    return process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/vitaliishutiak/30min'
+  }, [])
+
+
+  useEffect(() => {
+    console.log('Calendly URL:', calendlyUrl);
+    
+    if (!document.querySelector(`link[href="${CALENDLY_STYLESHEET_HREF}"]`)) {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = CALENDLY_STYLESHEET_HREF
+      document.head.appendChild(link)
+    }
+
+    if (!document.querySelector(`script[src="${CALENDLY_SCRIPT_SRC}"]`)) {
+      const script = document.createElement('script')
+      script.src = CALENDLY_SCRIPT_SRC
+      script.async = true
+      document.body.appendChild(script)
+      
+      script.onload = () => {
+        console.log('Calendly script loaded successfully');
+      };
+      
+      script.onerror = () => {
+        console.error('Failed to load Calendly script');
+      };
+    }
+  }, [calendlyUrl])
+
 
   return (
     <Container maxWidth={false} disableGutters>
@@ -52,6 +88,21 @@ export default function ContactPage() {
             </Typography>
 
             <Box 
+              sx={{ 
+                width: '100%',
+                height: { xs: '900px', md: '700px' },
+                overflow: 'hidden',
+                backgroundColor: '#fff',
+              }}
+            >
+              <div 
+                className="calendly-inline-widget" 
+                data-url={calendlyUrl}
+                style={{ minWidth: '320px', height: '100%' }}
+              />
+            </Box>
+
+            {/* <Box 
               component="form" 
               sx={{ 
                 display: 'flex', 
@@ -128,7 +179,7 @@ export default function ContactPage() {
               >
                 {t('form.submit')}
               </Button>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
         </main>

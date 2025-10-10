@@ -1,38 +1,38 @@
 export interface Skills {
-    img: number;
+    img: string;
     name: string;
     description: string;
 }
 
 export const skills: Skills[] = [
     {
-        img: 1,
+        img: '/skills-images/react.svg',
         name: 'React',
-        description: 'React is a JavaScript library for building user interfaces.',
+        description: 'A JavaScript library for building user interfaces',
     },
     {
-        img: 2,
+        img: '/skills-images/nextjs.svg',
         name: 'Next.js',
-        description: 'Next.js is a React framework for building server-side rendered applications.',
+        description: 'React framework for production-ready applications',
     },
     {
-        img: 3,
+        img: '/skills-images/typescript.svg',
         name: 'TypeScript',
-        description: 'TypeScript is a superset of JavaScript that adds static typing.',
+        description: 'JavaScript with syntax for types',
     },
     {
-        img: 4,
-        name: 'JavaScript',
-        description: 'JavaScript is a programming language that allows you to implement complex features on web pages.',
+        img: '/skills-images/materialui.svg',
+        name: 'Material UI',
+        description: 'React components for faster and easier web development',
     },
     {
-        img: 5,
-        name: 'HTML',
-        description: 'HTML is the standard markup language for creating web pages.',
+        img: '/skills-images/figma.svg',
+        name: 'Figma',
+        description: 'Collaborative design and prototyping tool',
     },
     {
-        img: 6,
-        name: 'CSS',
-        description: 'CSS is a style sheet language used for describing the presentation of a document written in HTML.',
+        img: '/skills-images/gsap.svg',
+        name: 'GSAP',
+        description: 'Professional-grade animation library for the web',
     },
 ]

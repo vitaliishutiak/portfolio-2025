@@ -5,6 +5,7 @@ import { Box, Typography } from '@mui/material'
 import { skills } from '../data/skills'
 import SkillCard from './SkillCard'
 import { useTranslations } from 'next-intl'
+import TypingText from './TypingText'
 
 const SkillsBlock: React.FC = () => {
   const t = useTranslations('skills');
@@ -17,15 +18,17 @@ const SkillsBlock: React.FC = () => {
         px: { xs: 2, md: 0 },
       }}>
       
-        <Typography sx={{ 
-          color: '#121212', 
-          fontSize: { xs: '24px', md: '40px' }, 
-          fontWeight: 500, 
-          fontFamily: "var(--font-outfit)", 
-          mb: { xs: '20px', md: '40px' } 
-        }}>
-          {t('title')}
-        </Typography>
+        <TypingText
+          text={t('title')}
+          speed={80}
+          sx={{ 
+            color: '#121212', 
+            fontSize: { xs: '24px', md: '40px' }, 
+            fontWeight: 500, 
+            fontFamily: "var(--font-outfit)", 
+            mb: { xs: '20px', md: '40px' } 
+          }}
+        />
         
         <Box sx={{
           display: 'grid',
@@ -34,7 +37,7 @@ const SkillsBlock: React.FC = () => {
         }}>
           {
             skills.map((skill) => {
-              const skillKey = skill.name.toLowerCase().replace('.', '');
+              const skillKey = skill.name.toLowerCase().replace(/\s+/g, '').replace('.', '');
               return (
                 <SkillCard 
                   key={skill.img} 
@@ -47,16 +50,18 @@ const SkillsBlock: React.FC = () => {
           }
         </Box>
 
-        <Typography sx={{ 
-          color: '#121212', 
-          fontSize: { xs: '24px', md: '40px' }, 
-          fontWeight: 500, 
-          fontFamily: "var(--font-outfit)", 
-          mb: { xs: '20px', md: '40px' },
-          mt: { xs: '40px', md: '60px' }
-        }}>
-          {t('githubMetrics')}
-        </Typography>
+        <TypingText
+          text={t('githubMetrics')}
+          speed={80}
+          sx={{ 
+            color: '#121212', 
+            fontSize: { xs: '24px', md: '40px' }, 
+            fontWeight: 500, 
+            fontFamily: "var(--font-outfit)", 
+            mb: { xs: '20px', md: '40px' },
+            mt: { xs: '40px', md: '60px' }
+          }}
+        />
 
         <Box sx={{
           display: 'grid',

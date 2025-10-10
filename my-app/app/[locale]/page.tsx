@@ -15,16 +15,14 @@ export default function Home() {
   return (
     <Container maxWidth={false} disableGutters>
       <Header />
-      <PageTransition>
-        <main>
-          <HeroBlock />
-          <ProjectsBlock />
-          <HowItsWorksBlock />
-          <SkillsBlock />
-          <ExperienceBlock />
-          <FaqBlock />
-        </main>
-      </PageTransition>
+      <main>
+        <HeroBlock />
+        <ProjectsBlock />
+        <HowItsWorksBlock />
+        <SkillsBlock />
+        <ExperienceBlock />
+        <FaqBlock />
+      </main>
       <Footer />
     </Container>
   )

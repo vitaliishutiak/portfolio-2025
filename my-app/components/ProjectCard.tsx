@@ -7,9 +7,10 @@ interface ProjectCardProps {
   technologies: string[]
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) => {
+const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(({ img, title, technologies }, ref) => {
   return (
     <Box
+      ref={ref}
       sx={{
         borderRadius: { xs: '16px', md: '24px' },
         width: '100%',
@@ -17,12 +18,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) =
         height: { xs: 'auto', md: '100%' },
         maxHeight: { xs: '300px', md: '400px' },
         overflow: 'hidden',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        transition: '0.3s',
         cursor: 'pointer',
         position: 'relative',
-        '&:hover': {
-          transform: 'translateY(-8px)',
-        }
+        boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.3)',
       }}
     >
       {/* Зображення проекту */}
@@ -32,16 +31,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) =
         alt={title}
         sx={{
           width: '100%',
-          height: { xs: '300px', md: '400px' },
           objectFit: 'cover',
           display: 'block',
           borderRadius: { xs: '16px', md: '24px' },
           fontFamily: "var(--font-outfit)",
+          transition: '0.3s',
+          '&:hover': {
+            transform: 'scale(1.05)',
+            transition: '0.3s',
+          }
         }}
       />
       
       {/* Контент картки - тільки прогресівний блюр без білого фону */}
-      <Box sx={{ 
+      {/* <Box sx={{ 
         p: '20px 20px 15px 20px',
         position: 'absolute',
         bottom: 0,
@@ -49,7 +52,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) =
         right: 0,
         zIndex: 1
       }}>
-        {/* Прогресівний блюр поверх тексту */}
         <Box
           sx={{
             position: 'absolute',
@@ -83,10 +85,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) =
               WebkitMask: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%)',
             }
           }}
-        />
+        /> */}
         
         {/* Назва проекту */}
-        <Typography
+        {/* <Typography
           variant="h6"
           sx={{
             fontWeight: 500,
@@ -101,9 +103,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) =
         >
           {title}
         </Typography>
-        
+         */}
         {/* Технології */}
-        <Box sx={{ 
+        {/* <Box sx={{ 
           display: 'flex', 
           flexWrap: 'wrap', 
           gap: { xs: 0.5, md: 1 },
@@ -130,9 +132,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ img, title, technologies }) =
             />
           ))}
         </Box>
-      </Box>
+      </Box> */}
     </Box>
   )
-}
+})
+
+ProjectCard.displayName = 'ProjectCard'
 
 export default ProjectCard

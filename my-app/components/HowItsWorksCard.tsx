@@ -1,5 +1,11 @@
-import React from "react";
+'use client';
+
+import React, { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface HowItsWorksCardProps {
   number: number;
@@ -12,8 +18,34 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
   title,
   description,
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      gsap.fromTo(
+        cardRef.current,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, []);
+
   return (
     <Box
+      ref={cardRef}
       sx={{
         width: "100%",
         maxWidth: { xs: '100%', md: "510px" },
@@ -22,6 +54,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
         padding: { xs: "16px", md: "24px" },
         gap: { xs: "16px", md: "24px" },
         display: "flex",
+        alignItems: "center",
       }}
     >
       <Box
@@ -29,7 +62,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
           width: { xs: "32px", md: "40px" },
           height: { xs: "32px", md: "40px" },
           minWidth: { xs: "32px", md: "40px" },
-          backgroundColor: "##FFFFFF0A",
+          backgroundColor: "#FFFFFF0A",
           borderRadius: "50%",
           display: "flex",
           justifyContent: "center",
