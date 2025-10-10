@@ -21,6 +21,7 @@ const heroTitleStyles = {
   fontFamily: "var(--font-outfit)",
 }
 
+
 const heroSubtitleStyles = {
   fontSize: '20px',
   fontWeight: 500,
