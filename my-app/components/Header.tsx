@@ -309,7 +309,7 @@ const Header: React.FC = () => {
               {/* CV Button - Desktop only */}
               <Button
                 component="a"
-                href="/cv.pdf"
+                href="/vitalii-shutiak-cv.pdf"
                 download
                 variant="contained"
                 startIcon={<DownloadIcon />}
