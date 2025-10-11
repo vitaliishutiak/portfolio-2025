@@ -1,0 +1,11 @@
+# robots.txt for vitaliishutiak.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://vitaliishutiak.com/sitemap.xml
+
+# Crawl-delay to be nice to servers
+Crawl-delay: 1
+

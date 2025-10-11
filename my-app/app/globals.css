@@ -24,6 +24,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Оптимізація для мобільних пристроїв */
+@media (max-width: 768px) {
+  /* Покращуємо прокрутку на iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Оптимізуємо відображення зображень */
+  img {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Початкові стани для GSAP анімацій (уникаємо hydration errors) */
+.gsap-fade-in {
+  opacity: 0;
+}
+
+.faq-accordion {
+  opacity: 1;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

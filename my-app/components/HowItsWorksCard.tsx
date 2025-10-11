@@ -2,10 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { animateCard } from "../lib/animations";
 
 interface HowItsWorksCardProps {
   number: number;
@@ -22,24 +19,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
 
   useEffect(() => {
     if (cardRef.current) {
-      gsap.fromTo(
-        cardRef.current,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
+      animateCard(cardRef.current);
     }
   }, []);
 

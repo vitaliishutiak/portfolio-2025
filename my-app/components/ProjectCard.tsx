@@ -28,7 +28,8 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(({ img, t
       <Box
         component="img"
         src={img}
-        alt={title}
+        alt={`${title} - Project showcase`}
+        loading="lazy"
         sx={{
           width: '100%',
           objectFit: 'cover',

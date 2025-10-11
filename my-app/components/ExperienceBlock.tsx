@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import ExperienceCard from '../components/ExperienceCard'
 import { experience } from '../data/experience'
+import { animateTitle } from '../lib/animations'
 
 const ExperienceBlock: React.FC = () => {
+
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (titleRef.current) {
+      animateTitle(titleRef.current);
+    }
+  }, []);
+
   return (
     <Box component="section" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#121212' }}>
       <Box sx={{ 
@@ -16,7 +26,7 @@ const ExperienceBlock: React.FC = () => {
         gap: { xs: '32px', md: '40px' },
         fontFamily: 'var(--font-outfit)'
       }}>
-      <Typography sx={{ fontSize: '40px', fontWeight: 500, color: '#fff' }}>
+      <Typography ref={titleRef} component="h2" sx={{ xs: { fontSize: '32px', md: '40px' }, fontWeight: 500, color: '#fff' }}>
         Work Experience
       </Typography>
       <Box sx={{

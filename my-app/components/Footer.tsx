@@ -1,12 +1,20 @@
 'use client';
 
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { Link } from '../navigation'
 import { useTranslations } from 'next-intl'
+import { animateScaleUp } from '../lib/animations'
 
 const Footer: React.FC = () => {
   const t = useTranslations('footer');
+  const ctaTextRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (ctaTextRef.current) {
+      animateScaleUp(ctaTextRef.current);
+    }
+  }, []);
 
   const navItems = [
     {
@@ -30,15 +38,18 @@ const Footer: React.FC = () => {
   const socialItems = [
     {
       label: t('social.linkedin'),
-      href: 'https://linkedin.com'
+      href: 'https://linkedin.com',
+      ariaLabel: "Visit Vitalii Shutiak's LinkedIn profile"
     },
     {
       label: t('social.github'),
-      href: 'https://github.com'
+      href: 'https://github.com',
+      ariaLabel: "Visit Vitalii Shutiak's GitHub profile"
     },
     {
       label: t('social.twitter'),
-      href: 'https://twitter.com'
+      href: 'https://twitter.com',
+      ariaLabel: "Visit Vitalii Shutiak's Twitter profile"
     }
   ]
 
@@ -49,26 +60,43 @@ const Footer: React.FC = () => {
         maxWidth: '1040px', 
         mx: 'auto', 
         px: { xs: 2, md: 0 },
-        display: 'flex',
-        gap: { xs: '32px', md: '40px' },
         fontFamily: 'var(--font-outfit)'
       }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' }, width: '100%', maxWidth: '510px' }}>
-          <Typography sx={{ fontSize: { xs: '28px', md: '40px' }, fontWeight: 500, color: '#fff' }}>
+        {/* CTA Section */}
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: { xs: '24px', md: '32px' }, 
+          mb: { xs: '40px', md: '60px' },
+          alignItems: { xs: 'center', md: 'flex-start' },
+          textAlign: { xs: 'center', md: 'left' },
+          maxWidth: { xs: '100%', md: '600px' }
+        }}>
+          <Typography 
+            ref={ctaTextRef}
+            component="h2"
+            sx={{ 
+              fontSize: { xs: '28px', md: '40px' }, 
+              fontWeight: 500, 
+              color: '#fff',
+              fontFamily: 'var(--font-outfit)',
+              lineHeight: { xs: '1.3', md: '1.2' }
+            }}
+          >
             <Box component="span" sx={{ color: '#FFFFFF99' }}>{t('ctaPart1')}</Box>{t('ctaPart2')}
           </Typography>
           <Button 
             component={Link} 
             href="/contact"
             sx={{ 
-              width: '100%', 
-              maxWidth: '113px', 
+              width: { xs: '100%', md: 'auto' },
+              maxWidth: { xs: '100%', md: '140px' },
               backgroundColor: '#FFCC00', 
               color: '#000', 
-              fontSize: '18px', 
+              fontSize: { xs: '16px', md: '18px' },
               fontWeight: 500, 
               borderRadius: '32px', 
-              padding: '5px 24px', 
+              padding: { xs: '10px 32px', md: '8px 32px' },
               fontFamily: 'var(--font-outfit)', 
               textTransform: 'none',
               '&:hover': {
@@ -79,43 +107,101 @@ const Footer: React.FC = () => {
             {t('contact')}
           </Button>
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' } }}>
-          {navItems.map((item) => (
-            <Link 
-              key={item.label} 
-              href={item.href}
-              style={{
-                color: '#fff',
-                textDecoration: 'none',
-                fontFamily: 'var(--font-outfit)',
-                fontSize: '18px',
-                fontWeight: 500,
-                transition: 'color 0.2s ease',
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '32px', md: '40px' } }}>
-          {socialItems.map((item) => (
-            <a 
-              key={item.label} 
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#fff',
-                textDecoration: 'none',
-                fontFamily: 'var(--font-outfit)',
-                fontSize: '18px',
-                fontWeight: 500,
-                transition: 'color 0.2s ease',
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
+
+        {/* Divider */}
+        <Box sx={{ 
+          height: '1px', 
+          backgroundColor: '#FFFFFF1A', 
+          mb: { xs: '32px', md: '40px' } 
+        }} />
+
+        {/* Navigation and Social Links */}
+        <Box sx={{ 
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(4, 1fr)' },
+          gap: { xs: '32px 24px', md: '40px' },
+          textAlign: { xs: 'left', md: 'left' }
+        }}>
+          {/* Navigation Links */}
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: { xs: '12px', md: '20px' } 
+          }}>
+            <Typography sx={{ 
+              color: '#FFFFFF99', 
+              fontSize: { xs: '12px', md: '14px' }, 
+              fontWeight: 500,
+              mb: { xs: '4px', md: '8px' },
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              Navigation
+            </Typography>
+            {navItems.map((item) => (
+              <Box
+                key={item.label}
+                component={Link}
+                href={item.href}
+                sx={{
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontFamily: 'var(--font-outfit)',
+                  fontSize: { xs: '14px', md: '16px' },
+                  fontWeight: 400,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    color: '#FFCC00',
+                    transform: 'translateX(4px)',
+                  }
+                }}
+              >
+                {item.label}
+              </Box>
+            ))}
+          </Box>
+
+          {/* Social Links */}
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'column',
+            gap: { xs: '12px', md: '20px' } 
+          }}>
+            <Typography sx={{ 
+              color: '#FFFFFF99', 
+              fontSize: { xs: '12px', md: '14px' }, 
+              fontWeight: 500,
+              mb: { xs: '4px', md: '8px' },
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              Social
+            </Typography>
+            {socialItems.map((item) => (
+              <Box
+                key={item.label}
+                component="a"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.ariaLabel}
+                sx={{
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontFamily: 'var(--font-outfit)',
+                  fontSize: { xs: '14px', md: '16px' },
+                  fontWeight: 400,
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    color: '#FFCC00',
+                    transform: 'translateX(4px)',
+                  }
+                }}
+              >
+                {item.label}
+              </Box>
+            ))}
+          </Box>
         </Box>
       </Box>
     </Box>

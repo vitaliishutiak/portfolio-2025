@@ -1,5 +1,6 @@
 {
   "header": {
+    "home": "Home",
     "projects": "Projects",
     "about": "About",
     "contact": "Contact",
@@ -101,7 +102,11 @@
   },
   "contact": {
     "title": "Book a Call",
-    "description": "Have a project in mind or just want to say hello? Book a convenient time for us to chat. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions."
+    "description": "Have a project in mind or just want to say hello? Book a convenient time for us to chat. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    "emailTitle": "Reach Out to Us",
+    "emailDescription": "Need assistance? Drop us a message anytime.",
+    "phoneTitle": "Call Us",
+    "phoneDescription": "Need help? Give us a call—we're here for you."
   },
   "about": {
     "title": "About Me",

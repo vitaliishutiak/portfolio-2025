@@ -5,17 +5,15 @@ import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '
 import { useTranslations } from 'next-intl'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import TypingText from './TypingText'
-
-gsap.registerPlugin(ScrollTrigger);
+import { animateTitle, animateFaqBlock, animateFaqAccordions } from '../lib/animations'
 
 const FaqBlock: React.FC = () => {
   const t = useTranslations('faq')
   const [expanded, setExpanded] = useState<string | false>(false)
   const textBlockRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false)
@@ -31,49 +29,20 @@ const FaqBlock: React.FC = () => {
     { question: t('question7'), answer: t('answer7') }
   ]
 
+  const accordionsRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (textBlockRef.current && sectionRef.current) {
-      gsap.fromTo(
-        textBlockRef.current,
-        {
-          yPercent: 0,
-        },
-        {
-          yPercent: 50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top center',
-            end: 'bottom center',
-            scrub: true,
-          },
-        }
-      );
+      animateFaqBlock(textBlockRef.current, sectionRef.current);
     }
-  }, []);
-
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (cardRef.current) {
-      gsap.fromTo(
-        cardRef.current,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
+    if (titleRef.current) {
+      animateTitle(titleRef.current);
+    }
+    if (descriptionRef.current) {
+      animateTitle(descriptionRef.current);
+    }
+    if (accordionsRef.current) {
+      animateFaqAccordions(accordionsRef.current);
     }
   }, []);
 
@@ -102,29 +71,36 @@ const FaqBlock: React.FC = () => {
               position: { md: 'sticky' },
               top: { md: '100px' }
             }}>
-            <TypingText
-              text={t('title')}
-              speed={80}
+            <Typography
+              ref={titleRef}
+              component="h2"
               sx={{ 
                 fontSize: { xs: '32px', md: '40px' }, 
                 fontWeight: 500, 
-                color: '#121212' 
+                color: '#121212',
+                fontFamily: "var(--font-outfit)"
               }}
-            />
-            <Typography sx={{ 
-              fontSize: { xs: '22px', md: '20px' }, 
-              lineHeight: 1.6,
-              color: '#121212'
-            }}>
+            >
+              {t('title')}
+            </Typography>
+            <Typography
+              ref={descriptionRef}
+              sx={{ 
+                fontSize: { xs: '22px', md: '20px' }, 
+                lineHeight: 1.6,
+                color: '#121212',
+                fontFamily: 'var(--font-outfit)'
+              }}
+            >
               {t('description')}
             </Typography>
           </Box>
 
           {/* Right column - Accordions */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <Box ref={accordionsRef} sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {faqItems.map((item, index) => (
               <Accordion
-                ref={cardRef}
+                className="faq-accordion"
                 key={index}
                 expanded={expanded === `panel${index}`}
                 onChange={handleChange(`panel${index}`)}

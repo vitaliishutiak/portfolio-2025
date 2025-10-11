@@ -3,10 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useTranslations } from 'next-intl'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { animateHeroBlock } from '../lib/animations'
 
 
 const heroTitleStyles = {
@@ -47,125 +44,15 @@ const HeroBlock: React.FC = () => {
   // const imageSmileRef = useRef(null);
 
   useEffect(() => {
-    if (titleTopRef.current && titleBottomRef.current && descriptionRef.current && imageRef.current) {
-      // Створюємо timeline для послідовних анімацій
-      const tl = gsap.timeline({ delay: 0.3 });
-
-      // Анімації заголовків одночасно
-      tl.fromTo(titleTopRef.current, {
-        opacity: 0,
-        x: -200
-      }, {
-        opacity: 0.1,
-        x: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-      }, 0) // позиція 0 - початок timeline
-      
-      .fromTo(titleBottomRef.current, {
-        opacity: 0,
-        x: 200
-      }, {
-        opacity: 0.1,
-        x: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-      }, 0) // позиція 0 - одночасно з попередньою
-    
-      // Анімація зображення після заголовків
-      .fromTo(imageRef.current, {
-        scale: 1.2,
-      }, {
-        scale: 1,
-        duration: 1.5,
-        ease: 'power3.out',
-      }, 0) 
-
-      // Анімація опису після зображення
-      .fromTo(descriptionRef.current, {
-        opacity: 0,
-        y: 30
-      }, {
-        opacity: 1,
-        y: 0,
-        duration: 1.5,
-        ease: 'power2.out',
-      }) // автоматично після попередньої
-
-      // Паралакс ефект - картинка їде вниз при скролі
-      gsap.fromTo(imageRef.current, 
-        { y: 0 },
-        {
-          yPercent: 30,
-          scrollTrigger: {
-            trigger: heroBlockRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          }
-        }
-      )
-
-      // // Синхронізуємо рух для зображення з усмішкою
-      // gsap.fromTo(imageSmileRef.current, 
-      //   { y: 0 },
-      //   {
-      //     yPercent: 30,
-      //     scrollTrigger: {
-      //       trigger: heroBlockRef.current,
-      //       start: 'top top',
-      //       end: 'bottom top',
-      //       scrub: true,
-      //     }
-      //   }
-      // )
-
-      // // Анімація появи усмішки при скролі
-      // gsap.fromTo(imageSmileRef.current,
-      //   { opacity: 0 },
-      //   {
-      //     opacity: 1,
-      //     scrollTrigger: {
-      //       trigger: heroBlockRef.current,
-      //       start: 'top top',
-      //       end: 'center top',
-      //       scrub: true,
-      //     }
-      //   }
-      // )
-      
-      // Паралакс для "Vitalii" - їде вправо-вверх
-      gsap.fromTo(titleTopRef.current,
-        { x: 0, y: 0 },
-        {
-          y: -100,
-          x: 100,
-          scrollTrigger: {
-            trigger: heroBlockRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        }
-      )
-      
-      // Паралакс для "Shutiak" - їде вліво-вверх
-      gsap.fromTo(titleBottomRef.current,
-        { x: 0, y: 0 },
-        {
-          y: -100,
-          x: -100,
-          scrollTrigger: {
-            trigger: heroBlockRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        }
-      )
-      
+    if (titleTopRef.current && titleBottomRef.current && descriptionRef.current && imageRef.current && heroBlockRef.current) {
+      animateHeroBlock(
+        titleTopRef.current,
+        titleBottomRef.current,
+        descriptionRef.current,
+        imageRef.current,
+        heroBlockRef.current
+      );
     }
-
   }, [])
 
   
@@ -183,7 +70,7 @@ const HeroBlock: React.FC = () => {
       flexDirection: 'column',
       overflow: 'hidden'
     }}>
-        <Box marginTop="100px">
+        <Box marginTop="160px">
           <Typography variant="h1" sx={{...heroTitleStyles}} ref={titleTopRef}>
             Vitalii 
           </Typography>
@@ -197,7 +84,9 @@ const HeroBlock: React.FC = () => {
           ref={imageRef}
           component={"img"}
           src="hero-image@2x.png"
-          alt="Hero image"
+          alt="Vitalii Shutiak - Frontend Developer"
+          loading="eager"
+          fetchPriority="high"
           sx={{ 
             position: 'absolute',
             bottom: 0,
@@ -233,7 +122,7 @@ const HeroBlock: React.FC = () => {
             highlight: (chunks) => <span style={{ color: "#FFCC00" }}>{chunks}</span>
           })}
         </Typography>
-        {/* Прогресівний блюр з кольором */}
+        {/* Прогресівний блюр з кольором - оптимізовано для мобільних */}
         <Box
           component={"div"}
           sx={{
@@ -243,6 +132,10 @@ const HeroBlock: React.FC = () => {
             right: 0,
             height: '170px',
             zIndex: 1,
+            background: {
+              xs: 'linear-gradient(to top, rgba(46, 46, 46, 0.95) 0%, rgba(48, 48, 48, 0.5) 40%, rgba(51, 51, 51, 0) 100%)',
+              md: 'transparent'
+            },
             '&::before': {
               content: '""',
               position: 'absolute',
@@ -250,10 +143,11 @@ const HeroBlock: React.FC = () => {
               left: 0,
               right: 0,
               height: '100%',
-              backdropFilter: 'blur(15px)',
+              backdropFilter: { xs: 'none', md: 'blur(15px)' },
               backgroundColor: '#D9D9D903',
               mask: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%)',
               WebkitMask: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 100%)',
+              display: { xs: 'none', md: 'block' }
             },
             '&::after': {
               content: '""',
@@ -262,10 +156,11 @@ const HeroBlock: React.FC = () => {
               left: 0,
               right: 0,
               height: '100%',
-              backdropFilter: 'blur(8px)',
+              backdropFilter: { xs: 'none', md: 'blur(8px)' },
               backgroundColor: '#D9D9D903',
               mask: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%)',
               WebkitMask: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%)',
+              display: { xs: 'none', md: 'block' }
             }
           }}
         />

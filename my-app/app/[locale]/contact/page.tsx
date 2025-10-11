@@ -1,6 +1,8 @@
 'use client';
 
-import { Container, Box, Typography, TextField, Button } from '@mui/material'
+import { Container, Box, Typography, TextField, Button, Link } from '@mui/material'
+import EmailIcon from '@mui/icons-material/Email'
+import PhoneIcon from '@mui/icons-material/Phone'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PageTransition from '../../../components/PageTransition'
@@ -19,8 +21,6 @@ export default function ContactPage() {
 
 
   useEffect(() => {
-    console.log('Calendly URL:', calendlyUrl);
-    
     if (!document.querySelector(`link[href="${CALENDLY_STYLESHEET_HREF}"]`)) {
       const link = document.createElement('link')
       link.rel = 'stylesheet'
@@ -33,14 +33,6 @@ export default function ContactPage() {
       script.src = CALENDLY_SCRIPT_SRC
       script.async = true
       document.body.appendChild(script)
-      
-      script.onload = () => {
-        console.log('Calendly script loaded successfully');
-      };
-      
-      script.onerror = () => {
-        console.error('Failed to load Calendly script');
-      };
     }
   }, [calendlyUrl])
 
@@ -51,55 +43,216 @@ export default function ContactPage() {
       <PageTransition>
         <main>
         <Box sx={{ 
-          pt: { xs: 15, md: 20 }, 
+          pt: { xs: 15, md: 20 },
           pb: { xs: 8, md: 15 },
-          px: { xs: 2, md: 5 },
           minHeight: '100vh'
         }}>
           <Box sx={{ 
             width: { xs: '100%', md: '1040px' }, 
             maxWidth: '1040px', 
-            mx: 'auto'
+            mx: 'auto',
+            px: { xs: 2, md: 0 },
           }}>
-            <Typography 
-              component="h1" 
-              sx={{ 
-                fontFamily: 'var(--font-outfit)',
-                fontWeight: 600,
-                fontSize: { xs: '32px', md: '48px' },
-                lineHeight: '1.2',
-                mb: 2
-              }}
-            >
-              {t('title')}
-            </Typography>
-            
-            <Typography 
-              sx={{ 
-                fontFamily: 'var(--font-outfit)',
-                fontWeight: 400,
-                fontSize: { xs: '16px', md: '18px' },
-                lineHeight: '1.6',
-                mb: 6,
-                color: 'text.secondary'
-              }}
-            >
-              {t('description')}
-            </Typography>
+            {/* Main Content - Two Columns */}
+            <Box sx={{ 
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+              gap: { xs: 4, md: 5 },
+              alignItems: 'stretch'
+            }}>
+              {/* Left Column - Text + Contact Cards */}
+              <Box 
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 3,
+                }}
+              >
+                <Typography 
+                  component="h1" 
+                  sx={{ 
+                    fontFamily: 'var(--font-outfit)',
+                    fontWeight: 600,
+                    fontSize: { xs: '32px', md: '48px' },
+                    lineHeight: '1.2',
+                  }}
+                >
+                  {t('title')}
+                </Typography>
+                
+                <Typography 
+                  sx={{ 
+                    fontFamily: 'var(--font-outfit)',
+                    fontWeight: 400,
+                    fontSize: { xs: '16px', md: '18px' },
+                    lineHeight: '1.6',
+                    mb: 2,
+                    color: 'text.secondary',
+                  }}
+                >
+                  {t('description')}
+                </Typography>
+                
+                {/* Contact Cards */}
+                {/* Email Card */}
+                <Box
+                  component="a"
+                  href="mailto:vitaliishutiak@gmail.com"
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                    padding: { xs: '20px', md: '24px' },
+                    backgroundColor: '#F5F5F5',
+                    borderRadius: '16px',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    border: '2px solid transparent',
+                    '&:hover': {
+                      backgroundColor: '#fff',
+                      border: '2px solid #FFCC00',
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 4px 12px rgba(255, 204, 0, 0.2)',
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '12px',
+                      backgroundColor: '#FFCC00',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <EmailIcon sx={{ fontSize: '24px', color: '#000' }} />
+                  </Box>
+                  <Typography
+                    sx={{
+                      fontFamily: 'var(--font-outfit)',
+                      fontWeight: 600,
+                      fontSize: { xs: '18px', md: '20px' },
+                      color: '#121212',
+                      lineHeight: '1.2',
+                    }}
+                  >
+                    {t('emailTitle')}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: 'var(--font-outfit)',
+                      fontWeight: 400,
+                      fontSize: { xs: '14px', md: '15px' },
+                      color: '#666',
+                      lineHeight: '1.5',
+                    }}
+                  >
+                    {t('emailDescription')}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: 'var(--font-outfit)',
+                      fontWeight: 500,
+                      fontSize: { xs: '14px', md: '15px' },
+                      color: '#FFCC00',
+                      mt: 1,
+                    }}
+                  >
+                    vitaliishutiak@gmail.com
+                  </Typography>
+                </Box>
 
-            <Box 
-              sx={{ 
-                width: '100%',
-                height: { xs: '900px', md: '700px' },
-                overflow: 'hidden',
-                backgroundColor: '#fff',
-              }}
-            >
-              <div 
-                className="calendly-inline-widget" 
-                data-url={calendlyUrl}
-                style={{ minWidth: '320px', height: '100%' }}
-              />
+                {/* Phone Card */}
+                <Box
+                  component="a"
+                  href="tel:+380632212534"
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                    padding: { xs: '20px', md: '24px' },
+                    backgroundColor: '#F5F5F5',
+                    borderRadius: '16px',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    border: '2px solid transparent',
+                    '&:hover': {
+                      backgroundColor: '#fff',
+                      border: '2px solid #FFCC00',
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 4px 12px rgba(255, 204, 0, 0.2)',
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '12px',
+                      backgroundColor: '#FFCC00',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <PhoneIcon sx={{ fontSize: '24px', color: '#000' }} />
+                  </Box>
+                  <Typography
+                    sx={{
+                      fontFamily: 'var(--font-outfit)',
+                      fontWeight: 600,
+                      fontSize: { xs: '18px', md: '20px' },
+                      color: '#121212',
+                      lineHeight: '1.2',
+                    }}
+                  >
+                    {t('phoneTitle')}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: 'var(--font-outfit)',
+                      fontWeight: 400,
+                      fontSize: { xs: '14px', md: '15px' },
+                      color: '#666',
+                      lineHeight: '1.5',
+                    }}
+                  >
+                    {t('phoneDescription')}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: 'var(--font-outfit)',
+                      fontWeight: 500,
+                      fontSize: { xs: '14px', md: '15px' },
+                      color: '#FFCC00',
+                      mt: 1,
+                    }}
+                  >
+                    +380 (63) 221-2534
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* Right Column - Calendly */}
+              <Box 
+                sx={{ 
+                  width: '100%',
+                  minHeight: { xs: '600px', md: '100%' },
+                  height: '100%',
+                  overflow: 'hidden',
+                  backgroundColor: '#fff',
+                  borderRadius: '16px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                }}
+              >
+                <div 
+                  className="calendly-inline-widget" 
+                  data-url={calendlyUrl}
+                  style={{ minWidth: '320px', height: '100%', minHeight: '600px' }}
+                />
+              </Box>
             </Box>
 
             {/* <Box 

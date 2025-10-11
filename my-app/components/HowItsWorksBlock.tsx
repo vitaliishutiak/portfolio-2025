@@ -5,35 +5,22 @@ import { Box, Typography } from '@mui/material'
 import HowItsWorksCard from './HowItsWorksCard'
 import { howItsWork } from '../data/howItsWork'
 import { useTranslations } from 'next-intl'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import TypingText from './TypingText'
-
-gsap.registerPlugin(ScrollTrigger);
+import { animateHowItWorksBlock, animateTitle } from '../lib/animations'
+import { useMediaQuery } from '@mui/material'
 
 const HowItsWorksBlock: React.FC = () => {
   const t = useTranslations('howItWorks');
   const textBlockRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
     if (textBlockRef.current && sectionRef.current) {
-      gsap.fromTo(
-        textBlockRef.current,
-        {
-          yPercent: 0,
-        },
-        {
-          yPercent  : 50,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top center',
-            end: 'bottom center',
-            scrub: true,
-          },
-        }
-      );
+      animateHowItWorksBlock(textBlockRef.current, sectionRef.current);
+    }
+    if (titleRef.current && !isMobile) {
+      animateTitle(titleRef.current);
     }
   }, []);
 
@@ -58,9 +45,9 @@ const HowItsWorksBlock: React.FC = () => {
             }}>
                 {t('subtitle')}
             </Typography>
-            <TypingText
-              text={t('title')}
-              speed={80}
+            <Typography
+              ref={titleRef}
+              component="h2"
               sx={{ 
                 color: '#fff', 
                 fontSize: { xs: '24px', md: '40px' }, 
@@ -68,7 +55,9 @@ const HowItsWorksBlock: React.FC = () => {
                 fontFamily: "var(--font-outfit)",
                 lineHeight: { xs: '130%', md: '120%' }
               }}
-            />
+            >
+              {t('title')}
+            </Typography>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: '16px', md: '24px' } }}>
             {

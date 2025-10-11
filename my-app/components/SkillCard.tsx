@@ -2,11 +2,7 @@
 
 import { Box, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
+import { animateCard } from "../lib/animations";
 
 interface SkillCardProps {
   img: string;
@@ -15,29 +11,11 @@ interface SkillCardProps {
 }
 
 const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
-
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (cardRef.current) {
-      gsap.fromTo(
-        cardRef.current,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
+      animateCard(cardRef.current);
     }
   }, []);
 
@@ -48,19 +26,21 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
         width: "100%",
         maxWidth: { xs: "100%", md: "510px" },
         display: "flex",
-        gap: "24px",
-        borderRadius: "24px",
+        gap: { xs: "16px", md: "24px" },
+        borderRadius: { xs: "16px", md: "24px" },
         backgroundColor: "#1212120A",
-        p: "20px",
+        p: { xs: "16px", md: "20px" },
       }}
     >
       <Box
         component={"img"}
         src={img}
-        alt={name}
+        alt={`${name} icon`}
+        loading="lazy"
         sx={{
-          width: "56px",
-          height: "56px",
+          width: { xs: "48px", md: "56px" },
+          height: { xs: "48px", md: "56px" },
+          minWidth: { xs: "48px", md: "56px" },
           objectFit: "cover",
         }}
       />
@@ -68,13 +48,13 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
+          gap: { xs: "8px", md: "10px" },
         }}
       >
         <Typography
           sx={{
             color: "#121212",
-            fontSize: "24px",
+            fontSize: { xs: "18px", md: "24px" },
             fontWeight: 500,
             fontFamily: "var(--font-outfit)",
             lineHeight: "100%",
@@ -87,7 +67,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
         <Typography
           sx={{
             color: "#12121299",
-            fontSize: "15px",
+            fontSize: { xs: "13px", md: "15px" },
             fontWeight: 400,
             fontFamily: "var(--font-outfit)",
             lineHeight: "150%",
