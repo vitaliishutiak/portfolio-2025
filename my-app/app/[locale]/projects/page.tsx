@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PageTransition from '../../../components/PageTransition'
+import ScrollAnimations from '../../../components/ScrollAnimations'
 import ProjectCard from '../../../components/ProjectCard'
 import { projects, Project } from '../../../data/projects'
 import { useTranslations } from 'next-intl'
@@ -28,7 +29,8 @@ export default function ProjectsPage() {
     <Container maxWidth={false} disableGutters>
       <Header />
       <PageTransition>
-        <main>
+        <ScrollAnimations>
+          <main>
           <Box sx={{ 
             pt: { xs: 15, md: 20 }, 
             pb: { xs: 8, md: 15 },
@@ -42,6 +44,7 @@ export default function ProjectsPage() {
             }}>
               <Typography 
                 component="h1" 
+                className="animate-heading"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 600,
@@ -54,6 +57,7 @@ export default function ProjectsPage() {
               </Typography>
               
               <Typography 
+                className="animate-text"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 400,
@@ -79,6 +83,7 @@ export default function ProjectsPage() {
                     key={filter.key}
                     onClick={() => setActiveFilter(filter.key as 'all' | 'ukrainian' | 'international')}
                     variant={activeFilter === filter.key ? 'contained' : 'outlined'}
+                    className="animate-button"
                     sx={{
                       fontFamily: 'var(--font-outfit)',
                       fontWeight: 500,
@@ -116,17 +121,20 @@ export default function ProjectsPage() {
               >
                 {filteredProjects.map((project) => (
                   <Link key={project.id} href={`/projects/${project.id}`}>
-                    <ProjectCard
-                      img={project.img}
-                      title={project.title}
-                      technologies={project.technologies}
-                    />
+                    <Box className="animate-project-card">
+                      <ProjectCard
+                        img={project.img}
+                        title={project.title}
+                        technologies={project.technologies}
+                      />
+                    </Box>
                   </Link>
                 ))}
               </Box>
             </Box>
           </Box>
         </main>
+        </ScrollAnimations>
       </PageTransition>
       <Footer />
     </Container>

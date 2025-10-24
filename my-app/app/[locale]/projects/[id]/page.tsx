@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation'
 import Header from '../../../../components/Header'
 import Footer from '../../../../components/Footer'
 import PageTransition from '../../../../components/PageTransition'
+import ScrollAnimations from '../../../../components/ScrollAnimations'
 import { projects, Project } from '../../../../data/projects'
 import { useTranslations } from 'next-intl'
 import { Link } from '../../../../navigation'
@@ -66,7 +67,8 @@ export default function ProjectDetailPage() {
     <Container maxWidth={false} disableGutters>
       <Header />
       <PageTransition>
-        <main>
+        <ScrollAnimations>
+          <main>
           <Box sx={{ 
             pt: { xs: 15, md: 20 }, 
             pb: { xs: 8, md: 15 },
@@ -82,6 +84,7 @@ export default function ProjectDetailPage() {
               <Link href="/projects">
                 <Button
                   startIcon={<ArrowBackIcon />}
+                  className="animate-button"
                   sx={{
                     fontFamily: 'var(--font-outfit)',
                     fontWeight: 500,
@@ -102,6 +105,7 @@ export default function ProjectDetailPage() {
               <Box sx={{ mb: { xs: 6, md: 8 } }}>
                 <Typography 
                   component="h1" 
+                  className="animate-heading"
                   sx={{ 
                     fontFamily: 'var(--font-outfit)',
                     fontWeight: 600,
@@ -114,6 +118,7 @@ export default function ProjectDetailPage() {
                 </Typography>
                 
                 <Typography 
+                  className="animate-text"
                   sx={{ 
                     fontFamily: 'var(--font-outfit)',
                     fontWeight: 400,
@@ -135,6 +140,7 @@ export default function ProjectDetailPage() {
                       startIcon={<LaunchIcon />}
                       href={project.liveUrl}
                       target="_blank"
+                      className="animate-button"
                       sx={{
                         fontFamily: 'var(--font-outfit)',
                         fontWeight: 500,
@@ -158,6 +164,7 @@ export default function ProjectDetailPage() {
                       startIcon={<CodeIcon />}
                       href={project.githubUrl}
                       target="_blank"
+                      className="animate-button"
                       sx={{
                         fontFamily: 'var(--font-outfit)',
                         fontWeight: 500,
@@ -260,6 +267,7 @@ export default function ProjectDetailPage() {
                     component="img"
                     src={project.images[currentImageIndex]}
                     alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                    className="animate-image"
                     sx={{
                       width: '100%',
                       height: { xs: '300px', md: '500px' },
@@ -350,6 +358,7 @@ export default function ProjectDetailPage() {
                 <Box>
                   <Typography 
                     component="h3" 
+                    className="animate-heading"
                     sx={{ 
                       fontFamily: 'var(--font-outfit)',
                       fontWeight: 600,
@@ -507,6 +516,7 @@ export default function ProjectDetailPage() {
             </Box>
           </Box>
         </main>
+        </ScrollAnimations>
       </PageTransition>
       <Footer />
     </Container>

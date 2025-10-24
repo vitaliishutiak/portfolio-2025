@@ -6,6 +6,7 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PageTransition from '../../../components/PageTransition'
+import ScrollAnimations from '../../../components/ScrollAnimations'
 import { useTranslations } from 'next-intl'
 import { useMemo, useEffect } from 'react'
 
@@ -41,7 +42,8 @@ export default function ContactPage() {
     <Container maxWidth={false} disableGutters>
       <Header />
       <PageTransition>
-        <main>
+        <ScrollAnimations>
+          <main>
         <Box sx={{ 
           pt: { xs: 15, md: 20 },
           pb: { xs: 8, md: 15 },
@@ -70,6 +72,7 @@ export default function ContactPage() {
               >
                 <Typography 
                   component="h1" 
+                  className="animate-heading"
                   sx={{ 
                     fontFamily: 'var(--font-outfit)',
                     fontWeight: 600,
@@ -81,6 +84,7 @@ export default function ContactPage() {
                 </Typography>
                 
                 <Typography 
+                  className="animate-text"
                   sx={{ 
                     fontFamily: 'var(--font-outfit)',
                     fontWeight: 400,
@@ -98,6 +102,7 @@ export default function ContactPage() {
                 <Box
                   component="a"
                   href="mailto:vitaliishutiak@gmail.com"
+                  className="animate-card"
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -168,6 +173,7 @@ export default function ContactPage() {
                 <Box
                   component="a"
                   href="tel:+380632212534"
+                  className="animate-card"
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -312,10 +318,11 @@ export default function ContactPage() {
                 }}
               />
               
-              <Button 
-                variant="contained" 
-                size="large"
-                sx={{
+                <Button
+                  variant="contained"
+                  size="large"
+                  className="animate-button"
+                  sx={{
                   backgroundColor: '#FFCC00',
                   color: '#000',
                   fontFamily: 'var(--font-outfit)',
@@ -336,6 +343,7 @@ export default function ContactPage() {
           </Box>
         </Box>
         </main>
+        </ScrollAnimations>
       </PageTransition>
       <Footer />
     </Container>

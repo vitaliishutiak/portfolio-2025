@@ -11,6 +11,7 @@ import StarIcon from '@mui/icons-material/Star'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import PageTransition from '../../../components/PageTransition'
+import ScrollAnimations from '../../../components/ScrollAnimations'
 import { useTranslations } from 'next-intl'
 
 export default function AboutPage() {
@@ -61,34 +62,37 @@ export default function AboutPage() {
     <Container maxWidth={false} disableGutters>
       <Header />
       <PageTransition>
-        <main>
-        <Box sx={{ 
-          pt: { xs: 15, md: 20 }, 
-          pb: { xs: 8, md: 15 },
-          px: { xs: 2, md: 5 },
-          minHeight: '100vh'
-        }}>
+        <ScrollAnimations>
+          <main>
           <Box sx={{ 
-            width: { xs: '100%', md: '1040px' }, 
-            maxWidth: '1040px', 
-            mx: 'auto'
+            pt: { xs: 15, md: 20 }, 
+            pb: { xs: 8, md: 15 },
+            px: { xs: 2, md: 5 },
+            minHeight: '100vh'
           }}>
-            {/* Hero Section */}
-            <Box sx={{ mb: { xs: 6, md: 8 } }}>
-              <Typography 
-                component="h1" 
-                sx={{ 
-                  fontFamily: 'var(--font-outfit)',
-                  fontWeight: 600,
-                  fontSize: { xs: '32px', md: '48px' },
-                  lineHeight: '1.2',
-                  mb: 3
-                }}
-              >
-                {t('title')}
-              </Typography>
+            <Box sx={{ 
+              width: { xs: '100%', md: '1040px' }, 
+              maxWidth: '1040px', 
+              mx: 'auto'
+            }}>
+              {/* Hero Section */}
+              <Box sx={{ mb: { xs: 6, md: 8 } }}>
+                <Typography 
+                  component="h1" 
+                  className="animate-heading"
+                  sx={{ 
+                    fontFamily: 'var(--font-outfit)',
+                    fontWeight: 600,
+                    fontSize: { xs: '32px', md: '48px' },
+                    lineHeight: '1.2',
+                    mb: 3
+                  }}
+                >
+                  {t('title')}
+                </Typography>
               
               <Typography 
+                className="animate-text"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 400,
@@ -114,6 +118,7 @@ export default function AboutPage() {
                 return (
                   <Box
                     key={index}
+                    className="animate-card"
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
@@ -178,6 +183,7 @@ export default function AboutPage() {
             <Box sx={{ mb: { xs: 8, md: 12 } }}>
               <Typography 
                 component="h2" 
+                className="animate-heading"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 600,
@@ -211,7 +217,7 @@ export default function AboutPage() {
                 gap: 3
               }}>
                 {skills.map((skill, index) => (
-                  <Box key={index}>
+                  <Box key={index} className="animate-skill-card">
                     <Card sx={{ 
                       height: '100%',
                       borderRadius: '16px',
@@ -266,6 +272,7 @@ export default function AboutPage() {
             <Box sx={{ mb: { xs: 8, md: 12 } }}>
               <Typography 
                 component="h2" 
+                className="animate-heading"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 600,
@@ -299,7 +306,7 @@ export default function AboutPage() {
                 gap: 3
               }}>
                 {achievements.map((achievement, index) => (
-                  <Box key={index}>
+                  <Box key={index} className="animate-number">
                     <Box sx={{ 
                       textAlign: 'center',
                       p: 3,
@@ -343,6 +350,7 @@ export default function AboutPage() {
             <Box sx={{ mb: { xs: 8, md: 12 } }}>
               <Typography 
                 component="h2" 
+                className="animate-heading"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 600,
@@ -472,6 +480,7 @@ export default function AboutPage() {
             <Box sx={{ mb: { xs: 8, md: 12 } }}>
               <Typography 
                 component="h2" 
+                className="animate-heading"
                 sx={{ 
                   fontFamily: 'var(--font-outfit)',
                   fontWeight: 600,
@@ -507,7 +516,7 @@ export default function AboutPage() {
                 {values.map((value, index) => {
                   const IconComponent = value.icon;
                   return (
-                    <Box key={index}>
+                    <Box key={index} className="animate-card">
                       <Box sx={{ 
                         display: 'flex',
                         p: 3,
@@ -564,6 +573,7 @@ export default function AboutPage() {
           </Box>
         </Box>
         </main>
+        </ScrollAnimations>
       </PageTransition>
       <Footer />
     </Container>
