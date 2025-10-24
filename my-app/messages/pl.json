@@ -1,0 +1,221 @@
+{
+  "header": {
+    "home": "Strona główna",
+    "projects": "Projekty",
+    "about": "O mnie",
+    "contact": "Kontakt",
+    "contactButton": "Skontaktuj się"
+  },
+  "hero": {
+    "title": "<highlight>Frontend developer</highlight> tworzący szybkie, responsywne i pięknie animowane doświadczenia internetowe."
+  },
+  "projects": {
+    "title": "Najnowsze projekty",
+    "allProjectsTitle": "Wszystkie projekty",
+    "allProjectsDescription": "Poznaj moją pełną kolekcję prac — od aplikacji internetowych po rozwiązania mobilne.",
+    "seeAll": "Zobacz wszystkie",
+    "filters": {
+      "all": "Wszystkie projekty",
+      "ukrainian": "Projekty ukraińskie",
+      "international": "Projekty międzynarodowe"
+    },
+    "projectDetails": {
+      "overview": "Przegląd projektu",
+      "features": "Kluczowe funkcje",
+      "challenges": "Wyzwania",
+      "results": "Wyniki",
+      "duration": "Czas trwania",
+      "role": "Moja rola",
+      "client": "Klient",
+      "technologies": "Użyte technologie",
+      "viewProject": "Zobacz projekt",
+      "viewCode": "Zobacz kod"
+    },
+    "project1": {
+      "title": "Platforma e-commerce",
+      "description": "Kompleksowe rozwiązanie e-commerce z nowoczesnym UI/UX"
+    },
+    "project2": {
+      "title": "Strona portfolio",
+      "description": "Responsywne portfolio z płynnymi animacjami"
+    },
+    "project3": {
+      "title": "Aplikacja do zarządzania zadaniami",
+      "description": "Platforma do współpracy w zarządzaniu zadaniami w czasie rzeczywistym"
+    },
+    "project4": {
+      "title": "Panel pogodowy",
+      "description": "Interaktywny panel pogodowy z wizualizacją danych"
+    },
+    "project5": {
+      "title": "Aplikacja społecznościowa",
+      "description": "Mobilna aplikacja społecznościowa"
+    },
+    "project6": {
+      "title": "Platforma blogowa",
+      "description": "Nowoczesna platforma blogowa z integracją CMS"
+    }
+  },
+  "howItWorks": {
+    "subtitle": "Jak to działa",
+    "title": "Prosty i efektywny proces pracy, aby ożywić Twoją wizję. Od pierwszego spotkania do finalnego przekazania, każdy krok jest zaprojektowany dla jasności i efektywności.",
+    "step1": {
+      "title": "Wstępna konsultacja",
+      "description": "Zaczynamy od dogłębnej analizy celów, wyzwań i wymagań Twojego projektu."
+    },
+    "step2": {
+      "title": "Projektowanie",
+      "description": "Tworzymy projekt dostosowany do celów, wyzwań i wymagań Twojego projektu."
+    },
+    "step3": {
+      "title": "Rozwój",
+      "description": "Rozwijamy Twój projekt zgodnie z najwyższymi standardami jakości i wydajności."
+    },
+    "step4": {
+      "title": "Uruchomienie",
+      "description": "Uruchamiamy Twój projekt w świecie i pomagamy w jego utrzymaniu."
+    },
+    "step5": {
+      "title": "Utrzymanie",
+      "description": "Pomagamy w utrzymaniu Twojego projektu i zapewniamy jego płynne działanie."
+    }
+  },
+  "skills": {
+    "title": "Moje umiejętności",
+    "githubMetrics": "Metryki GitHub",
+    "react": {
+      "name": "React",
+      "description": "Biblioteka JavaScript do tworzenia interfejsów użytkownika"
+    },
+    "nextjs": {
+      "name": "Next.js",
+      "description": "Framework React dla aplikacji gotowych do produkcji"
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "description": "JavaScript z składnią dla typów"
+    },
+    "materialui": {
+      "name": "Material UI",
+      "description": "Komponenty React dla szybszego i łatwiejszego rozwoju internetowego"
+    },
+    "figma": {
+      "name": "Figma",
+      "description": "Narzędzie do projektowania i prototypowania"
+    },
+    "gsap": {
+      "name": "GSAP",
+      "description": "Profesjonalna biblioteka animacji dla internetu"
+    }
+  },
+  "experience": {
+    "title": "Doświadczenie zawodowe",
+    "date1": "2021-2022",
+    "position1": "Frontend Developer",
+    "date2": "2021-2022",
+    "position2": "Frontend Developer",
+    "date3": "2021-2022",
+    "position3": "Frontend Developer"
+  },
+  "contact": {
+    "title": "Umów rozmowę",
+    "description": "Masz pomysł na projekt lub po prostu chcesz się przywitać? Umów wygodny czas na rozmowę. Zawsze jestem otwarty na omawianie nowych projektów, kreatywnych pomysłów lub możliwości bycia częścią Twoich wizji.",
+    "emailTitle": "Skontaktuj się z nami",
+    "emailDescription": "Potrzebujesz pomocy? Napisz do nas w każdej chwili.",
+    "phoneTitle": "Zadzwoń do nas",
+    "phoneDescription": "Potrzebujesz pomocy? Zadzwoń — jesteśmy tu dla Ciebie."
+  },
+  "about": {
+    "title": "O mnie",
+    "description": "Jestem pasjonatem Frontend Developer z wyczuleniem na szczegóły i miłością do tworzenia pięknych, przyjaznych użytkownikowi doświadczeń internetowych. Mając wieloletnie doświadczenie w nowoczesnych technologiach internetowych, ożywiam pomysły poprzez czysty kod i intuicyjny design.",
+    "experience": {
+      "title": "Moje doświadczenie",
+      "description": "Pracowałem nad licznymi projektami, od małych stron biznesowych po duże aplikacje internetowe. Moja ekspertyza leży w React, Next.js, TypeScript i nowoczesnych frameworkach CSS. Ciągle się uczę i pozostaję na bieżąco z najnowszymi trendami w rozwoju internetowym."
+    },
+    "approach": {
+      "title": "Moje podejście",
+      "description": "Wierzę w pisanie czystego, łatwego w utrzymaniu kodu i tworzenie bezproblemowych doświadczeń użytkownika. Każdy projekt to okazja do nauki czegoś nowego i przekraczania granic tego, co możliwe w internecie. Skupiam się na wydajności, dostępności i responsywnym designie we wszystkim, co tworzę."
+    },
+    "interests": {
+      "title": "Poza kodem",
+      "description": "Gdy nie koduję, możesz znaleźć mnie eksplorującego nowe technologie, przyczyniającego się do projektów open-source lub dzielącego się wiedzą ze społecznością deweloperów. Pasjonuję się ciągłym uczeniem się i wierzę, że najlepszym sposobem na rozwój jest pomaganie innym w rozwoju."
+    },
+    "skills": {
+      "title": "Umiejętności techniczne",
+      "description": "Specjalizuję się w nowoczesnych technologiach frontend i frameworkach. Mój zestaw narzędzi obejmuje React, Next.js, TypeScript i różne frameworki CSS. Mam również doświadczenie z narzędziami projektowymi jak Figma i bibliotekami animacji jak GSAP.",
+      "frontend": "Rozwój Frontend",
+      "frontendDesc": "React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Sass, Tailwind CSS",
+      "tools": "Narzędzia deweloperskie",
+      "toolsDesc": "Git, VS Code, Figma, Adobe Creative Suite, Webpack, Vite",
+      "animation": "Animacje i UX",
+      "animationDesc": "GSAP, Framer Motion, Animacje CSS, Mikro-interakcje"
+    },
+    "education": {
+      "title": "Edukacja i certyfikaty",
+      "description": "Wierzę w ciągłe uczenie się i pozostawanie na bieżąco z najnowszymi technologiami. Oto niektóre z moich osiągnięć edukacyjnych i certyfikatów.",
+      "degree": "Licencjat z informatyki",
+      "university": "Uniwersytet Technologiczny",
+      "year": "2018-2022",
+      "certifications": "Certyfikaty zawodowe",
+      "cert1": "Certyfikat React Developer",
+      "cert2": "Zaawansowany kurs Next.js",
+      "cert3": "Podstawy TypeScript"
+    },
+    "achievements": {
+      "title": "Kluczowe osiągnięcia",
+      "description": "W trakcie swojej kariery miałem okazję pracować nad ekscytującymi projektami i osiągać znaczące kamienie milowe.",
+      "projects": "50+ ukończonych projektów",
+      "clients": "30+ zadowolonych klientów",
+      "years": "3+ lata doświadczenia",
+      "technologies": "15+ opanowanych technologii"
+    },
+    "values": {
+      "title": "Moje wartości",
+      "description": "Te podstawowe wartości kierują moją pracą i interakcjami z klientami i współpracownikami.",
+      "quality": "Jakość na pierwszym miejscu",
+      "qualityDesc": "Nigdy nie kompromituję się z jakością kodu i zawsze dążę do doskonałości w każdym projekcie.",
+      "collaboration": "Współpraca",
+      "collaborationDesc": "Wierzę, że najlepsze rezultaty osiąga się poprzez ścisłą współpracę z klientami i zrozumienie ich wizji.",
+      "innovation": "Innowacja",
+      "innovationDesc": "Zawsze eksploruję nowe technologie i podejścia, aby dostarczać najnowocześniejsze rozwiązania.",
+      "reliability": "Niezawodność",
+      "reliabilityDesc": "Możesz na mnie liczyć w dostarczaniu projektów na czas i w ramach budżetu."
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Zanim zapytasz — odpowiedź może być tutaj. Sprawdź, czego nasi klienci często chcą wiedzieć.",
+    "question1": "Jak długo trwa wstępna konsultacja i czy jest bezpłatna?",
+    "answer1": "Tak, pierwsza konsultacja jest bezpłatna. Zazwyczaj trwa od 30 do 60 minut, w zależności od złożoności Twojego projektu.",
+    "question2": "Czy mogę poprosić o zmiany w projekcie po jego zatwierdzeniu?",
+    "answer2": "Tak, zmiany są możliwe nawet po zatwierdzeniu. Jednak mogą wpłynąć na ostateczny harmonogram i koszt, w zależności od ich zakresu.",
+    "question3": "Jakich technologii używasz do rozwoju?",
+    "answer3": "Używamy nowoczesnych, niezawodnych technologii dostosowanych do potrzeb Twojego projektu — od stron internetowych po złożone aplikacje internetowe.",
+    "question4": "Jak działa uruchomienie projektu?",
+    "answer4": "Po zakończeniu rozwoju przeprowadzamy dokładne testy, finalizujemy szczegóły z Tobą i uruchamiamy. Możemy również pomóc w konfiguracji domeny, hostingu i SEO.",
+    "question5": "Czy oferujesz wsparcie techniczne po uruchomieniu?",
+    "answer5": "Tak, zapewniamy różne plany wsparcia — od podstawowych do rozszerzonych — w tym aktualizacje, poprawki błędów i monitorowanie projektu.",
+    "question6": "Ile będzie kosztować projekt?",
+    "answer6": "Cennik zależy od złożoności, funkcji i Twoich konkretnych wymagań. Szczegółowa wycena jest dostarczana po wstępnej konsultacji.",
+    "question7": "Czy pracujesz z klientami z innych miast lub krajów?",
+    "answer7": "Absolutnie. Z powodzeniem pracujemy z klientami na całym świecie poprzez komunikację online."
+  },
+  "footer": {
+    "cta": "Umów rozmowę, a ja zajmę się resztą",
+    "ctaPart1": "Umów rozmowę",
+    "ctaPart2": ", a ja zajmę się resztą",
+    "contact": "Kontakt",
+    "navigation": {
+      "home": "Strona główna",
+      "projects": "Projekty",
+      "about": "O mnie",
+      "contact": "Kontakt"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "twitter": "Twitter"
+    }
+  }
+}
+

@@ -14,6 +14,23 @@
     "allProjectsTitle": "All Projects",
     "allProjectsDescription": "Explore my complete collection of work — from web applications to mobile solutions.",
     "seeAll": "See All",
+    "filters": {
+      "all": "All Projects",
+      "ukrainian": "Ukrainian Projects",
+      "international": "International Projects"
+    },
+    "projectDetails": {
+      "overview": "Project Overview",
+      "features": "Key Features",
+      "challenges": "Challenges",
+      "results": "Results",
+      "duration": "Duration",
+      "role": "My Role",
+      "client": "Client",
+      "technologies": "Technologies Used",
+      "viewProject": "View Project",
+      "viewCode": "View Code"
+    },
     "project1": {
       "title": "E-commerce Platform",
       "description": "Full-stack e-commerce solution with modern UI/UX"
@@ -122,6 +139,47 @@
     "interests": {
       "title": "Beyond Code",
       "description": "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community. I'm passionate about continuous learning and believe that the best way to grow is by helping others grow too."
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "description": "I specialize in modern frontend technologies and frameworks. My toolkit includes React, Next.js, TypeScript, and various CSS frameworks. I'm also experienced with design tools like Figma and animation libraries like GSAP.",
+      "frontend": "Frontend Development",
+      "frontendDesc": "React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Sass, Tailwind CSS",
+      "tools": "Development Tools",
+      "toolsDesc": "Git, VS Code, Figma, Adobe Creative Suite, Webpack, Vite",
+      "animation": "Animation & UX",
+      "animationDesc": "GSAP, Framer Motion, CSS Animations, Micro-interactions"
+    },
+    "education": {
+      "title": "Education & Certifications",
+      "description": "I believe in continuous learning and staying updated with the latest technologies. Here are some of my educational achievements and certifications.",
+      "degree": "Bachelor's in Computer Science",
+      "university": "University of Technology",
+      "year": "2018-2022",
+      "certifications": "Professional Certifications",
+      "cert1": "React Developer Certification",
+      "cert2": "Next.js Advanced Course",
+      "cert3": "TypeScript Fundamentals"
+    },
+    "achievements": {
+      "title": "Key Achievements",
+      "description": "Throughout my career, I've had the opportunity to work on exciting projects and achieve significant milestones.",
+      "projects": "50+ Projects Completed",
+      "clients": "30+ Happy Clients",
+      "years": "3+ Years Experience",
+      "technologies": "15+ Technologies Mastered"
+    },
+    "values": {
+      "title": "My Values",
+      "description": "These core values guide my work and interactions with clients and colleagues.",
+      "quality": "Quality First",
+      "qualityDesc": "I never compromise on code quality and always strive for excellence in every project.",
+      "collaboration": "Collaboration",
+      "collaborationDesc": "I believe the best results come from working closely with clients and understanding their vision.",
+      "innovation": "Innovation",
+      "innovationDesc": "I'm always exploring new technologies and approaches to deliver cutting-edge solutions.",
+      "reliability": "Reliability",
+      "reliabilityDesc": "You can count on me to deliver projects on time and within budget."
     }
   },
   "faq": {
