@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
   ]
 
-  const locales = ['en', 'uk']
+  const locales = ['en', 'uk', 'pl']
 
   const sitemap: MetadataRoute.Sitemap = []
 
@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             en: `${baseUrl}/en${route}`,
             uk: `${baseUrl}/uk${route}`,
+            pl: `${baseUrl}/pl${route}`,
           },
         },
       })
