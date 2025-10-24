@@ -9,7 +9,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter, Link } from '../navigation'
-import { GB, UA } from 'country-flag-icons/react/3x2'
+import { GB, PL, UA } from 'country-flag-icons/react/3x2'
 import { animateHeader } from '../lib/animations'
 
 const Header: React.FC = () => {
@@ -142,7 +142,7 @@ const Header: React.FC = () => {
   // Language selector component with flags
   const LanguageSelector = () => {
     const FlagIcon = ({ country }: { country: string }) => {
-      const Flag = country === 'en' ? GB : UA;
+      const Flag = country === 'en' ? GB : country === 'uk' ? UA : PL;
       return (
         <Box sx={{ width: '24px', height: '16px', display: 'flex', alignItems: 'center', borderRadius: '2px', overflow: 'hidden' }}>
           <Flag style={{ width: '100%', height: '100%', display: 'block' }} />
@@ -249,6 +249,31 @@ const Header: React.FC = () => {
           <UA style={{ width: '100%', height: '100%', display: 'block' }} />
         </Box>
         <Box component="span">Українська</Box>
+      </MenuItem>
+      <MenuItem 
+        value="pl" 
+        sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 1.5,
+          fontFamily: 'var(--font-outfit)',
+          fontWeight: 500,
+          py: 1.5,
+          '&:hover': {
+            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+          },
+          '&.Mui-selected': {
+            backgroundColor: 'rgba(25, 118, 210, 0.08)',
+            '&:hover': {
+              backgroundColor: 'rgba(25, 118, 210, 0.12)',
+            }
+          }
+        }}
+      >
+        <Box sx={{ width: '28px', height: '19px', display: 'flex', alignItems: 'center', borderRadius: '3px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+          <PL style={{ width: '100%', height: '100%', display: 'block' }} />
+        </Box>
+        <Box component="span">Polski</Box>
       </MenuItem>
     </Select>
     );
