@@ -88,10 +88,11 @@ const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    if (headerRef.current) {
+    // Animate header only on home page
+    if (headerRef.current && pathname === '/') {
       animateHeader(headerRef.current);
     }
-  }, []);
+  }, [pathname]);
 
   // Animated Burger Menu Component
   const AnimatedBurger = ({ isOpen }: { isOpen: boolean }) => (
