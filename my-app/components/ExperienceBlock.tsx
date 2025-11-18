@@ -10,7 +10,10 @@ const ExperienceBlock: React.FC = () => {
 
   useEffect(() => {
     if (titleRef.current) {
-      animateTitle(titleRef.current);
+      const cleanup = animateTitle(titleRef.current);
+      
+      // Cleanup при розмонтуванні компонента
+      return cleanup;
     }
   }, []);
 

@@ -12,7 +12,10 @@ const Footer: React.FC = () => {
 
   useEffect(() => {
     if (ctaTextRef.current) {
-      animateScaleUp(ctaTextRef.current);
+      const cleanup = animateScaleUp(ctaTextRef.current);
+      
+      // Cleanup при розмонтуванні компонента
+      return cleanup;
     }
   }, []);
 

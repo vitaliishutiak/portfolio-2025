@@ -15,7 +15,10 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ id, company, date, posi
 
     useEffect(() => {
         if (cardRef.current) {
-            animateCard(cardRef.current);
+            const cleanup = animateCard(cardRef.current);
+            
+            // Cleanup при розмонтуванні компонента
+            return cleanup;
         }
     }, []);
 
