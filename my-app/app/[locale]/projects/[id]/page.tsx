@@ -12,16 +12,12 @@ import { useTranslations } from 'next-intl'
 import { Link } from '../../../../navigation'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import LaunchIcon from '@mui/icons-material/Launch'
-import CodeIcon from '@mui/icons-material/Code'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 
 export default function ProjectDetailPage() {
   const t = useTranslations('projects');
   const params = useParams();
   const projectId = parseInt(params.id as string);
   
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [project, setProject] = useState<Project | null>(null);
 
   useEffect(() => {
@@ -50,18 +46,6 @@ export default function ProjectDetailPage() {
       </Container>
     );
   }
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === project.images.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? project.images.length - 1 : prev - 1
-    );
-  };
 
   return (
     <Container maxWidth={false} disableGutters>
@@ -129,12 +113,12 @@ export default function ProjectDetailPage() {
                     maxWidth: '800px'
                   }}
                 >
-                  {project.longDescription}
+                  {t(`project${projectId}.longDescription`)}
                 </Typography>
 
                 {/* Project Links */}
                 <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
-                  {project.liveUrl && (
+                  {project.liveUrl ? (
                     <Button
                       variant="contained"
                       startIcon={<LaunchIcon />}
@@ -157,13 +141,11 @@ export default function ProjectDetailPage() {
                     >
                       {t('projectDetails.viewProject')}
                     </Button>
-                  )}
-                  {project.githubUrl && (
+                  ) : (
                     <Button
                       variant="outlined"
-                      startIcon={<CodeIcon />}
-                      href={project.githubUrl}
-                      target="_blank"
+                      startIcon={<LaunchIcon />}
+                      disabled
                       className="animate-button"
                       sx={{
                         fontFamily: 'var(--font-outfit)',
@@ -173,15 +155,12 @@ export default function ProjectDetailPage() {
                         borderRadius: '25px',
                         px: 3,
                         py: 1,
-                        borderColor: '#FFCC00',
-                        color: '#FFCC00',
-                        '&:hover': {
-                          backgroundColor: '#FFCC0020',
-                          borderColor: '#FFCC00'
-                        }
+                        borderColor: '#999',
+                        color: '#999',
+                        cursor: 'not-allowed'
                       }}
                     >
-                      {t('projectDetails.viewCode')}
+                      Private
                     </Button>
                   )}
                 </Box>
@@ -193,25 +172,6 @@ export default function ProjectDetailPage() {
                   gap: 3,
                   mb: 4
                 }}>
-                  <Box>
-                    <Typography sx={{ 
-                      fontFamily: 'var(--font-outfit)',
-                      fontWeight: 600,
-                      fontSize: '16px',
-                      color: '#121212',
-                      mb: 1
-                    }}>
-                      {t('projectDetails.duration')}
-                    </Typography>
-                    <Typography sx={{ 
-                      fontFamily: 'var(--font-outfit)',
-                      fontWeight: 400,
-                      fontSize: '14px',
-                      color: '#666'
-                    }}>
-                      {project.duration}
-                    </Typography>
-                  </Box>
                   <Box>
                     <Typography sx={{ 
                       fontFamily: 'var(--font-outfit)',
@@ -255,182 +215,23 @@ export default function ProjectDetailPage() {
                 </Box>
               </Box>
 
-              {/* Image Slider */}
+              {/* Main Image */}
               <Box sx={{ mb: { xs: 6, md: 8 } }}>
-                <Box sx={{ 
-                  position: 'relative',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  mb: 3
-                }}>
-                  <Box
-                    component="img"
-                    src={project.images[currentImageIndex]}
-                    alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                    className="animate-image"
-                    sx={{
-                      width: '100%',
-                      height: { xs: '300px', md: '500px' },
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />
-                  
-                  {/* Navigation Arrows */}
-                  {project.images.length > 1 && (
-                    <>
-                      <Button
-                        onClick={prevImage}
-                        sx={{
-                          position: 'absolute',
-                          left: 16,
-                          top: '50%',
-                          transform: 'translateY(-50%)',
-                          minWidth: '48px',
-                          width: '48px',
-                          height: '48px',
-                          borderRadius: '50%',
-                          backgroundColor: 'rgba(0,0,0,0.5)',
-                          color: 'white',
-                          '&:hover': {
-                            backgroundColor: 'rgba(0,0,0,0.7)'
-                          }
-                        }}
-                      >
-                        <ChevronLeftIcon />
-                      </Button>
-                      <Button
-                        onClick={nextImage}
-                        sx={{
-                          position: 'absolute',
-                          right: 16,
-                          top: '50%',
-                          transform: 'translateY(-50%)',
-                          minWidth: '48px',
-                          width: '48px',
-                          height: '48px',
-                          borderRadius: '50%',
-                          backgroundColor: 'rgba(0,0,0,0.5)',
-                          color: 'white',
-                          '&:hover': {
-                            backgroundColor: 'rgba(0,0,0,0.7)'
-                          }
-                        }}
-                      >
-                        <ChevronRightIcon />
-                      </Button>
-                    </>
-                  )}
-                </Box>
-
-                {/* Image Indicators */}
-                {project.images.length > 1 && (
-                  <Box sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    gap: 1 
-                  }}>
-                    {project.images.map((_, index) => (
-                      <Box
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        sx={{
-                          width: '12px',
-                          height: '12px',
-                          borderRadius: '50%',
-                          backgroundColor: index === currentImageIndex ? '#2196F3' : '#E0E0E0',
-                          cursor: 'pointer',
-                          transition: 'all 0.3s ease'
-                        }}
-                      />
-                    ))}
-                  </Box>
-                )}
+                <Box
+                  component="img"
+                  src={project.images[0]}
+                  alt={project.title}
+                  className="animate-image"
+                  sx={{
+                    width: '100%',
+                    height: { xs: '300px', md: '500px' },
+                    objectFit: 'cover',
+                    display: 'block',
+                    borderRadius: '16px'
+                  }}
+                />
               </Box>
 
-              {/* Project Details */}
-              <Box sx={{ 
-                display: 'grid',
-                gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
-                gap: { xs: 4, md: 6 }
-              }}>
-                {/* Features */}
-                <Box>
-                  <Typography 
-                    component="h3" 
-                    className="animate-heading"
-                    sx={{ 
-                      fontFamily: 'var(--font-outfit)',
-                      fontWeight: 600,
-                      fontSize: '24px',
-                      lineHeight: '1.3',
-                      mb: 3,
-                      color: '#121212'
-                    }}
-                  >
-                    {t('projectDetails.features')}
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    {project.features.map((feature, index) => (
-                      <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Box sx={{ 
-                          width: '8px',
-                          height: '8px',
-                          borderRadius: '50%',
-                          backgroundColor: '#FFCC00',
-                          flexShrink: 0
-                        }} />
-                        <Typography sx={{ 
-                          fontFamily: 'var(--font-outfit)',
-                          fontWeight: 400,
-                          fontSize: '14px',
-                          color: '#666'
-                        }}>
-                          {feature}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-
-                {/* Challenges */}
-                <Box>
-                  <Typography 
-                    component="h3" 
-                    sx={{ 
-                      fontFamily: 'var(--font-outfit)',
-                      fontWeight: 600,
-                      fontSize: '24px',
-                      lineHeight: '1.3',
-                      mb: 3,
-                      color: '#121212'
-                    }}
-                  >
-                    {t('projectDetails.challenges')}
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                    {project.challenges.map((challenge, index) => (
-                      <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Box sx={{ 
-                          width: '8px',
-                          height: '8px',
-                          borderRadius: '50%',
-                          backgroundColor: '#FF9800',
-                          flexShrink: 0
-                        }} />
-                        <Typography sx={{ 
-                          fontFamily: 'var(--font-outfit)',
-                          fontWeight: 400,
-                          fontSize: '14px',
-                          color: '#666'
-                        }}>
-                          {challenge}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-              </Box>
 
               {/* Results */}
               <Box sx={{ mt: { xs: 6, md: 8 } }}>
@@ -452,7 +253,7 @@ export default function ProjectDetailPage() {
                   gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
                   gap: 3
                 }}>
-                  {project.results.map((result, index) => (
+                  {t.raw(`project${projectId}.results`).map((result: string, index: number) => (
                     <Box key={index} sx={{ 
                       p: 3,
                       borderRadius: '12px',

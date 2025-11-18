@@ -16,13 +16,22 @@ const HowItsWorksBlock: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
+    const cleanups: (() => void)[] = [];
+    
     if (textBlockRef.current && sectionRef.current) {
-      animateHowItWorksBlock(textBlockRef.current, sectionRef.current);
+      const cleanup = animateHowItWorksBlock(textBlockRef.current, sectionRef.current);
+      if (cleanup) cleanups.push(cleanup);
     }
     if (titleRef.current && !isMobile) {
-      animateTitle(titleRef.current);
+      const cleanup = animateTitle(titleRef.current);
+      if (cleanup) cleanups.push(cleanup);
     }
-  }, []);
+    
+    // Cleanup при розмонтуванні компонента
+    return () => {
+      cleanups.forEach(cleanup => cleanup());
+    };
+  }, [isMobile]);
 
   return (
     <Box ref={sectionRef} component="section" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#121212' }}>

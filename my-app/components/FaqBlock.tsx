@@ -32,18 +32,29 @@ const FaqBlock: React.FC = () => {
   const accordionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const cleanups: (() => void)[] = [];
+    
     if (textBlockRef.current && sectionRef.current) {
-      animateFaqBlock(textBlockRef.current, sectionRef.current);
+      const cleanup = animateFaqBlock(textBlockRef.current, sectionRef.current);
+      if (cleanup) cleanups.push(cleanup);
     }
     if (titleRef.current) {
-      animateTitle(titleRef.current);
+      const cleanup = animateTitle(titleRef.current);
+      if (cleanup) cleanups.push(cleanup);
     }
     if (descriptionRef.current) {
-      animateTitle(descriptionRef.current);
+      const cleanup = animateTitle(descriptionRef.current);
+      if (cleanup) cleanups.push(cleanup);
     }
     if (accordionsRef.current) {
-      animateFaqAccordions(accordionsRef.current);
+      const cleanup = animateFaqAccordions(accordionsRef.current);
+      if (cleanup) cleanups.push(cleanup);
     }
+    
+    // Cleanup при розмонтуванні компонента
+    return () => {
+      cleanups.forEach(cleanup => cleanup());
+    };
   }, []);
 
   return (
