@@ -32,28 +32,80 @@
       "viewCode": "Zobacz kod"
     },
     "project1": {
-      "title": "Platforma e-commerce",
-      "description": "Kompleksowe rozwiązanie e-commerce z nowoczesnym UI/UX"
+      "title": "Lawgorithm",
+      "description": "Strona portfolio prawnika IT i nie tylko",
+      "longDescription": "Lawgorithm to profesjonalna strona portfolio dla prawnika IT, prezentująca ekspertyzę w zakresie prawa technologicznego i usług prawnych dla firm IT. Strona została stworzona z naciskiem na nowoczesny design, wygodną nawigację i efektywną prezentację usług. Platforma zawiera szczegółowe informacje o usługach prawnych, studiach przypadków i informacje kontaktowe dla potencjalnych klientów.",
+      "results": [
+        "Poprawa wskaźników SEO",
+        "Szybkie ładowanie strony",
+        "Responsywny design dla wszystkich urządzeń"
+      ]
     },
     "project2": {
-      "title": "Strona portfolio",
-      "description": "Responsywne portfolio z płynnymi animacjami"
+      "title": "Creative Factory Victoria",
+      "description": "Wielostronicowa strona dla firmy zajmującej się renowacją zabytków",
+      "longDescription": "Creative Factory Victoria to profesjonalna firma specjalizująca się w renowacji i odbudowie zabytków architektonicznych, historycznych kościołów i budynków austriackich. Strona internetowa została stworzona w celu prezentacji usług firmy, pokazania ukończonych projektów i przyciągnięcia nowych klientów. Platforma zawiera szczegółowe informacje o obszarach pracy, portfolio projektów renowacyjnych, informacje historyczne i dane kontaktowe.",
+      "results": [
+        "Strukturalna architektura wielostronicowa",
+        "Wygodna nawigacja między sekcjami",
+        "Wielojęzyczne wsparcie dla międzynarodowej publiczności",
+        "Zoptymalizowana wydajność dla dużych ilości treści"
+      ]
     },
     "project3": {
-      "title": "Aplikacja do zarządzania zadaniami",
-      "description": "Platforma do współpracy w zarządzaniu zadaniami w czasie rzeczywistym"
+      "title": "Lnq hub",
+      "description": "Platforma pracy z systemem bonusów referencyjnych dla rekruterów",
+      "longDescription": "LNQ Hub to innowacyjna platforma do wyszukiwania talentów, która łączy firmy z wykwalifikowanymi kandydatami poprzez system referencji. Platforma pozwala rekruterom znajdować otwarte stanowiska, przypisywać rekomendowanych kandydatów ze swojej sieci i otrzymywać bonusowe nagrody za udane zatrudnienie. System upraszcza proces rekrutacji, zmniejszając koszty firm i zapewniając dostęp do zweryfikowanych kandydatów poprzez zaufane połączenia.",
+      "results": [
+        "Skuteczny system zarządzania referencjami",
+        "Zoptymalizowany proces rekrutacji dla firm",
+        "Przyjazny interfejs dla rekruterów i kandydatów",
+        "Zautomatyzowany system wypłaty bonusów"
+      ]
     },
     "project4": {
-      "title": "Panel pogodowy",
-      "description": "Interaktywny panel pogodowy z wizualizacją danych"
+      "title": "Teplofasad Lviv",
+      "description": "Strona internetowa dla firmy zajmującej się naprawą dachów i fasad",
+      "longDescription": "Teplofasad Lviv to profesjonalna firma specjalizująca się w naprawie i ocieplaniu dachów, fasad budynków oraz kompleksowej konserwacji budynków. Strona internetowa została stworzona w celu prezentacji usług firmy, pokazania ukończonych projektów i przyciągnięcia nowych klientów. Platforma zawiera szczegółowe informacje o usługach naprawy dachów, ocieplania fasad, galerię prac, kalkulator kosztów i wygodny system zamówień dla potencjalnych klientów.",
+      "results": [
+        "Wygodny interfejs do obliczania kosztów usług",
+        "Efektywna prezentacja portfolio prac",
+        "Poprawa konwersji dzięki kalkulatorowi online",
+        "Responsywny design dla wszystkich urządzeń"
+      ]
     },
     "project5": {
-      "title": "Aplikacja społecznościowa",
-      "description": "Mobilna aplikacja społecznościowa"
+      "title": "Botteleck deal",
+      "description": "Strona landingowa i system CRM do zawierania umów B2B i B2C",
+      "longDescription": "Bottleneck Deal to kompleksowa platforma łącząca stronę landingową i system CRM do zarządzania umowami w segmentach B2B i B2C. System pozwala firmom efektywnie zarządzać procesem zawierania umów, śledzić statusy transakcji, automatyzować komunikację z klientami i partnerami. Platforma zawiera intuicyjny interfejs do tworzenia i edytowania umów, system powiadomień, analitykę transakcji i integracje w celu uproszczenia procesów biznesowych.",
+      "results": [
+        "Skuteczny system zarządzania umowami B2B i B2C",
+        "Automatyzacja procesu zawierania umów",
+        "Przyjazny interfejs do pracy z klientami i partnerami",
+        "Zoptymalizowany system CRM do śledzenia transakcji"
+      ]
     },
     "project6": {
-      "title": "Platforma blogowa",
-      "description": "Nowoczesna platforma blogowa z integracją CMS"
+      "title": "GigaTrump coin",
+      "description": "Wydanie memowej monety na giełdzie Dexscreener",
+      "longDescription": "GigaTrump Coin to projekt wydania memowej monety na zdecentralizowanej giełdzie Dexscreener. Platforma została opracowana do uruchomienia i promocji tokena kryptowalutowego z integracją giełdową, śledzeniem ceny w czasie rzeczywistym poprzez WebHooks i interaktywnym interfejsem dla traderów. Projekt obejmował stworzenie strony landingowej, integrację z API Dexscreener do wyświetlania danych handlowych oraz wdrożenie systemu monitorowania rynku.",
+      "results": [
+        "Udane wydanie tokena na Dexscreener",
+        "Realizacja integracji z giełdą poprzez WebHooks",
+        "Interaktywny interfejs do śledzenia handlu",
+        "Zoptymalizowana wydajność dla czasu rzeczywistego"
+      ]
+    },
+    "project7": {
+      "title": "LDS admin panel",
+      "description": "System CRM do automatycznego dystrybuowania leadów między kupującymi",
+      "longDescription": "LDS Admin Panel to system CRM do automatycznego dystrybuowania leadów między kupującymi. System otrzymuje leady poprzez WebHooks i automatycznie dystrybuuje je między kupującymi zgodnie z ustawieniami: kraj, godziny pracy, obciążenie i inne parametry. Platforma zawiera panel administracyjny do zarządzania dystrybucją, system ustawień kupujących, wykresy i analitykę dystrybucji leadów, monitorowanie wydajności oraz zautomatyzowany system przypisywania leadów na podstawie reguł i filtrów.",
+      "results": [
+        "Automatyczna dystrybucja leadów zgodnie z ustawieniami kupujących",
+        "Skuteczny system filtrowania i przypisywania leadów",
+        "Szczegółowa analityka i wykresy dystrybucji",
+        "Optymalizacja obciążenia między kupującymi"
+      ]
     }
   },
   "howItWorks": {
@@ -119,11 +171,11 @@
   },
   "contact": {
     "title": "Umów rozmowę",
-    "description": "Masz pomysł na projekt lub po prostu chcesz się przywitać? Umów wygodny czas na rozmowę. Zawsze jestem otwarty na omawianie nowych projektów, kreatywnych pomysłów lub możliwości bycia częścią Twoich wizji.",
-    "emailTitle": "Skontaktuj się z nami",
-    "emailDescription": "Potrzebujesz pomocy? Napisz do nas w każdej chwili.",
-    "phoneTitle": "Zadzwoń do nas",
-    "phoneDescription": "Potrzebujesz pomocy? Zadzwoń — jesteśmy tu dla Ciebie."
+    "description": "Masz pomysł na projekt lub po prostu chcesz się przywitać? Umów wygodny czas na rozmowę ze mną. Zawsze jestem otwarty na omawianie nowych projektów, kreatywnych pomysłów lub możliwości bycia częścią Twoich wizji.",
+    "emailTitle": "Skontaktuj się ze mną",
+    "emailDescription": "Potrzebujesz pomocy? Napisz do mnie w każdej chwili.",
+    "phoneTitle": "Zadzwoń do mnie",
+    "phoneDescription": "Potrzebujesz pomocy? Zadzwoń — jestem tu dla Ciebie."
   },
   "about": {
     "title": "O mnie",

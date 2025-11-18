@@ -15,7 +15,10 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
 
   useEffect(() => {
     if (cardRef.current) {
-      animateCard(cardRef.current);
+      const cleanup = animateCard(cardRef.current);
+      
+      // Cleanup при розмонтуванні компонента
+      return cleanup;
     }
   }, []);
 

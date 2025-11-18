@@ -32,28 +32,80 @@
       "viewCode": "View Code"
     },
     "project1": {
-      "title": "E-commerce Platform",
-      "description": "Full-stack e-commerce solution with modern UI/UX"
+      "title": "Lawgorithm",
+      "description": "IT lawyer portfolio website and more",
+      "longDescription": "Lawgorithm is a professional portfolio website for an IT lawyer, showcasing expertise in technology law and legal services for IT companies. The site is created with a focus on modern design, convenient navigation, and effective service presentation. The platform includes detailed information about legal services, case studies, and contact information for potential clients.",
+      "results": [
+        "Improved SEO metrics",
+        "Fast page loading",
+        "Responsive design for all devices"
+      ]
     },
     "project2": {
-      "title": "Portfolio Website",
-      "description": "Responsive portfolio with smooth animations"
+      "title": "Creative Factory Victoria",
+      "description": "Multi-page website for monument restoration company",
+      "longDescription": "Creative Factory Victoria is a professional company specializing in the restoration and renovation of architectural monuments, historic churches, and Austrian buildings. The website is created to present the company's services, showcase completed projects, and attract new clients. The platform includes detailed information about work areas, restoration project portfolio, historical reference, and contact information.",
+      "results": [
+        "Structured multi-page architecture",
+        "Convenient navigation between sections",
+        "Multilingual support for international audience",
+        "Optimized performance for large content volumes"
+      ]
     },
     "project3": {
-      "title": "Task Management App",
-      "description": "Real-time collaborative task management platform"
+      "title": "Lnq hub",
+      "description": "Job platform with referral bonus system for recruiters",
+      "longDescription": "LNQ Hub is an innovative talent search platform that connects companies with qualified candidates through a referral system. The platform allows recruiters to find open positions, assign recommended candidates from their network, and receive bonus rewards for successful employment. The system simplifies the hiring process, reducing company costs and providing access to verified candidates through trusted connections.",
+      "results": [
+        "Effective referral management system",
+        "Optimized hiring process for companies",
+        "User-friendly interface for recruiters and candidates",
+        "Automated bonus payment system"
+      ]
     },
     "project4": {
-      "title": "Weather Dashboard",
-      "description": "Interactive weather dashboard with data visualization"
+      "title": "Teplofasad Lviv",
+      "description": "Website for roof and facade repair company",
+      "longDescription": "Teplofasad Lviv is a professional company specializing in roof and facade repair, building insulation, and comprehensive building maintenance. The website is created to present the company's services, showcase completed projects, and attract new clients. The platform includes detailed information about roof repair services, facade insulation, work gallery, cost calculator, and a convenient ordering system for potential clients.",
+      "results": [
+        "Convenient interface for service cost calculation",
+        "Effective portfolio presentation",
+        "Improved conversion thanks to online calculator",
+        "Responsive design for all devices"
+      ]
     },
     "project5": {
-      "title": "Social Media App",
-      "description": "Mobile social media application"
+      "title": "Botteleck deal",
+      "description": "Landing page and CRM system for B2B and B2C contract management",
+      "longDescription": "Bottleneck Deal is a comprehensive platform that combines a landing page and CRM system for contract management in B2B and B2C segments. The system allows companies to efficiently manage the contract signing process, track deal statuses, automate communications with clients and partners. The platform includes an intuitive interface for creating and editing contracts, notification system, deal analytics, and integrations to simplify business processes.",
+      "results": [
+        "Effective B2B and B2C contract management system",
+        "Automation of contract signing process",
+        "User-friendly interface for working with clients and partners",
+        "Optimized CRM system for deal tracking"
+      ]
     },
     "project6": {
-      "title": "Blog Platform",
-      "description": "Modern blog platform with CMS integration"
+      "title": "GigaTrump coin",
+      "description": "Meme coin release on Dexscreener exchange",
+      "longDescription": "GigaTrump Coin is a meme coin release project on the decentralized Dexscreener exchange. The platform was developed for launching and promoting a cryptocurrency token with exchange integration, real-time price tracking through WebHooks, and an interactive interface for traders. The project included creating a landing page, integrating with Dexscreener API to display trading data, and implementing a market monitoring system.",
+      "results": [
+        "Successful token release on Dexscreener",
+        "Exchange integration implementation through WebHooks",
+        "Interactive interface for trade tracking",
+        "Optimized performance for real-time"
+      ]
+    },
+    "project7": {
+      "title": "LDS admin panel",
+      "description": "CRM system for automatic lead distribution among buyers",
+      "longDescription": "LDS Admin Panel is a CRM system for automatic lead distribution among buyers. The system receives leads through WebHooks and automatically distributes them among buyers according to settings: country, working hours, workload, and other parameters. The platform includes an admin panel for managing distribution, buyer settings system, graphs and analytics of lead distribution, performance monitoring, and an automated lead assignment system based on rules and filters.",
+      "results": [
+        "Automated lead distribution according to buyer settings",
+        "Effective filtering and lead assignment system",
+        "Detailed analytics and distribution graphs",
+        "Workload optimization among buyers"
+      ]
     }
   },
   "howItWorks": {
@@ -119,11 +171,11 @@
   },
   "contact": {
     "title": "Book a Call",
-    "description": "Have a project in mind or just want to say hello? Book a convenient time for us to chat. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
-    "emailTitle": "Reach Out to Us",
-    "emailDescription": "Need assistance? Drop us a message anytime.",
-    "phoneTitle": "Call Us",
-    "phoneDescription": "Need help? Give us a call—we're here for you."
+    "description": "Have a project in mind or just want to say hello? Book a convenient time to chat with me. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    "emailTitle": "Reach Out to Me",
+    "emailDescription": "Need assistance? Drop me a message anytime.",
+    "phoneTitle": "Call Me",
+    "phoneDescription": "Need help? Give me a call—I'm here for you."
   },
   "about": {
     "title": "About Me",
@@ -153,13 +205,15 @@
     "education": {
       "title": "Education & Certifications",
       "description": "I believe in continuous learning and staying updated with the latest technologies. Here are some of my educational achievements and certifications.",
-      "degree": "Bachelor's in Computer Science",
+      "degree": "Bachelor of Engineering",
       "university": "University of Technology",
       "year": "2018-2022",
       "certifications": "Professional Certifications",
       "cert1": "React Developer Certification",
       "cert2": "Next.js Advanced Course",
-      "cert3": "TypeScript Fundamentals"
+      "cert3": "TypeScript Fundamentals",
+      "cert4": "CratorItAcademy",
+      "cert4Year": "2023-2024"
     },
     "achievements": {
       "title": "Key Achievements",
