@@ -4,7 +4,11 @@
     "projects": "Projekty",
     "about": "O mnie",
     "contact": "Kontakt",
-    "contactButton": "Skontaktuj się"
+    "privacyPolicy": "Polityka prywatności",
+    "termsOfService": "Warunki korzystania",
+    "contactButton": "Skontaktuj się",
+    "themeLight": "Jasny motyw",
+    "themeDark": "Ciemny motyw"
   },
   "hero": {
     "title": "<highlight>Frontend developer</highlight> tworzący szybkie, responsywne i pięknie animowane doświadczenia internetowe."
@@ -211,7 +215,9 @@
       "certifications": "Certyfikaty zawodowe",
       "cert1": "Certyfikat React Developer",
       "cert2": "Zaawansowany kurs Next.js",
-      "cert3": "Podstawy TypeScript"
+      "cert3": "Podstawy TypeScript",
+      "cert4": "CratorItAcademy",
+      "cert4Year": "2023-2024"
     },
     "achievements": {
       "title": "Kluczowe osiągnięcia",

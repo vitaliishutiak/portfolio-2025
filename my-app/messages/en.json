@@ -4,7 +4,11 @@
     "projects": "Projects",
     "about": "About",
     "contact": "Contact",
-    "contactButton": "Contact"
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contactButton": "Contact",
+    "themeLight": "Light theme",
+    "themeDark": "Dark theme"
   },
   "hero": {
     "title": "<highlight>Frontend developer</highlight> crafting fast, responsive, and beautifully animated web experiences."

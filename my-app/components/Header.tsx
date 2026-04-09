@@ -2,15 +2,14 @@
 
 import React, { useTransition, useRef, useEffect, useState } from 'react'
 import { AppBar, Toolbar, Typography, Box, Button, Select, MenuItem, Drawer, IconButton } from '@mui/material'
-import DownloadIcon from '@mui/icons-material/Download'
-import CloseIcon from '@mui/icons-material/Close'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter, Link } from '../navigation'
-import { GB, PL, UA } from 'country-flag-icons/react/3x2'
 import { animateHeader } from '../lib/animations'
+import { projects } from '../data/projects'
+import { HEADER_TOOLBAR_HEIGHT_PX } from '../lib/contentWidth'
 
 const Header: React.FC = () => {
   const t = useTranslations('header');
@@ -20,6 +19,7 @@ const Header: React.FC = () => {
   const [isPending, startTransition] = useTransition();
   const headerRef = useRef(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const projectsCount = projects.length;
 
   // Навігаційні пункти
   const navItems = [
@@ -38,28 +38,27 @@ const Header: React.FC = () => {
 
   // Стилі для навігації
   const navButtonStyles = {
-    fontFamily: 'var(--font-outfit)',
-    fontWeight: 500,
+    fontFamily: 'var(--framer-font-family)',
+    fontWeight: 600,
     fontSize: '15px',
-    lineHeight: '100%',
-    letterSpacing: '0%',
+    lineHeight: '110%',
+    letterSpacing: '-0.04em',
     textTransform: 'none',
     transition: '0.2s',
     '&:hover': {
       backgroundColor: 'transparent',
-      transform: 'translateY(-2px)',
-      transition: '0.2s',
+      transform: 'none',
     },
   };
 
   const mobileNavButtonStyles = {
-    fontFamily: 'var(--font-outfit)',
-    fontWeight: 500,
-    fontSize: '24px',
-    textAlign: 'left',
-    justifyContent: 'flex-start',
+    fontFamily: 'var(--framer-font-family)',
+    fontWeight: 600,
+    fontSize: '32px',
+    textAlign: 'center',
+    justifyContent: 'center',
     textTransform: 'none',
-    paddingLeft: '20px',
+    px: 0,
     borderRadius: 0,
     transition: 'all 0.3s ease',
   };
@@ -71,6 +70,8 @@ const Header: React.FC = () => {
     height: '56px',
   };
 
+  const PHONE_PRETTY = '+38(096)221-25-34';
+
   const handleLanguageChange = (newLocale: string) => {
     // Don't change if it's the same locale
     if (newLocale === locale) {
@@ -81,6 +82,7 @@ const Header: React.FC = () => {
       router.replace(pathname, { locale: newLocale });
     });
   };
+
 
   // MenuProps to prevent body shift when Select opens
   const selectMenuProps = {
@@ -94,277 +96,298 @@ const Header: React.FC = () => {
     }
   }, [pathname]);
 
-  // Animated Burger Menu Component
-  const AnimatedBurger = ({ isOpen }: { isOpen: boolean }) => (
-    <Box
-      sx={{
-        width: '28px',
-        height: '20px',
-        position: 'relative',
-        cursor: 'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-      <Box
-        sx={{
-          width: '100%',
-          height: '3px',
-          backgroundColor: '#121212',
-          borderRadius: '2px',
-          transition: 'all 0.3s ease',
-          transform: isOpen ? 'rotate(45deg) translateY(9px)' : 'none',
-        }}
-      />
-      <Box
-        sx={{
-          width: '100%',
-          height: '3px',
-          backgroundColor: '#121212',
-          borderRadius: '2px',
-          transition: 'all 0.3s ease',
-          opacity: isOpen ? 0 : 1,
-        }}
-      />
-      <Box
-        sx={{
-          width: '100%',
-          height: '3px',
-          backgroundColor: '#121212',
-          borderRadius: '2px',
-          transition: 'all 0.3s ease',
-          transform: isOpen ? 'rotate(-45deg) translateY(-9px)' : 'none',
-        }}
-      />
-    </Box>
-  );
-
-  // Language selector component with flags
-  const LanguageSelector = () => {
-    const FlagIcon = ({ country }: { country: string }) => {
-      const Flag = country === 'en' ? GB : country === 'uk' ? UA : PL;
-      return (
-        <Box sx={{ width: '24px', height: '16px', display: 'flex', alignItems: 'center', borderRadius: '2px', overflow: 'hidden' }}>
-          <Flag style={{ width: '100%', height: '100%', display: 'block' }} />
-        </Box>
-      );
-    };
+  // Animated Burger Menu Component (2 lines → X)
+  const AnimatedBurger = ({ isOpen }: { isOpen: boolean }) => {
+    const W = 60;
+    const H = 22; // total icon height
+    const EDGE = 4; // top/bottom padding inside icon
+    const LINE_H = 2;
+    // Move each line by half of the distance between their centers so they meet perfectly.
+    const centerDistance = H - 2 * EDGE - LINE_H;
+    const translateY = Math.round(centerDistance / 2);
+    // proportional angle (not full 45deg): atan(translateY / (W/2))
+    const angleDeg = Math.round((Math.atan(translateY / (W / 2)) * 180) / Math.PI);
 
     return (
-      <Select
-        value={locale}
-        onChange={(e) => handleLanguageChange(e.target.value)}
-        variant="outlined"
-        disabled={isPending}
-        MenuProps={selectMenuProps}
-        renderValue={(value) => (
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-            <FlagIcon country={value} />
-            <Box component="span" sx={{ fontSize: '14px', fontWeight: 500 }}>
-              {value.toUpperCase()}
-            </Box>
-          </Box>
-        )}
+      <Box
         sx={{
-        fontFamily: 'var(--font-outfit)',
-        fontWeight: 500,
-        fontSize: '14px',
-        minWidth: '95px',
-        height: '40px',
-        borderRadius: '20px',
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        transition: 'all 0.2s ease-in-out',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
-        '& .MuiOutlinedInput-notchedOutline': {
-          border: 'none',
-        },
-        '&:hover': {
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          '& .MuiOutlinedInput-notchedOutline': {
-            border: 'none',
-          },
-        },
-        '&.Mui-focused': {
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-          '& .MuiOutlinedInput-notchedOutline': {
-            border: 'none',
-          },
-        },
-        '& .MuiSelect-select': {
-          paddingTop: '8px',
-          paddingBottom: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-        }
-      }}
-    >
-      <MenuItem 
-        value="en" 
-        sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 1.5,
-          fontFamily: 'var(--font-outfit)',
-          fontWeight: 500,
-          py: 1.5,
-          '&:hover': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
-          },
-          '&.Mui-selected': {
-            backgroundColor: 'rgba(25, 118, 210, 0.08)',
-            '&:hover': {
-              backgroundColor: 'rgba(25, 118, 210, 0.12)',
-            }
-          }
+          width: `${W}px`,
+          height: `${H}px`,
+          position: 'relative',
+          cursor: 'pointer',
         }}
       >
-        <Box sx={{ width: '28px', height: '19px', display: 'flex', alignItems: 'center', borderRadius: '3px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <GB style={{ width: '100%', height: '100%', display: 'block' }} />
-        </Box>
-        <Box component="span">English</Box>
-      </MenuItem>
-      <MenuItem 
-        value="uk" 
-        sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 1.5,
-          fontFamily: 'var(--font-outfit)',
-          fontWeight: 500,
-          py: 1.5,
-          '&:hover': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
-          },
-          '&.Mui-selected': {
-            backgroundColor: 'rgba(25, 118, 210, 0.08)',
-            '&:hover': {
-              backgroundColor: 'rgba(25, 118, 210, 0.12)',
-            }
-          }
-        }}
-      >
-        <Box sx={{ width: '28px', height: '19px', display: 'flex', alignItems: 'center', borderRadius: '3px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <UA style={{ width: '100%', height: '100%', display: 'block' }} />
-        </Box>
-        <Box component="span">Українська</Box>
-      </MenuItem>
-      <MenuItem 
-        value="pl" 
-        sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 1.5,
-          fontFamily: 'var(--font-outfit)',
-          fontWeight: 500,
-          py: 1.5,
-          '&:hover': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
-          },
-          '&.Mui-selected': {
-            backgroundColor: 'rgba(25, 118, 210, 0.08)',
-            '&:hover': {
-              backgroundColor: 'rgba(25, 118, 210, 0.12)',
-            }
-          }
-        }}
-      >
-        <Box sx={{ width: '28px', height: '19px', display: 'flex', alignItems: 'center', borderRadius: '3px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <PL style={{ width: '100%', height: '100%', display: 'block' }} />
-        </Box>
-        <Box component="span">Polski</Box>
-      </MenuItem>
-    </Select>
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: `${EDGE}px`,
+            height: '2px',
+            bgcolor: 'text.primary',
+            borderRadius: '99px',
+            transformOrigin: 'center',
+            transition: 'transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)',
+            transform: isOpen
+              ? `translateY(${translateY}px) rotate(${angleDeg}deg)`
+              : 'none',
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: `${EDGE}px`,
+            height: '2px',
+            bgcolor: 'text.primary',
+            borderRadius: '99px',
+            transformOrigin: 'center',
+            transition: 'transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)',
+            transform: isOpen
+              ? `translateY(-${translateY}px) rotate(-${angleDeg}deg)`
+              : 'none',
+          }}
+        />
+      </Box>
     );
   };
 
+  const localeShortLabel = (code: string) =>
+    code === 'uk' ? 'UK' : code.toUpperCase();
+
+  const languageSelectSx = {
+    fontFamily: 'var(--framer-font-family)',
+    fontWeight: 600,
+    fontSize: '15px',
+    lineHeight: '110%',
+    letterSpacing: '-0.04em',
+    minWidth: 'auto',
+    height: 'auto',
+    borderRadius: 0,
+    color: 'text.primary',
+    bgcolor: 'transparent',
+    boxShadow: 'none',
+    '& .MuiSelect-select': {
+      p: 0,
+      minHeight: 'auto',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    '& .MuiSelect-icon': {
+      color: 'text.primary',
+    },
+  } as const;
+
+  // Language selector — як навігація/лого, без бордера
+  const LanguageSelector = () => (
+      <Select
+        value={locale}
+        onChange={(e) => handleLanguageChange(e.target.value)}
+        variant="standard"
+        disableUnderline
+        disabled={isPending}
+        MenuProps={selectMenuProps}
+        renderValue={(value) => (
+          <Box component="span" sx={languageSelectSx}>
+            {localeShortLabel(String(value))}
+          </Box>
+        )}
+        sx={languageSelectSx}
+      >
+      <MenuItem
+        value="en"
+        sx={{
+          fontFamily: 'var(--framer-font-family)',
+          fontWeight: 600,
+          fontSize: '15px',
+          letterSpacing: '-0.04em',
+          lineHeight: '110%',
+          py: 1,
+          '&.Mui-selected': {
+            backgroundColor: 'action.selected',
+          },
+        }}
+      >
+        EN
+      </MenuItem>
+      <MenuItem
+        value="uk"
+        sx={{
+          fontFamily: 'var(--framer-font-family)',
+          fontWeight: 600,
+          fontSize: '15px',
+          letterSpacing: '-0.04em',
+          lineHeight: '110%',
+          py: 1,
+          '&.Mui-selected': {
+            backgroundColor: 'action.selected',
+          },
+        }}
+      >
+        UK
+      </MenuItem>
+      <MenuItem
+        value="pl"
+        sx={{
+          fontFamily: 'var(--framer-font-family)',
+          fontWeight: 600,
+          fontSize: '15px',
+          letterSpacing: '-0.04em',
+          lineHeight: '110%',
+          py: 1,
+          '&.Mui-selected': {
+            backgroundColor: 'action.selected',
+          },
+        }}
+      >
+        PL
+      </MenuItem>
+    </Select>
+  );
+
   return (
     <>
+      {/* Mobile overlay (under header) */}
+      <Box
+        onClick={() => setMobileMenuOpen(false)}
+        sx={{
+          display: { xs: mobileMenuOpen ? 'block' : 'none', md: 'none' },
+          position: 'fixed',
+          top: `${HEADER_TOOLBAR_HEIGHT_PX}px`,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: 'rgba(0,0,0,0.45)',
+          zIndex: 1200,
+          transition: 'opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
+        aria-hidden
+      />
+
       <AppBar ref={headerRef} position="static" color="transparent" elevation={0} sx={{ 
         position: 'fixed', 
         top: 0, 
         left: 0, 
         right: 0, 
-        zIndex: 100,
-        backgroundColor: { xs: 'rgba(255, 255, 255, 0.95)', md: 'rgba(255, 255, 255, 0.5)' },
-        backdropFilter: { xs: 'none', md: 'blur(10px)' }
+        // Must be above MUI Modal/Drawer layers to stay clickable
+        zIndex: 1400,
+        color: 'text.primary',
+        // Keep header clean (don't get darker when menu is open)
+        backgroundColor: 'background.default',
+        backdropFilter: 'blur(7px)',
+        WebkitBackdropFilter: 'blur(7px)',
+        height: `${HEADER_TOOLBAR_HEIGHT_PX}px`,
+        minHeight: `${HEADER_TOOLBAR_HEIGHT_PX}px`,
       }}>
-        <Box sx={{ px: { xs: 2, md: 5 } }}>
-          <Toolbar disableGutters sx={{ height: '72px', justifyContent: 'space-between' }}>
-            {/* Logo */}
-            <Typography 
-              component={Link} 
-              href="/"
-              sx={{ 
-                fontFamily: 'var(--font-outfit)',
-                fontWeight: 500,
-                fontSize: '24px',
-                lineHeight: '24px',
-                letterSpacing: '0%'
-              }}
-            >
-              Vitalii Shutiak
-            </Typography>
-            
-            {/* Desktop Navigation */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 5, alignItems: 'center' }}>
-              {navItems.slice(1).map((item) => (
-                <Button 
-                  key={item.href}
-                  color="inherit" 
-                  component={Link} 
-                  href={item.href} 
-                  sx={{
-                    ...navButtonStyles,
-                    color: pathname === item.href ? '#FFCC00' : 'inherit',
-                    borderBottom: pathname === item.href ? '2px solid #FFCC00' : 'none',
-                    borderRadius: 0,
-                  }}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </Box>
-            
-            {/* Right Section: Language Selector + CV Button (Desktop) + Burger (Mobile) */}
-            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-              <LanguageSelector />
-              
-              {/* CV Button - Desktop only */}
-              <Button
-                component="a"
-                href="/vitalii-shutiak-cv.pdf"
-                download
-                variant="contained"
-                startIcon={<DownloadIcon />}
-                aria-label="Download CV"
+        <Box sx={{ px: { xs: '16px', md: '60px' } }}>
+          <Toolbar
+            disableGutters
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              height: `${HEADER_TOOLBAR_HEIGHT_PX}px`,
+              minHeight: `${HEADER_TOOLBAR_HEIGHT_PX}px`,
+              py: 0,
+            }}
+          >
+            {/* Left: Logo */}
+            <Box sx={{ flex: '0 0 auto', display: 'flex', alignItems: 'center' }}>
+              <Typography
+                component={Link}
+                href="/"
                 sx={{
-                  display: { xs: 'none', md: 'flex' },
-                  backgroundColor: '#FFCC00',
-                  color: '#000',
-                  fontFamily: 'var(--font-outfit)',
-                  fontWeight: 500,
-                  fontSize: '14px',
-                  textTransform: 'none',
-                  borderRadius: '20px',
-                  padding: '8px 20px',
-                  boxShadow: 'none',
-                  '&:hover': {
-                    backgroundColor: '#FFD700',
-                    boxShadow: '0 2px 8px rgba(255, 204, 0, 0.3)',
-                  },
+                  fontFamily: 'var(--framer-font-family)',
+                  fontWeight: 600,
+                  fontSize: { xs: '22px', md: '20px' },
+                  lineHeight: '110%',
+                  letterSpacing: '-0.04em',
+                  color: 'text.primary',
+                  textDecoration: 'none',
                 }}
               >
-                CV
-              </Button>
+                Vitalii Shutiak
+              </Typography>
+            </Box>
+
+            {/* Center: Navigation */}
+            <Box
+              sx={{
+                flex: '1 1 auto',
+                display: { xs: 'none', md: 'flex' },
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 5,
+              }}
+            >
+              {navItems.slice(1).map((item) => {
+                const isProjects = item.href === '/projects';
+                return (
+                  <Button
+                    key={item.href}
+                    color="inherit"
+                    component={Link}
+                    href={item.href}
+                    sx={{
+                      ...navButtonStyles,
+                      color: pathname === item.href ? '#FFCC00' : 'inherit',
+                      borderBottom: pathname === item.href ? '2px solid #FFCC00' : 'none',
+                      borderRadius: 0,
+                      position: 'relative',
+                    }}
+                  >
+                    <Box component="span" sx={{ position: 'relative', display: 'inline-flex' }}>
+                      {item.label}
+                      {isProjects ? (
+                        <Box
+                          component="span"
+                          sx={{
+                            position: 'absolute',
+                            top: -2,
+                            right: -8,
+                            fontSize: '10px',
+                            fontWeight: 600,
+                            letterSpacing: '-0.04em',
+                            lineHeight: '100%',
+                            color: 'rgba(18,18,18,0.6)',
+                          }}
+                        >
+                          {projectsCount}
+                        </Box>
+                      ) : null}
+                    </Box>
+                  </Button>
+                );
+              })}
+            </Box>
+
+            {/* Right: Language + Burger */}
+            <Box
+              sx={{
+                flex: '0 0 auto',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: 6,
+                alignItems: 'center',
+              }}
+            >
+              <LanguageSelector />
 
               {/* Burger Menu - Mobile only */}
               <IconButton
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                sx={{ display: { xs: 'flex', md: 'none' }, padding: '8px' }}
-                aria-label="Open mobile menu"
+                size="small"
+                sx={{
+                  display: { xs: 'flex', md: 'none' },
+                  border: 0,
+                  borderColor: 'transparent',
+                  borderRadius: 0,
+                  px: 1,
+                  py: 0.75,
+                  '&:hover': { bgcolor: 'transparent' },
+                }}
+                aria-label={mobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'}
               >
                 <AnimatedBurger isOpen={mobileMenuOpen} />
               </IconButton>
@@ -375,46 +398,47 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu Drawer */}
       <Drawer
-        anchor="right"
+        anchor="top"
         open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
+        SlideProps={{
+          easing: {
+            enter: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            exit: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          },
+          timeout: { enter: 380, exit: 320 },
+        }}
+        ModalProps={{ hideBackdrop: true }}
         sx={{
           display: { xs: 'block', md: 'none' },
+          zIndex: 1300,
           '& .MuiDrawer-paper': {
             width: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            backdropFilter: 'blur(10px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            padding: '20px',
+            backgroundColor: '#F5F5F5',
+            top: `${HEADER_TOOLBAR_HEIGHT_PX}px`,
+            // No visual "gap" under the header
+            padding: '0px 20px 22px',
             boxShadow: 'none',
+            borderRadius: 0,
+            maxHeight: `calc(85vh - ${HEADER_TOOLBAR_HEIGHT_PX}px)`,
+            overflowY: 'auto',
           },
         }}
       >
         <Box sx={{ 
           display: 'flex', 
           flexDirection: 'column',
-          height: '100%',
-          fontFamily: 'var(--font-outfit)'
+          minHeight: 'auto',
+          fontFamily: 'var(--framer-font-family)'
         }}>
-          {/* Close Button */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 10 }}>
-            <Typography sx={{ fontSize: '24px', fontWeight: 500, color: '#fff', lineHeight: '24px',
-                letterSpacing: '0%', fontFamily: 'var(--font-outfit)' }}>
-              Vitalii Shutiak
-            </Typography>
-            <IconButton onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
-              <CloseIcon sx={{ fontSize: '32px', color: '#fff' }} />
-            </IconButton>
-          </Box>
-
           {/* Navigation Links */}
           <Box sx={{ 
             display: 'flex', 
             flexDirection: 'column', 
-            gap: 2,
+            gap: 0.75,
+            pt: 2,
           }}>
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
               return (
                 <Button
                   key={item.href}
@@ -423,12 +447,12 @@ const Header: React.FC = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   sx={{
                     ...mobileNavButtonStyles,
-                    color: isActive ? '#FFCC00' : '#fff',
-                    borderLeft: isActive ? '2px solid #FFCC00' : '2px solid transparent',
+                    color: '#121212',
+                    borderLeft: '0px solid transparent',
                     '&:hover': {
                       backgroundColor: 'transparent',
-                      color: '#FFCC00',
-                      paddingLeft: '24px',
+                      color: '#121212',
+                      paddingLeft: 0,
                     },
                   }}
                 >
@@ -438,10 +462,88 @@ const Header: React.FC = () => {
             })}
           </Box>
 
-          
-
-          {/* CV Button in Mobile Menu */}
           <Box sx={{ mt: 'auto', pt: 3 }}>
+            {/* Phone / Email / Legal */}
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                gap: 1.25,
+                pb: 2.5,
+              }}
+            >
+              <Typography
+                component="a"
+                href={`tel:${PHONE_PRETTY.replace(/[^\d+]/g, '')}`}
+                sx={{
+                  fontFamily: 'var(--framer-font-family)',
+                  fontWeight: 600,
+                  fontSize: '18px',
+                  letterSpacing: '-0.02em',
+                  color: '#121212',
+                  textDecoration: 'none',
+                }}
+              >
+                {PHONE_PRETTY}
+              </Typography>
+
+              <Typography
+                component="a"
+                href="mailto:vitaliishutiak@gmail.com"
+                sx={{
+                  fontFamily: 'var(--framer-font-family)',
+                  fontWeight: 600,
+                  fontSize: '20px',
+                  lineHeight: '110%',
+                  letterSpacing: '-0.04em',
+                  color: '#121212',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: '6px',
+                }}
+              >
+                vitaliishutiak@gmail.com
+              </Typography>
+
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 1 }}>
+                <Button
+                  component={Link}
+                  href="/privacy-policy"
+                  onClick={() => setMobileMenuOpen(false)}
+                  sx={{
+                    fontFamily: 'var(--framer-font-family)',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    textTransform: 'none',
+                    color: '#121212',
+                    p: 0,
+                    minWidth: 'auto',
+                    '&:hover': { bgcolor: 'transparent', textDecoration: 'underline' },
+                  }}
+                >
+                  {t('privacyPolicy')}
+                </Button>
+                <Button
+                  component={Link}
+                  href="/terms-of-service"
+                  onClick={() => setMobileMenuOpen(false)}
+                  sx={{
+                    fontFamily: 'var(--framer-font-family)',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    textTransform: 'none',
+                    color: '#121212',
+                    p: 0,
+                    minWidth: 'auto',
+                    '&:hover': { bgcolor: 'transparent', textDecoration: 'underline' },
+                  }}
+                >
+                  {t('termsOfService')}
+                </Button>
+              </Box>
+            </Box>
+
             {/* Social Media Icons */}
             <Box sx={{ 
               display: 'flex', 
@@ -459,39 +561,13 @@ const Header: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${social.label} profile`}
-                    sx={socialIconStyles}
+                    sx={{ ...socialIconStyles, backgroundColor: '#fff' }}
                   >
                     <IconComponent sx={{ fontSize: '28px' }} />
                   </IconButton>
                 );
               })}
             </Box>
-            
-            <Button
-              component="a"
-              href="/cv.pdf"
-              download
-              fullWidth
-              variant="contained"
-              startIcon={<DownloadIcon />}
-              onClick={() => setMobileMenuOpen(false)}
-              sx={{
-                backgroundColor: '#FFCC00',
-                color: '#000',
-                fontFamily: 'var(--font-outfit)',
-                fontWeight: 500,
-                fontSize: '18px',
-                textTransform: 'none',
-                borderRadius: '20px',
-                padding: '12px 24px',
-                boxShadow: 'none',
-                '&:hover': {
-                  backgroundColor: '#FFD700',
-                },
-              }}
-            >
-              Download CV
-            </Button>
           </Box>
         </Box>
       </Drawer>

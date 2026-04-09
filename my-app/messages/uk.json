@@ -1,9 +1,13 @@
 {
   "header": {
+    "themeLight": "Світла тема",
+    "themeDark": "Темна тема",
     "home": "Головна",
     "projects": "Проєкти",
     "about": "Про мене",
     "contact": "Контакти",
+    "privacyPolicy": "Політика конфіденційності",
+    "termsOfService": "Умови користування",
     "contactButton": "Зв'язатися"
   },
   "hero": {
