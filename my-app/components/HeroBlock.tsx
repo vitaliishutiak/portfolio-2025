@@ -1,16 +1,55 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
+import { gsap } from "gsap";
 import { HEADER_TOOLBAR_HEIGHT_PX } from "../lib/contentWidth";
+import { PRELOADER_HERO_ENTER_DURATION_MS } from "../lib/preloaderTiming";
 
-const HeroBlock: React.FC = () => {
+export interface HeroBlockProps {
+  /** Старт у прихованій «enter» позиції; анімацію запускає `entranceTriggerTick`. */
+  revealAfterPreloader?: boolean;
+  entranceTriggerTick?: number;
+}
+
+const HeroBlock: React.FC<HeroBlockProps> = ({
+  revealAfterPreloader = false,
+  entranceTriggerTick = 0,
+}) => {
   const services = ["Web Development", "UI/UX Design", "SEO Optimization", "Website Support"];
 
   const COLORS = {
     white: "#ffffff",
     black: "#0a0a0a",
   } as const;
+
+  const heroEnterRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const el = heroEnterRef.current;
+    if (!revealAfterPreloader || !el) return;
+    gsap.set(el, {
+      yPercent: 30,
+      opacity: 0.9,
+      force3D: true,
+    });
+  }, [revealAfterPreloader]);
+
+  useEffect(() => {
+    const el = heroEnterRef.current;
+    if (!revealAfterPreloader || !el || entranceTriggerTick < 1) return;
+    const enterDurationSec = PRELOADER_HERO_ENTER_DURATION_MS / 1000;
+    const tween = gsap.to(el, {
+      yPercent: 0,
+      opacity: 1,
+      duration: enterDurationSec,
+      ease: "power2.inOut",
+      overwrite: true,
+    });
+    return () => {
+      tween.kill();
+    };
+  }, [entranceTriggerTick, revealAfterPreloader]);
 
   const PlusIcon = () => (
     <Box
@@ -50,6 +89,7 @@ const HeroBlock: React.FC = () => {
 
   return (
     <Box
+      ref={heroEnterRef}
       sx={{
         width: "100%",
         pt: 0,
@@ -58,6 +98,7 @@ const HeroBlock: React.FC = () => {
         pb: "4px",
         mt: 0,
         boxSizing: "border-box",
+        willChange: revealAfterPreloader ? "transform, opacity" : "auto",
       }}
     >
       <Box

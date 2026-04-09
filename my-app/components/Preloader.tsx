@@ -2,18 +2,23 @@
 
 import React, { useCallback, useEffect, useState } from 'react'
 import { Box } from '@mui/material'
+import {
+  PRELOADER_EXIT_DURATION_MS,
+  PRELOADER_HERO_START_AT_EXIT_RATIO,
+} from '../lib/preloaderTiming'
 
 interface PreloaderProps {
   onComplete: () => void
+  /** Старт GSAP enter на hero (момент задається PRELOADER_HERO_START_AT_EXIT_RATIO). */
+  onRevealMidway?: () => void
 }
 
 const NAME = 'Vitalii Shutiak'
 const CHAR_STAGGER_MS = 72
 const LETTER_DURATION_S = 0.52
 const PAUSE_BEFORE_EXIT_MS = 480
-const EXIT_DURATION_MS = 820
 
-const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
+const Preloader: React.FC<PreloaderProps> = ({ onComplete, onRevealMidway }) => {
   const [phase, setPhase] = useState<'letters' | 'exit' | 'done'>('letters')
   const chars = NAME.split('')
 
@@ -35,6 +40,14 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     return () => clearTimeout(t)
   }, [phase, chars.length])
 
+  useEffect(() => {
+    if (phase !== 'exit') return
+    const id = window.setTimeout(() => {
+      onRevealMidway?.()
+    }, PRELOADER_EXIT_DURATION_MS * PRELOADER_HERO_START_AT_EXIT_RATIO)
+    return () => window.clearTimeout(id)
+  }, [phase, onRevealMidway])
+
   if (phase === 'done') return null
 
   return (
@@ -53,7 +66,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         justifyContent: 'center',
         overflow: 'hidden',
         transform: phase === 'exit' ? 'translateY(-100%)' : 'translateY(0)',
-        transition: `transform ${EXIT_DURATION_MS}ms cubic-bezier(0.76, 0, 0.24, 1)`,
+        transition: `transform ${PRELOADER_EXIT_DURATION_MS}ms cubic-bezier(0.76, 0, 0.24, 1)`,
         willChange: phase === 'exit' ? 'transform' : 'auto',
       }}
     >

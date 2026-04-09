@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HeroBlock from "../../components/HeroBlock";
@@ -13,16 +13,21 @@ import Preloader from "../../components/Preloader";
 import { HEADER_TOOLBAR_HEIGHT_PX } from "../../lib/contentWidth";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [preloaderDone, setPreloaderDone] = useState(false);
+  const [heroEnterTick, setHeroEnterTick] = useState(0);
 
-  const handlePreloaderComplete = () => {
-    setIsLoading(false);
-  };
+  const handleRevealMidway = useCallback(() => {
+    setHeroEnterTick((n) => n + 1);
+  }, []);
+
+  const handlePreloaderComplete = useCallback(() => {
+    setPreloaderDone(true);
+  }, []);
 
   // Оновлюємо ScrollTrigger після завантаження сторінки (динамічний import —
   // уникнення зламаного server chunk vendor-chunks/gsap.js у Next webpack)
   useEffect(() => {
-    if (isLoading) return;
+    if (!preloaderDone) return;
 
     let cancelled = false;
     let clearInner: (() => void) | undefined;
@@ -53,14 +58,19 @@ export default function Home() {
       cancelled = true;
       clearInner?.();
     };
-  }, [isLoading]);
-
-  if (isLoading) {
-    return <Preloader onComplete={handlePreloaderComplete} />;
-  }
+  }, [preloaderDone]);
 
   return (
-    <div style={{ width: "100%", maxWidth: "100vw", margin: 0, padding: 0 }}>
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "100vw",
+        margin: 0,
+        padding: 0,
+        backgroundColor: "#F5F5F5",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
       <main
         style={{
@@ -69,7 +79,7 @@ export default function Home() {
           paddingTop: HEADER_TOOLBAR_HEIGHT_PX,
         }}
       >
-        <HeroBlock />
+        <HeroBlock revealAfterPreloader entranceTriggerTick={heroEnterTick} />
         <ProjectsBlock />
         <HowItsWorksBlock />
         <SkillsBlock />
@@ -77,6 +87,12 @@ export default function Home() {
         <FaqBlock />
       </main>
       <Footer />
+      {!preloaderDone && (
+        <Preloader
+          onRevealMidway={handleRevealMidway}
+          onComplete={handlePreloaderComplete}
+        />
+      )}
     </div>
   );
 }
