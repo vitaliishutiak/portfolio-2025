@@ -111,7 +111,7 @@ export default async function LocaleLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <meta name="theme-color" content="#FFCC00" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preload" href="/hero-image@2x.png" as="image" type="image/png" />
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <script
