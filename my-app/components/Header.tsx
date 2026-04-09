@@ -293,7 +293,6 @@ const Header: React.FC = () => {
             }}
           >
             {/* Left: Logo */}
-            <Box sx={{ flex: '0 0 auto', display: 'flex', alignItems: 'center' }}>
               <Typography
                 component={Link}
                 href="/"
@@ -309,18 +308,8 @@ const Header: React.FC = () => {
               >
                 Vitalii Shutiak
               </Typography>
-            </Box>
 
             {/* Center: Navigation */}
-            <Box
-              sx={{
-                flex: '1 1 auto',
-                display: { xs: 'none', md: 'flex' },
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 5,
-              }}
-            >
               {navItems.slice(1).map((item) => {
                 const isProjects = item.href === '/projects';
                 return (
@@ -360,7 +349,6 @@ const Header: React.FC = () => {
                   </Button>
                 );
               })}
-            </Box>
 
             {/* Right: Language + Burger */}
             <Box
