@@ -1,30 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "../globals.css";
 import ThemeProvider from "../../components/ThemeProvider";
-import { NextIntlClientProvider } from 'next-intl';
+import IntlProvider from "../../components/IntlProvider";
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '../../i18n';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: 'swap',
-  preload: true,
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: 'swap',
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: 'swap',
+  display: "swap",
   preload: true,
 });
 
@@ -117,23 +104,27 @@ export default async function LocaleLayout({
     ]
   };
 
+  const themeBootstrap = `(function(){try{var r=document.documentElement;r.classList.remove('light','dark');r.classList.add('light');}catch(e){}})();`;
+
   return (
-    <html lang={locale} dir="ltr">
+    <html lang={locale} dir="ltr" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <meta name="theme-color" content="#FFCC00" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="preload" href="/hero-image@2x.png" as="image" type="image/png" />
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={`${outfit.variable}`}>
-        <NextIntlClientProvider messages={messages} locale={locale}>
+      <body className={inter.variable} suppressHydrationWarning>
+        <IntlProvider messages={messages} locale={locale}>
           <ThemeProvider>
             {children}
           </ThemeProvider>
-        </NextIntlClientProvider>
+        </IntlProvider>
       </body>
     </html>
   );

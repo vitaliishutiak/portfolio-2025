@@ -1,8 +1,6 @@
 "use client";
 
-import { Container } from "@mui/material";
 import { useState, useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HeroBlock from "../../components/HeroBlock";
@@ -11,8 +9,8 @@ import SkillsBlock from "../../components/SkillsBlock";
 import FaqBlock from "../../components/FaqBlock";
 import HowItsWorksBlock from "../../components/HowItsWorksBlock";
 import ExperienceBlock from "../../components/ExperienceBlock";
-import PageTransition from "../../components/PageTransition";
 import Preloader from "../../components/Preloader";
+import { HEADER_TOOLBAR_HEIGHT_PX } from "../../lib/contentWidth";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,18 +19,21 @@ export default function Home() {
     setIsLoading(false);
   };
 
-  // Оновлюємо ScrollTrigger після завантаження сторінки
+  // Оновлюємо ScrollTrigger після завантаження сторінки (динамічний import —
+  // уникнення зламаного server chunk vendor-chunks/gsap.js у Next webpack)
   useEffect(() => {
-    if (!isLoading) {
-      // Оновлюємо після того, як preloader завершився
-      const timer1 = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
+    if (isLoading) return;
 
-      // Також оновлюємо після повного завантаження сторінки
-      const handleLoad = () => {
-        ScrollTrigger.refresh();
-      };
+    let cancelled = false;
+    let clearInner: (() => void) | undefined;
+
+    void import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+      if (cancelled) return;
+
+      const refresh = () => ScrollTrigger.refresh();
+      const timer1 = setTimeout(refresh, 100);
+
+      const handleLoad = () => refresh();
 
       if (document.readyState === "complete") {
         handleLoad();
@@ -40,11 +41,18 @@ export default function Home() {
         window.addEventListener("load", handleLoad);
       }
 
-      return () => {
+      clearInner = () => {
         clearTimeout(timer1);
         window.removeEventListener("load", handleLoad);
       };
-    }
+
+      if (cancelled) clearInner();
+    });
+
+    return () => {
+      cancelled = true;
+      clearInner?.();
+    };
   }, [isLoading]);
 
   if (isLoading) {
@@ -52,9 +60,15 @@ export default function Home() {
   }
 
   return (
-    <Container maxWidth={false} disableGutters>
+    <div style={{ width: "100%", maxWidth: "100vw", margin: 0, padding: 0 }}>
       <Header />
-      <main>
+      <main
+        style={{
+          margin: 0,
+          padding: 0,
+          paddingTop: HEADER_TOOLBAR_HEIGHT_PX,
+        }}
+      >
         <HeroBlock />
         <ProjectsBlock />
         <HowItsWorksBlock />
@@ -63,6 +77,6 @@ export default function Home() {
         <FaqBlock />
       </main>
       <Footer />
-    </Container>
+    </div>
   );
 }

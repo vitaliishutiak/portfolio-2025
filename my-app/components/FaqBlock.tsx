@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { animateTitle, animateFaqBlock, animateFaqAccordions } from '../lib/animations'
+import { CONTENT_MAX_WIDTH_PX } from '../lib/contentWidth'
 
 const FaqBlock: React.FC = () => {
   const t = useTranslations('faq')
@@ -60,11 +61,11 @@ const FaqBlock: React.FC = () => {
   return (
     <Box ref={sectionRef} component="section" sx={{ py: { xs: 6, md: 15 } }}>
       <Box sx={{ 
-        width: { xs: '100%', md: '1040px' }, 
-        maxWidth: '1040px', 
+        width: '100%', 
+        maxWidth: CONTENT_MAX_WIDTH_PX, 
         mx: 'auto', 
         px: { xs: 2, md: 0 },
-        fontFamily: 'var(--font-outfit)'
+        fontFamily: 'var(--framer-font-family)'
       }}>
         <Box sx={{ 
           display: 'grid',
@@ -88,8 +89,8 @@ const FaqBlock: React.FC = () => {
               sx={{ 
                 fontSize: { xs: '32px', md: '40px' }, 
                 fontWeight: 500, 
-                color: '#121212',
-                fontFamily: "var(--font-outfit)"
+                color: 'text.primary',
+                fontFamily: "var(--framer-font-family)"
               }}
             >
               {t('title')}
@@ -99,8 +100,8 @@ const FaqBlock: React.FC = () => {
               sx={{ 
                 fontSize: { xs: '22px', md: '20px' }, 
                 lineHeight: 1.6,
-                color: '#121212',
-                fontFamily: 'var(--font-outfit)'
+                color: 'text.secondary',
+                fontFamily: 'var(--framer-font-family)'
               }}
             >
               {t('description')}
@@ -117,7 +118,9 @@ const FaqBlock: React.FC = () => {
                 onChange={handleChange(`panel${index}`)}
                 sx={{
                   boxShadow: 'none',
-                  border: '1px solid #E5E5E5',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  bgcolor: 'background.paper',
                   borderRadius: '12px !important',
                   '&:before': {
                     display: 'none',
@@ -130,9 +133,9 @@ const FaqBlock: React.FC = () => {
                 <AccordionSummary
                   expandIcon={
                     expanded === `panel${index}` ? (
-                      <RemoveIcon sx={{ color: '#121212', fontSize: '24px' }} />
+                      <RemoveIcon sx={{ color: 'text.primary', fontSize: '24px' }} />
                     ) : (
-                      <AddIcon sx={{ color: '#121212', fontSize: '24px' }} />
+                      <AddIcon sx={{ color: 'text.primary', fontSize: '24px' }} />
                     )
                   }
                   sx={{
@@ -149,8 +152,8 @@ const FaqBlock: React.FC = () => {
                   <Typography sx={{ 
                     fontSize: { xs: '16px', md: '18px' }, 
                     fontWeight: 500,
-                    color: '#121212',
-                    fontFamily: 'var(--font-outfit)'
+                    color: 'text.primary',
+                    fontFamily: 'var(--framer-font-family)'
                   }}>
                     {item.question}
                   </Typography>
@@ -158,15 +161,16 @@ const FaqBlock: React.FC = () => {
                 <AccordionDetails
                   sx={{
                     padding: { xs: '0 16px 16px', md: '0 24px 24px' },
-                    borderTop: '1px solid #E5E5E5',
+                    borderTop: '1px solid',
+                    borderColor: 'divider',
                     paddingTop: { xs: '16px', md: '20px' },
                   }}
                 >
                   <Typography sx={{ 
                     fontSize: { xs: '14px', md: '16px' },
                     lineHeight: 1.6,
-                    color: '#666666',
-                    fontFamily: 'var(--font-outfit)'
+                    color: 'text.secondary',
+                    fontFamily: 'var(--framer-font-family)'
                   }}>
                     {item.answer}
                   </Typography>

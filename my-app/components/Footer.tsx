@@ -5,6 +5,7 @@ import { Box, Typography, Button } from '@mui/material'
 import { Link } from '../navigation'
 import { useTranslations } from 'next-intl'
 import { animateScaleUp } from '../lib/animations'
+import { CONTENT_MAX_WIDTH_PX } from '../lib/contentWidth'
 
 const Footer: React.FC = () => {
   const t = useTranslations('footer');
@@ -57,13 +58,19 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <Box component="footer" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#121212' }}>
+    <Box
+      component="footer"
+      sx={{
+        py: { xs: 6, md: 15 },
+        backgroundColor: '#121212',
+      }}
+    >
       <Box sx={{ 
-        width: { xs: '100%', md: '1040px' }, 
-        maxWidth: '1040px', 
+        width: '100%', 
+        maxWidth: CONTENT_MAX_WIDTH_PX, 
         mx: 'auto', 
         px: { xs: 2, md: 0 },
-        fontFamily: 'var(--font-outfit)'
+        fontFamily: 'var(--framer-font-family)'
       }}>
         {/* CTA Section */}
         <Box sx={{ 
@@ -82,7 +89,7 @@ const Footer: React.FC = () => {
               fontSize: { xs: '28px', md: '40px' }, 
               fontWeight: 500, 
               color: '#fff',
-              fontFamily: 'var(--font-outfit)',
+              fontFamily: 'var(--framer-font-family)',
               lineHeight: { xs: '1.3', md: '1.2' }
             }}
           >
@@ -100,7 +107,7 @@ const Footer: React.FC = () => {
               fontWeight: 500, 
               borderRadius: '32px', 
               padding: { xs: '10px 32px', md: '8px 32px' },
-              fontFamily: 'var(--font-outfit)', 
+              fontFamily: 'var(--framer-font-family)', 
               textTransform: 'none',
               '&:hover': {
                 backgroundColor: '#FFD700',
@@ -149,7 +156,7 @@ const Footer: React.FC = () => {
                 sx={{
                   color: '#fff',
                   textDecoration: 'none',
-                  fontFamily: 'var(--font-outfit)',
+                  fontFamily: 'var(--framer-font-family)',
                   fontSize: { xs: '14px', md: '16px' },
                   fontWeight: 400,
                   transition: 'all 0.2s ease',
@@ -191,7 +198,7 @@ const Footer: React.FC = () => {
                 sx={{
                   color: '#fff',
                   textDecoration: 'none',
-                  fontFamily: 'var(--font-outfit)',
+                  fontFamily: 'var(--framer-font-family)',
                   fontSize: { xs: '14px', md: '16px' },
                   fontWeight: 400,
                   transition: 'all 0.2s ease',

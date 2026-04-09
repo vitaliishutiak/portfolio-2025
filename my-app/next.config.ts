@@ -12,19 +12,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
   },
   
-  // Compression
   compress: true,
-  
-  // Оптимізація продакшн бандлу
-  swcMinify: true,
-  
-  // Оптимізація шрифтів
-  optimizeFonts: true,
-  
-  // Experimental features для кращого Performance
-  experimental: {
-    optimizePackageImports: ['@mui/material', '@mui/icons-material'],
-  },
   
   // Перевірка TypeScript і ESLint тільки в dev mode
   typescript: {

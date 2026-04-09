@@ -27,7 +27,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
       ref={cardRef}
       sx={{
         width: "100%",
-        maxWidth: { xs: "100%", md: "510px" },
+        maxWidth: { xs: "100%", md: "100%" },
         display: "flex",
         gap: { xs: "16px", md: "24px" },
         borderRadius: { xs: "16px", md: "24px" },
@@ -56,10 +56,10 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
       >
         <Typography
           sx={{
-            color: "#121212",
+            color: "text.primary",
             fontSize: { xs: "18px", md: "24px" },
             fontWeight: 500,
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
             lineHeight: "100%",
             letterSpacing: "0%",
             textTransform: "none",
@@ -69,10 +69,10 @@ const SkillCard: React.FC<SkillCardProps> = ({ img, name, description }) => {
         </Typography>
         <Typography
           sx={{
-            color: "#12121299",
+            color: "text.secondary",
             fontSize: { xs: "13px", md: "15px" },
             fontWeight: 400,
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
             lineHeight: "150%",
           }}
         >

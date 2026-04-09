@@ -1,181 +1,90 @@
 'use client';
 
-import React, { useEffect, useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Box } from '@mui/material'
 
 interface PreloaderProps {
   onComplete: () => void
 }
 
+const NAME = 'Vitalii Shutiak'
+const CHAR_STAGGER_MS = 72
+const LETTER_DURATION_S = 0.52
+const PAUSE_BEFORE_EXIT_MS = 480
+const EXIT_DURATION_MS = 820
+
 const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0)
-  const [isVisible, setIsVisible] = useState(true)
+  const [phase, setPhase] = useState<'letters' | 'exit' | 'done'>('letters')
+  const chars = NAME.split('')
+
+  const handleExitEnd = useCallback(
+    (e: React.TransitionEvent<HTMLDivElement>) => {
+      if (e.propertyName !== 'transform') return
+      setPhase('done')
+      onComplete()
+    },
+    [onComplete]
+  )
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(timer)
-          setTimeout(() => {
-            setIsVisible(false)
-            setTimeout(onComplete, 500) // Delay before calling onComplete
-          }, 200)
-          return 100
-        }
-        return prev + Math.random() * 15 + 5 // Random increment for smooth progress
-      })
-    }, 100)
+    if (phase !== 'letters') return
+    const lastLetterDelay = (chars.length - 1) * CHAR_STAGGER_MS
+    const total =
+      lastLetterDelay + LETTER_DURATION_S * 1000 + PAUSE_BEFORE_EXIT_MS
+    const t = window.setTimeout(() => setPhase('exit'), total)
+    return () => clearTimeout(t)
+  }, [phase, chars.length])
 
-    return () => clearInterval(timer)
-  }, [onComplete])
-
-  if (!isVisible) return null
+  if (phase === 'done') return null
 
   return (
     <Box
+      onTransitionEnd={phase === 'exit' ? handleExitEnd : undefined}
       sx={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#121212',
+        backgroundColor: '#000000',
         zIndex: 9999,
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        transform: phase === 'exit' ? 'translateY(-100%)' : 'translateY(0)',
+        transition: `transform ${EXIT_DURATION_MS}ms cubic-bezier(0.76, 0, 0.24, 1)`,
+        willChange: phase === 'exit' ? 'transform' : 'auto',
       }}
     >
-      {/* Animated Background */}
       <Box
+        component="span"
         sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: `
-            radial-gradient(circle at 20% 50%, #FFCC0020 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, #FFCC0010 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, #FFCC0015 0%, transparent 50%)
-          `,
-          animation: 'pulse 3s ease-in-out infinite'
+          fontFamily: 'var(--framer-font-family)',
+          fontSize: { xs: 'clamp(28px, 8vw, 52px)', md: 'clamp(40px, 5vw, 72px)' },
+          fontWeight: 600,
+          color: '#ffffff',
+          textAlign: 'center',
+          lineHeight: 1.15,
+          px: 2,
         }}
-      />
-
-      {/* Main Content */}
-      <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-        {/* Progress Bar */}
-        <Box
-          sx={{
-            width: { xs: '280px', md: '400px' },
-            height: '4px',
-            backgroundColor: '#333',
-            borderRadius: '2px',
-            overflow: 'hidden',
-            position: 'relative'
-          }}
-        >
+      >
+        {chars.map((char, index) => (
           <Box
+            key={`${index}-${char}`}
+            component="span"
             sx={{
-              width: `${progress}%`,
-              height: '100%',
-              backgroundColor: '#FFCC00',
-              borderRadius: '2px',
-              transition: 'width 0.3s ease',
-              position: 'relative',
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-                animation: 'shimmer 1.5s infinite'
-              }
+              display: 'inline-block',
+              minWidth: char === ' ' ? '0.3em' : undefined,
+              animation: `preloader-letter-up ${LETTER_DURATION_S}s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
+              animationDelay: `${index * CHAR_STAGGER_MS}ms`,
+              opacity: 0,
             }}
-          />
-        </Box>
-
-        {/* Progress Text */}
-        <Typography
-          sx={{
-            fontFamily: 'var(--font-outfit)',
-            fontSize: '14px',
-            fontWeight: 500,
-            color: '#FFCC00',
-            mt: 2
-          }}
-        >
-          {Math.round(progress)}%
-        </Typography>
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </Box>
+        ))}
       </Box>
-
-      {/* Floating Elements */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '20%',
-          left: '10%',
-          width: '20px',
-          height: '20px',
-          backgroundColor: '#FFCC00',
-          borderRadius: '50%',
-          opacity: 0.6,
-          animation: 'float 3s ease-in-out infinite'
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '60%',
-          right: '15%',
-          width: '15px',
-          height: '15px',
-          backgroundColor: '#FFCC00',
-          borderRadius: '50%',
-          opacity: 0.4,
-          animation: 'float 2.5s ease-in-out infinite reverse'
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '30%',
-          left: '20%',
-          width: '12px',
-          height: '12px',
-          backgroundColor: '#FFCC00',
-          borderRadius: '50%',
-          opacity: 0.5,
-          animation: 'float 2s ease-in-out infinite'
-        }}
-      />
-
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.6; }
-        }
-        
-        @keyframes glow {
-          from { text-shadow: 0 0 20px #FFCC00; }
-          to { text-shadow: 0 0 30px #FFCC00, 0 0 40px #FFCC00; }
-        }
-        
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
-        }
-      `}</style>
     </Box>
   )
 }

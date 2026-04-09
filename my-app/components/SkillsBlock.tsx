@@ -6,6 +6,7 @@ import { skills } from "../data/skills";
 import SkillCard from "./SkillCard";
 import { useTranslations } from "next-intl";
 import { animateTitle } from "../lib/animations";
+import { CONTENT_MAX_WIDTH_PX } from "../lib/contentWidth";
 
 const SkillsBlock: React.FC = () => {
   const t = useTranslations("skills");
@@ -33,12 +34,15 @@ const SkillsBlock: React.FC = () => {
   return (
     <Box
       component="section"
-      sx={{ py: { xs: 6, md: 15 }, backgroundColor: "#fff" }}
+      sx={{
+        py: { xs: 6, md: 15 },
+        backgroundColor: "background.default",
+      }}
     >
       <Box
         sx={{
-          width: { xs: "100%", md: "1040px" },
-          maxWidth: "1040px",
+          width: "100%",
+          maxWidth: CONTENT_MAX_WIDTH_PX,
           mx: "auto",
           px: { xs: 2, md: 0 },
         }}
@@ -47,10 +51,10 @@ const SkillsBlock: React.FC = () => {
           ref={titleRef}
           component="h2"
           sx={{
-            color: "#121212",
+            color: "text.primary",
             fontSize: { xs: "32px", md: "40px" },
             fontWeight: 500,
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
             mb: { xs: "20px", md: "40px" },
           }}
         >
@@ -84,10 +88,10 @@ const SkillsBlock: React.FC = () => {
           ref={githubTitleRef}
           component="h2"
           sx={{
-            color: "#121212",
+            color: "text.primary",
             fontSize: { xs: "32px", md: "40px" },
             fontWeight: 500,
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
             mb: { xs: "20px", md: "40px" },
             mt: { xs: "40px", md: "60px" },
           }}
@@ -104,7 +108,6 @@ const SkillsBlock: React.FC = () => {
             backgroundColor: "#1212120A",
             p: { xs: "10px", md: "20px" },
             mt: { xs: "16px", md: "20px" },
-            // Горизонтальний скролл на мобільних
             "&::-webkit-scrollbar": {
               height: "6px",
             },

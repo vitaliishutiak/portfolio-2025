@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Box, Typography, TextField, Button, Link } from '@mui/material'
+import { Container, Box, Typography } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import Header from '../../../components/Header'
@@ -8,6 +8,7 @@ import Footer from '../../../components/Footer'
 import PageTransition from '../../../components/PageTransition'
 import ScrollAnimations from '../../../components/ScrollAnimations'
 import { useTranslations } from 'next-intl'
+import { CONTENT_MAX_WIDTH_PX } from '../../../lib/contentWidth'
 import { useMemo, useEffect } from 'react'
 
 export default function ContactPage() {
@@ -50,8 +51,8 @@ export default function ContactPage() {
           minHeight: '100vh'
         }}>
           <Box sx={{ 
-            width: { xs: '100%', md: '1040px' }, 
-            maxWidth: '1040px', 
+            width: '100%', 
+            maxWidth: CONTENT_MAX_WIDTH_PX, 
             mx: 'auto',
             px: { xs: 2, md: 0 },
           }}>
@@ -74,10 +75,11 @@ export default function ContactPage() {
                   component="h1" 
                   className="animate-heading"
                   sx={{ 
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 600,
                     fontSize: { xs: '32px', md: '48px' },
                     lineHeight: '1.2',
+                    color: 'text.primary',
                   }}
                 >
                   {t('title')}
@@ -86,7 +88,7 @@ export default function ContactPage() {
                 <Typography 
                   className="animate-text"
                   sx={{ 
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 400,
                     fontSize: { xs: '16px', md: '18px' },
                     lineHeight: '1.6',
@@ -136,10 +138,10 @@ export default function ContactPage() {
                   </Box>
                   <Typography
                     sx={{
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 600,
                       fontSize: { xs: '18px', md: '20px' },
-                      color: '#121212',
+                      color: 'text.primary',
                       lineHeight: '1.2',
                     }}
                   >
@@ -147,10 +149,10 @@ export default function ContactPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 400,
                       fontSize: { xs: '14px', md: '15px' },
-                      color: '#666',
+                      color: 'text.secondary',
                       lineHeight: '1.5',
                     }}
                   >
@@ -158,7 +160,7 @@ export default function ContactPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 500,
                       fontSize: { xs: '14px', md: '15px' },
                       color: '#FFCC00',
@@ -207,10 +209,10 @@ export default function ContactPage() {
                   </Box>
                   <Typography
                     sx={{
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 600,
                       fontSize: { xs: '18px', md: '20px' },
-                      color: '#121212',
+                      color: 'text.primary',
                       lineHeight: '1.2',
                     }}
                   >
@@ -218,10 +220,10 @@ export default function ContactPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 400,
                       fontSize: { xs: '14px', md: '15px' },
-                      color: '#666',
+                      color: 'text.secondary',
                       lineHeight: '1.5',
                     }}
                   >
@@ -229,7 +231,7 @@ export default function ContactPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 500,
                       fontSize: { xs: '14px', md: '15px' },
                       color: '#FFCC00',
@@ -248,7 +250,7 @@ export default function ContactPage() {
                   minHeight: { xs: '600px', md: '100%' },
                   height: '100%',
                   overflow: 'hidden',
-                  backgroundColor: '#fff',
+                  backgroundColor: 'background.paper',
                   borderRadius: '16px',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                 }}
@@ -277,10 +279,10 @@ export default function ContactPage() {
                 required
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                   },
                   '& .MuiInputLabel-root': {
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                   }
                 }}
               />
@@ -293,10 +295,10 @@ export default function ContactPage() {
                 required
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                   },
                   '& .MuiInputLabel-root': {
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                   }
                 }}
               />
@@ -310,10 +312,10 @@ export default function ContactPage() {
                 required
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                   },
                   '& .MuiInputLabel-root': {
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                   }
                 }}
               />
@@ -325,7 +327,7 @@ export default function ContactPage() {
                   sx={{
                   backgroundColor: '#FFCC00',
                   color: '#000',
-                  fontFamily: 'var(--font-outfit)',
+                  fontFamily: 'var(--framer-font-family)',
                   fontWeight: 500,
                   fontSize: '18px',
                   textTransform: 'none',

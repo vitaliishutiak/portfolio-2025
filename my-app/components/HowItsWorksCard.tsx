@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import { animateCard } from "../lib/animations";
+import { CONTENT_HALF_COLUMN_PX } from "../lib/contentWidth";
 
 interface HowItsWorksCardProps {
   number: number;
@@ -31,7 +32,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
       ref={cardRef}
       sx={{
         width: "100%",
-        maxWidth: { xs: '100%', md: "510px" },
+        maxWidth: { xs: '100%', md: CONTENT_HALF_COLUMN_PX },
         backgroundColor: "#FFFFFF0A",
         borderRadius: { xs: "16px", md: "24px" },
         padding: { xs: "16px", md: "24px" },
@@ -58,7 +59,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
             fontSize: { xs: "16px", md: "20px" },
             fontWeight: 500,
             lineHeight: "100%",
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
           }}
         >
           {number}
@@ -71,7 +72,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
             fontSize: { xs: "16px", md: "20px" },
             fontWeight: 500,
             lineHeight: "100%",
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
             }}
         >
             {title}
@@ -83,7 +84,7 @@ const HowItsWorksCard: React.FC<HowItsWorksCardProps> = ({
             fontSize: { xs: "12px", md: "13px" },
             fontWeight: 500,
             lineHeight: "150%",
-            fontFamily: "var(--font-outfit)",
+            fontFamily: "var(--framer-font-family)",
             }}
         >
             {description}

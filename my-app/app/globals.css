@@ -1,13 +1,14 @@
 :root {
-  --background: #ffffff;
+  --background: #F5F5F5;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.light {
+  color-scheme: light;
+  --background: #F5F5F5;
+  --foreground: #121212;
+  --app-hero-bg: #F5F5F5;
+  --app-muted: #666666;
 }
 
 html,
@@ -17,28 +18,26 @@ body {
 }
 
 body {
+  --framer-font-family: var(--font-inter), "Inter", "Inter Placeholder", sans-serif;
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--framer-font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Оптимізація для мобільних пристроїв */
 @media (max-width: 768px) {
-  /* Покращуємо прокрутку на iOS */
   body {
     -webkit-overflow-scrolling: touch;
   }
-  
-  /* Оптимізуємо відображення зображень */
+
   img {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
 }
 
-/* Початкові стани для GSAP анімацій (уникаємо hydration errors) */
 .gsap-fade-in {
   opacity: 0;
 }
@@ -58,8 +57,13 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@keyframes preloader-letter-up {
+  from {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

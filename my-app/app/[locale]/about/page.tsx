@@ -4,7 +4,6 @@ import {
   Container,
   Box,
   Typography,
-  Grid,
   Chip,
   Card,
   CardContent,
@@ -23,6 +22,7 @@ import Footer from "../../../components/Footer";
 import PageTransition from "../../../components/PageTransition";
 import ScrollAnimations from "../../../components/ScrollAnimations";
 import { useTranslations } from "next-intl";
+import { CONTENT_MAX_WIDTH_PX } from "../../../lib/contentWidth";
 
 export default function AboutPage() {
   const t = useTranslations("about");
@@ -116,8 +116,8 @@ export default function AboutPage() {
             >
               <Box
                 sx={{
-                  width: { xs: "100%", md: "1040px" },
-                  maxWidth: "1040px",
+                  width: "100%",
+                  maxWidth: CONTENT_MAX_WIDTH_PX,
                   mx: "auto",
                 }}
               >
@@ -127,7 +127,7 @@ export default function AboutPage() {
                     component="h1"
                     className="animate-heading"
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 600,
                       fontSize: { xs: "32px", md: "48px" },
                       lineHeight: "1.2",
@@ -140,7 +140,7 @@ export default function AboutPage() {
                   <Typography
                     className="animate-text"
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 400,
                       fontSize: { xs: "18px", md: "20px" },
                       lineHeight: "1.8",
@@ -203,7 +203,7 @@ export default function AboutPage() {
                         <Typography
                           component="h2"
                           sx={{
-                            fontFamily: "var(--font-outfit)",
+                            fontFamily: "var(--framer-font-family)",
                             fontWeight: 600,
                             fontSize: { xs: "20px", md: "24px" },
                             lineHeight: "1.3",
@@ -215,7 +215,7 @@ export default function AboutPage() {
                         </Typography>
                         <Typography
                           sx={{
-                            fontFamily: "var(--font-outfit)",
+                            fontFamily: "var(--framer-font-family)",
                             fontWeight: 400,
                             fontSize: { xs: "14px", md: "16px" },
                             lineHeight: "1.8",
@@ -235,7 +235,7 @@ export default function AboutPage() {
                     component="h2"
                     className="animate-heading"
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 600,
                       fontSize: { xs: "28px", md: "36px" },
                       lineHeight: "1.2",
@@ -247,7 +247,7 @@ export default function AboutPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 400,
                       fontSize: { xs: "16px", md: "18px" },
                       lineHeight: "1.6",
@@ -303,7 +303,7 @@ export default function AboutPage() {
                               </Avatar>
                               <Typography
                                 sx={{
-                                  fontFamily: "var(--font-outfit)",
+                                  fontFamily: "var(--framer-font-family)",
                                   fontWeight: 600,
                                   fontSize: "18px",
                                   color: "#121212",
@@ -314,7 +314,7 @@ export default function AboutPage() {
                             </Box>
                             <Typography
                               sx={{
-                                fontFamily: "var(--font-outfit)",
+                                fontFamily: "var(--framer-font-family)",
                                 fontWeight: 400,
                                 fontSize: "14px",
                                 lineHeight: "1.6",
@@ -336,7 +336,7 @@ export default function AboutPage() {
                     component="h2"
                     className="animate-heading"
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 600,
                       fontSize: { xs: "28px", md: "36px" },
                       lineHeight: "1.2",
@@ -348,7 +348,7 @@ export default function AboutPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 400,
                       fontSize: { xs: "16px", md: "18px" },
                       lineHeight: "1.6",
@@ -390,7 +390,7 @@ export default function AboutPage() {
                         >
                           <Typography
                             sx={{
-                              fontFamily: "var(--font-outfit)",
+                              fontFamily: "var(--framer-font-family)",
                               fontWeight: 700,
                               fontSize: { xs: "32px", md: "40px" },
                               color: achievement.color,
@@ -401,7 +401,7 @@ export default function AboutPage() {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: "var(--font-outfit)",
+                              fontFamily: "var(--framer-font-family)",
                               fontWeight: 500,
                               fontSize: { xs: "14px", md: "16px" },
                               color: "#121212",
@@ -421,7 +421,7 @@ export default function AboutPage() {
                     component="h2"
                     className="animate-heading"
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 600,
                       fontSize: { xs: "28px", md: "36px" },
                       lineHeight: "1.2",
@@ -433,7 +433,7 @@ export default function AboutPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 400,
                       fontSize: { xs: "16px", md: "18px" },
                       lineHeight: "1.6",
@@ -473,7 +473,7 @@ export default function AboutPage() {
                         <Box>
                           <Typography
                             sx={{
-                              fontFamily: "var(--font-outfit)",
+                              fontFamily: "var(--framer-font-family)",
                               fontWeight: 600,
                               fontSize: "20px",
                               color: "#121212",
@@ -484,7 +484,7 @@ export default function AboutPage() {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: "var(--font-outfit)",
+                              fontFamily: "var(--framer-font-family)",
                               fontWeight: 500,
                               fontSize: "16px",
                               color: "#666",
@@ -499,7 +499,7 @@ export default function AboutPage() {
                             sx={{
                               bgcolor: "#2196F3",
                               color: "white",
-                              fontFamily: "var(--font-outfit)",
+                              fontFamily: "var(--framer-font-family)",
                               fontWeight: 500,
                             }}
                           />
@@ -510,7 +510,7 @@ export default function AboutPage() {
 
                       <Typography
                         sx={{
-                          fontFamily: "var(--font-outfit)",
+                          fontFamily: "var(--framer-font-family)",
                           fontWeight: 600,
                           fontSize: "18px",
                           color: "#121212",
@@ -528,7 +528,7 @@ export default function AboutPage() {
                           sx={{
                             bgcolor: "#2196F3",
                             color: "white",
-                            fontFamily: "var(--font-outfit)",
+                            fontFamily: "var(--framer-font-family)",
                             fontWeight: 500,
                           }}
                         />
@@ -543,7 +543,7 @@ export default function AboutPage() {
                     component="h2"
                     className="animate-heading"
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 600,
                       fontSize: { xs: "28px", md: "36px" },
                       lineHeight: "1.2",
@@ -555,7 +555,7 @@ export default function AboutPage() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: "var(--font-outfit)",
+                      fontFamily: "var(--framer-font-family)",
                       fontWeight: 400,
                       fontSize: { xs: "16px", md: "18px" },
                       lineHeight: "1.6",
@@ -610,7 +610,7 @@ export default function AboutPage() {
                             <Box>
                               <Typography
                                 sx={{
-                                  fontFamily: "var(--font-outfit)",
+                                  fontFamily: "var(--framer-font-family)",
                                   fontWeight: 600,
                                   fontSize: "18px",
                                   color: "#121212",
@@ -621,7 +621,7 @@ export default function AboutPage() {
                               </Typography>
                               <Typography
                                 sx={{
-                                  fontFamily: "var(--font-outfit)",
+                                  fontFamily: "var(--framer-font-family)",
                                   fontWeight: 400,
                                   fontSize: "14px",
                                   lineHeight: "1.6",

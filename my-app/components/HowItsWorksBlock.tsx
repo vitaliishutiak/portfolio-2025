@@ -6,6 +6,7 @@ import HowItsWorksCard from './HowItsWorksCard'
 import { howItsWork } from '../data/howItsWork'
 import { useTranslations } from 'next-intl'
 import { animateHowItWorksBlock, animateTitle } from '../lib/animations'
+import { CONTENT_MAX_WIDTH_PX, CONTENT_HALF_COLUMN_PX } from '../lib/contentWidth'
 import { useMediaQuery } from '@mui/material'
 
 const HowItsWorksBlock: React.FC = () => {
@@ -34,22 +35,29 @@ const HowItsWorksBlock: React.FC = () => {
   }, [isMobile]);
 
   return (
-    <Box ref={sectionRef} component="section" sx={{ py: { xs: 6, md: 15 }, backgroundColor: '#121212' }}>
+    <Box
+      ref={sectionRef}
+      component="section"
+      sx={{
+        py: { xs: 6, md: 15 },
+        backgroundColor: '#121212',
+      }}
+    >
       <Box sx={{ 
-        width: { xs: '100%', md: '1040px' }, 
-        maxWidth: '1040px', 
+        width: '100%', 
+        maxWidth: CONTENT_MAX_WIDTH_PX, 
         mx: 'auto', 
         px: { xs: 2, md: 0 },
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
         gap: { xs: '32px', md: '24px' }
       }}>
-        <Box ref={textBlockRef} sx={{ width: '100%', maxWidth: { xs: '100%', md: '510px' } }}>
+        <Box ref={textBlockRef} sx={{ width: '100%', maxWidth: { xs: '100%', md: CONTENT_HALF_COLUMN_PX } }}>
             <Typography sx={{ 
               color: '#FFCC00', 
               fontSize: { xs: '16px', md: '20px' }, 
               fontWeight: 500,
-              fontFamily: "var(--font-outfit)",
+              fontFamily: "var(--framer-font-family)",
               mb: { xs: 2, md: 3 }
             }}>
                 {t('subtitle')}
@@ -61,7 +69,7 @@ const HowItsWorksBlock: React.FC = () => {
                 color: '#fff', 
                 fontSize: { xs: '24px', md: '40px' }, 
                 fontWeight: 500,
-                fontFamily: "var(--font-outfit)",
+                fontFamily: "var(--framer-font-family)",
                 lineHeight: { xs: '130%', md: '120%' }
               }}
             >

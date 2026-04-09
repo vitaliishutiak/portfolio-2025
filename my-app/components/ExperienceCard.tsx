@@ -1,9 +1,11 @@
+'use client';
+
 import React, { useRef, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { animateCard } from "../lib/animations";
 
 interface ExperienceCardProps {
-  id: number;
+  id?: number;
   company: string;
   date: string;
   position: string;
@@ -11,7 +13,6 @@ interface ExperienceCardProps {
 }
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({
-  id,
   company,
   date,
   position,
@@ -40,7 +41,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         gridTemplateColumns: { xs: "1fr", md: "2fr 1fr 1fr" },
         gap: { xs: "8px", md: "20px" },
         alignItems: "center",
-        fontFamily: "var(--font-outfit)",
+        fontFamily: "var(--framer-font-family)",
       }}
     >
       <Typography
