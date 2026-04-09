@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Box, Typography, Button, Chip, Avatar, Divider } from '@mui/material'
+import { Container, Box, Typography, Button, Chip } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Header from '../../../../components/Header'
@@ -10,6 +10,7 @@ import ScrollAnimations from '../../../../components/ScrollAnimations'
 import { projects, Project } from '../../../../data/projects'
 import { useTranslations } from 'next-intl'
 import { Link } from '../../../../navigation'
+import { CONTENT_MAX_WIDTH_PX } from '../../../../lib/contentWidth'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import LaunchIcon from '@mui/icons-material/Launch'
 
@@ -60,8 +61,8 @@ export default function ProjectDetailPage() {
             minHeight: '100vh'
           }}>
             <Box sx={{ 
-              width: { xs: '100%', md: '1040px' }, 
-              maxWidth: '1040px', 
+              width: '100%', 
+              maxWidth: CONTENT_MAX_WIDTH_PX, 
               mx: 'auto'
             }}>
               {/* Back Button */}
@@ -70,7 +71,7 @@ export default function ProjectDetailPage() {
                   startIcon={<ArrowBackIcon />}
                   className="animate-button"
                   sx={{
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 500,
                     fontSize: '14px',
                     textTransform: 'none',
@@ -91,7 +92,7 @@ export default function ProjectDetailPage() {
                   component="h1" 
                   className="animate-heading"
                   sx={{ 
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 600,
                     fontSize: { xs: '32px', md: '48px' },
                     lineHeight: '1.2',
@@ -104,7 +105,7 @@ export default function ProjectDetailPage() {
                 <Typography 
                   className="animate-text"
                   sx={{ 
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 400,
                     fontSize: { xs: '16px', md: '18px' },
                     lineHeight: '1.8',
@@ -126,7 +127,7 @@ export default function ProjectDetailPage() {
                       target="_blank"
                       className="animate-button"
                       sx={{
-                        fontFamily: 'var(--font-outfit)',
+                        fontFamily: 'var(--framer-font-family)',
                         fontWeight: 500,
                         fontSize: '14px',
                         textTransform: 'none',
@@ -148,7 +149,7 @@ export default function ProjectDetailPage() {
                       disabled
                       className="animate-button"
                       sx={{
-                        fontFamily: 'var(--font-outfit)',
+                        fontFamily: 'var(--framer-font-family)',
                         fontWeight: 500,
                         fontSize: '14px',
                         textTransform: 'none',
@@ -174,7 +175,7 @@ export default function ProjectDetailPage() {
                 }}>
                   <Box>
                     <Typography sx={{ 
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 600,
                       fontSize: '16px',
                       color: '#121212',
@@ -183,7 +184,7 @@ export default function ProjectDetailPage() {
                       {t('projectDetails.role')}
                     </Typography>
                     <Typography sx={{ 
-                      fontFamily: 'var(--font-outfit)',
+                      fontFamily: 'var(--framer-font-family)',
                       fontWeight: 400,
                       fontSize: '14px',
                       color: '#666'
@@ -194,7 +195,7 @@ export default function ProjectDetailPage() {
                   {project.client && (
                     <Box>
                       <Typography sx={{ 
-                        fontFamily: 'var(--font-outfit)',
+                        fontFamily: 'var(--framer-font-family)',
                         fontWeight: 600,
                         fontSize: '16px',
                         color: '#121212',
@@ -203,7 +204,7 @@ export default function ProjectDetailPage() {
                         {t('projectDetails.client')}
                       </Typography>
                       <Typography sx={{ 
-                        fontFamily: 'var(--font-outfit)',
+                        fontFamily: 'var(--framer-font-family)',
                         fontWeight: 400,
                         fontSize: '14px',
                         color: '#666'
@@ -238,7 +239,7 @@ export default function ProjectDetailPage() {
                 <Typography 
                   component="h3" 
                   sx={{ 
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 600,
                     fontSize: '24px',
                     lineHeight: '1.3',
@@ -267,7 +268,7 @@ export default function ProjectDetailPage() {
                       }
                     }}>
                       <Typography sx={{ 
-                        fontFamily: 'var(--font-outfit)',
+                        fontFamily: 'var(--framer-font-family)',
                         fontWeight: 500,
                         fontSize: '14px',
                         color: '#121212',
@@ -285,7 +286,7 @@ export default function ProjectDetailPage() {
                 <Typography 
                   component="h3" 
                   sx={{ 
-                    fontFamily: 'var(--font-outfit)',
+                    fontFamily: 'var(--framer-font-family)',
                     fontWeight: 600,
                     fontSize: '24px',
                     lineHeight: '1.3',
@@ -301,7 +302,7 @@ export default function ProjectDetailPage() {
                       key={index}
                       label={tech}
                       sx={{
-                        fontFamily: 'var(--font-outfit)',
+                        fontFamily: 'var(--framer-font-family)',
                         fontWeight: 500,
                         fontSize: '12px',
                         backgroundColor: '#FFCC00',

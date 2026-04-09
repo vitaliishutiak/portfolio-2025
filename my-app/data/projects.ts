@@ -2,6 +2,7 @@ export interface Project {
   id: number
   img: string
   title: string
+  year?: number
   technologies: string[]
   description?: string
   githubUrl?: string
@@ -22,6 +23,7 @@ export const projects: Project[] = [
     id: 1,
     img: '/projects-images/project-image-1.png',
     title: 'Lawgorithm',
+    year: 2024,
     technologies: ['MaterialUI', 'React', 'GSAP', 'JavaScript'],
     description: 'Сайт портфоліо IT юриста і не тільки',
     liveUrl: 'https://www.lawgorithm.co/',
@@ -57,6 +59,7 @@ export const projects: Project[] = [
     id: 2,
     img: '/projects-images/project-image-5.png', 
     title: 'Creative Factory Victoria',
+    year: 2024,
     technologies: ['React', 'Material UI', 'React Router', 'i18n'],
     description: 'Багатосторінковий сайт для компанії з реставрації пам\'яток',
     liveUrl: 'https://www.creativefactoryviktoria.com/',
@@ -93,6 +96,7 @@ export const projects: Project[] = [
     id: 3,
     img: '/projects-images/project-image-4.png',
     title: 'Lnq hub',
+    year: 2024,
     technologies: ['React', 'TypeScript', 'React Query', 'React Hook Form', 'Material UI', 'Zustand'],
     description: 'Платформа для вакансій з системою реферальних бонусів для рекрутерів',
     liveUrl: 'https://www.lnqhub.com/',
@@ -129,6 +133,7 @@ export const projects: Project[] = [
     id: 4,
     img: '/projects-images/project-image-3.png',
     title: 'Teplofasad Lviv',
+    year: 2023,
     technologies: ['React', 'Material UI', 'JavaScript'],
     description: 'Веб-сайт для компанії з ремонту дахів та фасадів',
     liveUrl: 'https://www.teplofasad.lviv.ua/',
@@ -165,6 +170,7 @@ export const projects: Project[] = [
     id: 5,
     img: '/projects-images/project-image-2.png',
     title: 'Botteleck deal',
+    year: 2024,
     technologies: ['React', 'JavaScript', 'Material UI', 'Admin Template', 'Axios', 'Redux', 'React Router'],
     description: 'Лендінг сторінка та CRM система для укладання договорів B2B та B2C',
     liveUrl: 'https://www.bottleneck.deal/',
@@ -201,6 +207,7 @@ export const projects: Project[] = [
     id: 6,
     img: '/projects-images/project-image-6.png',
     title: 'GigaTrump coin',
+    year: 2024,
     technologies: ['React', 'JavaScript', 'WebHooks', 'CSS'],
     description: 'Реліз мем монетки на біржі Dexscreener',
     category: 'international',
@@ -236,6 +243,7 @@ export const projects: Project[] = [
     id: 7,
     img: '/projects-images/project-image-7.jpg',
     title: 'LDS admin panel',
+    year: 2024,
     technologies: ['React', 'Redux', 'JavaScript', 'Material UI', 'Admin Template'],
     description: 'CRM система для автоматичного розподілу лідів між баєрами',
     category: 'international',

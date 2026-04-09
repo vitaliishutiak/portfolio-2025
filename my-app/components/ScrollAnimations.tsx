@@ -127,30 +127,6 @@ const ScrollAnimations: React.FC<ScrollAnimationsProps> = ({ children }) => {
         }
       )
 
-      // Animate project cards with 3D effect
-      gsap.fromTo(".animate-project-card", 
-        { 
-          opacity: 0, 
-          y: 80,
-          rotationX: 15,
-          transformOrigin: "center bottom"
-        },
-        { 
-          opacity: 1, 
-          y: 0,
-          rotationX: 0,
-          duration: 0.8, 
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".animate-project-card",
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      )
-
       // Animate FAQ accordions
       gsap.fromTo(".animate-faq", 
         { 

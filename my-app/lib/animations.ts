@@ -44,11 +44,11 @@ export const animateHeroBlock = (
 
   // Використовуємо gsap.context для правильного cleanup
   const ctx = gsap.context(() => {
-    // Встановлюємо початковий стан для зображення (центрування)
-    gsap.set(imageRef, { xPercent: -50 });
+    // Початковий стан як у першому кадрі анімації (без кадру «scale 1» до старту таймлайну)
+    gsap.set(imageRef, { xPercent: -50, scale: 1.2, transformOrigin: "50% 100%" });
 
-    // Створюємо timeline для послідовних анімацій
-    const tl = gsap.timeline({ delay: 0.3 });
+    // Мінімальна затримка після прелоудера — швидший старт хедера й тексту
+    const tl = gsap.timeline({ delay: 0.2 });
 
     // Анімації заголовків одночасно
     tl.fromTo(
@@ -97,19 +97,20 @@ export const animateHeroBlock = (
         0
       )
 
-      // Анімація опису
+      // Текст у лівому куті — майже одразу з рештою героя, коротша поява
       .fromTo(
         descriptionRef,
         {
           opacity: 0,
-          y: 30,
+          y: 18,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 1.5,
+          duration: 1,
           ease: "power2.out",
-        }
+        },
+        0.12
       );
 
     // Паралакс ефект - картинка їде вниз при скролі (спрощений на мобільних)
@@ -190,103 +191,16 @@ export const animateHeader = (headerRef: HTMLElement) => {
     headerRef,
     {
       opacity: 0,
-      y: -100,
-      delay: 0.5,
+      y: -40,
     },
     {
       opacity: 1,
       y: 0,
-      duration: 1,
+      duration: 0.8,
       ease: "power2.out",
     },
-    2
+    0
   );
-};
-
-/**
- * Анімація Projects блоку - з 3D ефектами на всіх пристроях
- * Повертає cleanup функцію для правильного видалення анімацій
- */
-export const animateProjectsBlock = (
-  firstRowCards: Element[],
-  secondRowCards: Element[],
-  projectsBlockRef: HTMLElement
-) => {
-  // Очищаємо попередні анімації
-  cleanupScrollTriggers([
-    ...firstRowCards,
-    ...secondRowCards,
-    projectsBlockRef,
-  ]);
-
-  const isMobile = isMobileDevice();
-
-  // Використовуємо gsap.context для правильного cleanup
-  const ctx = gsap.context(() => {
-    // Встановлюємо початковий стан для першого ряду
-    // На мобільних: легша анімація (менший rotationX і scale)
-    gsap.set(firstRowCards, {
-      opacity: 0,
-      y: isMobile ? -50 : -100,
-      rotationX: isMobile ? 45 : 90,
-      transformOrigin: "center bottom",
-      scale: isMobile ? 0.9 : 0.8,
-    });
-
-    // Анімація появи першого ряду
-    gsap.to(firstRowCards, {
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      scale: 1,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: projectsBlockRef,
-        start: isMobile ? "top 80%" : "top center",
-        end: isMobile ? "top 60%" : "top 30%",
-        scrub: isMobile ? 0.5 : 1, // На мобільних - легкий scrub
-      },
-    });
-
-    // Встановлюємо початковий стан для другого ряду
-    gsap.set(secondRowCards, {
-      opacity: 0,
-      y: isMobile ? -50 : -100,
-      rotationX: isMobile ? 45 : 90,
-      transformOrigin: "center bottom",
-      scale: isMobile ? 0.9 : 0.8,
-    });
-
-    // Анімація появи другого ряду
-    gsap.to(secondRowCards, {
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      scale: 1,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: projectsBlockRef,
-        start: isMobile ? "top 80%" : "top center",
-        end: isMobile ? "top 60%" : "top 30%",
-        scrub: isMobile ? 0.5 : 1, // На мобільних - легкий scrub
-      },
-    });
-  });
-
-  // Оновлюємо ScrollTrigger після створення анімацій
-  ScrollTrigger.refresh();
-
-  // Повертаємо cleanup функцію
-  return () => {
-    ctx.revert();
-    cleanupScrollTriggers([
-      ...firstRowCards,
-      ...secondRowCards,
-      projectsBlockRef,
-    ]);
-  };
 };
 
 /**

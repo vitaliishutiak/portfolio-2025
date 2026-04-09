@@ -7,161 +7,121 @@ import { projects } from "../data/projects";
 import { useTranslations } from "next-intl";
 import { Link } from "../navigation";
 import { useRef, useEffect } from "react";
-import {
-  animateProjectsBlock,
-  animateTitle,
-  isMobileDevice,
-} from "../lib/animations";
+import { animateTitle } from "../lib/animations";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { CONTENT_MAX_WIDTH_PX } from "../lib/contentWidth";
+
+const GRID_GAP_PX = 4;
 
 const ProjectsBlock: React.FC = () => {
   const t = useTranslations("projects");
-  // Беремо тільки перші 4 проекти
   const featuredProjects = projects.slice(0, 4);
-  const projectsBlockRef = useRef(null);
-  const firstRowRef = useRef<HTMLDivElement>(null);
-  const secondRowRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // Розділяємо на 2 блоки по 2 картки
   const firstRowProjects = featuredProjects.slice(0, 2);
   const secondRowProjects = featuredProjects.slice(2, 4);
 
   useEffect(() => {
-    const cleanups: (() => void)[] = [];
-
-    if (
-      firstRowRef.current &&
-      secondRowRef.current &&
-      projectsBlockRef.current
-    ) {
-      const firstRowCards = Array.from(firstRowRef.current.children);
-      const secondRowCards = Array.from(secondRowRef.current.children);
-
-      const cleanup = animateProjectsBlock(
-        firstRowCards,
-        secondRowCards,
-        projectsBlockRef.current
-      );
-      if (cleanup) cleanups.push(cleanup);
-    }
-    if (titleRef.current) {
-      const cleanup = animateTitle(titleRef.current);
-      if (cleanup) cleanups.push(cleanup);
-    }
-
-    // Cleanup при розмонтуванні компонента
-    return () => {
-      cleanups.forEach((cleanup) => cleanup());
-    };
+    if (!titleRef.current) return;
+    const cleanup = animateTitle(titleRef.current);
+    return () => cleanup?.();
   }, []);
 
+  const gridSx = {
+    display: "grid",
+    gridTemplateColumns: { xs: "1fr", md: "repeat(2, minmax(0, 1fr))" },
+    gap: `${GRID_GAP_PX}px`,
+    width: "100%",
+  } as const;
+
   return (
-    <Box
-      ref={projectsBlockRef}
-      component="section"
-      sx={{ py: { xs: 6, md: 15 } }}
-    >
+    <Box component="section" sx={{ py: { xs: 6, md: 15 } }}>
       <Box
         sx={{
-          width: { xs: "100%", md: "1040px" },
-          maxWidth: "1040px",
+          width: "100%",
+          maxWidth: CONTENT_MAX_WIDTH_PX,
           mx: "auto",
-          px: { xs: 2 },
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          gap: "20px",
+          px: { xs: 2, md: 3 },
         }}
       >
-        {/* Перший блок: Тайтл + 2 картки */}
-        <Box>
-          <Typography
-            ref={titleRef}
-            variant="h3"
-            component="h2"
-            sx={{
-              fontWeight: 500,
-              color: "#121212",
-              mb: "20px",
-              fontSize: { xs: "32px", md: "40px" },
-              fontFamily: "var(--font-outfit)",
-            }}
-          >
-            {t("title")}
-          </Typography>
-          <Box
-            ref={firstRowRef}
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "repeat(1, 510px)" },
-              gap: "20px",
-              justifyContent: { xs: "stretch", md: "center" },
-              perspective: "1000px",
-            }}
-          >
-            {firstRowProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                img={project.img}
-                title={project.title}
-                technologies={project.technologies}
-              />
-            ))}
-          </Box>
+        <Typography
+          ref={titleRef}
+          variant="h3"
+          component="h2"
+          sx={{
+            fontWeight: 500,
+            color: "text.primary",
+            mb: { xs: 2, md: 2.5 },
+            fontSize: { xs: "32px", md: "40px" },
+            fontFamily: "var(--framer-font-family)",
+          }}
+        >
+          {t("title")}
+        </Typography>
+
+        <Box sx={gridSx}>
+          {firstRowProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              id={project.id}
+              img={project.img}
+              title={project.title}
+              technologies={project.technologies}
+              year={project.year}
+              href={`/projects/${project.id}`}
+            />
+          ))}
         </Box>
 
-        {/* Другий блок: 2 картки + кнопка */}
-        <Box>
-          <Box
-            ref={secondRowRef}
+        <Box
+          sx={{
+            ...gridSx,
+            mt: `${GRID_GAP_PX}px`,
+          }}
+        >
+          {secondRowProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              id={project.id}
+              img={project.img}
+              title={project.title}
+              technologies={project.technologies}
+              year={project.year}
+              href={`/projects/${project.id}`}
+            />
+          ))}
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-end" },
+            mt: { xs: 3, md: 4 },
+          }}
+        >
+          <Button
+            component={Link}
+            href="/projects"
+            variant="text"
+            fullWidth={isMobile}
             sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "repeat(1, 510px)" },
-              gap: "20px",
-              justifyContent: { xs: "stretch", md: "center" },
-              mb: 4,
-              perspective: "1000px",
+              color: "text.primary",
+              backgroundColor: isMobile ? "#FFCC00" : "transparent",
+              fontWeight: 500,
+              fontSize: { xs: "15px", md: "24px" },
+              textTransform: "none",
+              fontFamily: "var(--framer-font-family)",
+              borderRadius: isMobile ? "32px" : "0px",
+              "&:hover": {
+                transform: { xs: "none", md: "scale(1.05)" },
+                transition: "0.3s",
+              },
             }}
           >
-            {secondRowProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                img={project.img}
-                title={project.title}
-                technologies={project.technologies}
-              />
-            ))}
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: { xs: "center", md: "flex-end" },
-            }}
-          >
-            <Button
-              component={Link}
-              href="/projects"
-              variant="text"
-              fullWidth={isMobile}
-              sx={{
-                color: "#121212",
-                backgroundColor: isMobile ? "#FFCC00" : "transparent",
-                fontWeight: 500,
-                fontSize: { xs: "15px", md: "24px" },
-                textTransform: "none",
-                fontFamily: "var(--font-outfit)",
-                borderRadius: isMobile ? "32px" : "0px",
-                "&:hover": {
-                  transform: { xs: "none", md: "scale(1.05)" },
-                  transition: " 0.3s ",
-                },
-              }}
-            >
-              {t("seeAll")}
-              <ArrowRightAltIcon sx={{ fontSize: "24px" }} />
-            </Button>
-          </Box>
+            {t("seeAll")}
+            <ArrowRightAltIcon sx={{ fontSize: "24px" }} />
+          </Button>
         </Box>
       </Box>
     </Box>
