@@ -128,7 +128,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             objectFit: 'cover',
             display: 'block',
             transition: 'transform 0.45s ease, filter 0.45s ease',
-            '.project-card-media:hover &': {
+            '.project-card-root:hover &': {
               transform: 'scale(1.08)',
               filter: 'blur(8px)',
             },
@@ -148,7 +148,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             background:
               'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 100%)',
             transition: 'background 0.45s ease',
-            '.project-card-media:hover &': {
+            '.project-card-root:hover &': {
               background:
                 'linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.48) 100%)',
             },
@@ -170,7 +170,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
               fontSize: '1.1rem',
               flexShrink: 0,
               transition: 'transform 0.45s ease',
-              '.project-card-media:hover &': {
+              '.project-card-root:hover &': {
                 transform: 'scale(0.96)',
               },
             }}
@@ -189,7 +189,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
               textShadow: '0 1px 12px rgba(0,0,0,0.45)',
               lineHeight: 1.2,
               transition: 'transform 0.45s ease',
-              '.project-card-media:hover &': {
+              '.project-card-root:hover &': {
                 transform: 'scale(0.94)',
               },
             }}

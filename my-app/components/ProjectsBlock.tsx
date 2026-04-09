@@ -45,20 +45,87 @@ const ProjectsBlock: React.FC = () => {
           px: { xs: 2, md: 3 },
         }}
       >
-        <Typography
-          ref={titleRef}
-          variant="h3"
-          component="h2"
+       
+        {/* Header (like reference) */}
+        <Box
           sx={{
-            fontWeight: 500,
-            color: "text.primary",
-            mb: { xs: 2, md: 2.5 },
-            fontSize: { xs: "32px", md: "40px" },
-            fontFamily: "var(--framer-font-family)",
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr 1fr" },
+            alignItems: "start",
+            columnGap: { xs: 0, md: 6 },
+            rowGap: { xs: 2, md: 0 },
+            mb: { xs: 3, md: 14 },
           }}
         >
-          {t("title")}
-        </Typography>
+           <Typography
+              sx={{
+                fontFamily: "var(--framer-font-family)",
+                fontWeight: 500,
+                fontSize: "14px",
+                lineHeight: "130%",
+                letterSpacing: "-0.04em",
+                color: "text.secondary",
+                mb: { xs: 1, md: 2 },
+              }}
+            >
+              ({projects.length})
+            </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            
+
+            <Typography
+              ref={titleRef}
+              component="h2"
+              sx={{
+                fontFamily: "var(--framer-font-family)",
+                fontWeight: 700,
+                fontSize: { xs: "56px", md: "144px" },
+                lineHeight: "0.95",
+                letterSpacing: "-0.06em",
+                color: "text.primary",
+                mb: { xs: 1, md: 2 },
+              }}
+            >
+              Projects.
+            </Typography>
+
+            <Typography
+              sx={{
+                fontFamily: "var(--framer-font-family)",
+                fontWeight: 600,
+                fontSize: { xs: "24px", md: "36px" },
+                lineHeight: "100%",
+                letterSpacing: "-0.06em",
+                color: "text.primary",
+              }}
+            >
+              ©2026
+            </Typography>
+          </Box>
+          <Box></Box>
+          <Box sx={{ display: "flex", alignItems: "center", height: "100%" }}>
+          <Typography
+            sx={{
+              fontFamily: "var(--framer-font-family)",
+              fontWeight: 400,
+              fontSize: "16px",
+              lineHeight: "150%",
+              color: "text.secondary",
+              maxWidth: 280,
+              justifySelf: { xs: "start", md: "end" },
+            }}
+          >
+            {t("allProjectsDescription")}
+          </Typography>
+          </Box>
+
+          
+        </Box>
 
         <Box sx={gridSx}>
           {firstRowProjects.map((project) => (
