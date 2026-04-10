@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import ThemeProvider from "../../components/ThemeProvider";
+import LenisProvider from "../../components/LenisProvider";
 import IntlProvider from "../../components/IntlProvider";
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -122,7 +123,9 @@ export default async function LocaleLayout({
       <body className={inter.variable} suppressHydrationWarning>
         <IntlProvider messages={messages} locale={locale}>
           <ThemeProvider>
-            {children}
+            <LenisProvider>
+              {children}
+            </LenisProvider>
           </ThemeProvider>
         </IntlProvider>
       </body>
